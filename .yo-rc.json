@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.prj",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.6.0",
+    "applicationType": "monolith",
+    "baseName": "taisan",
+    "packageName": "com.prj",
+    "packageFolder": "com/prj",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZWM3YzA3NWRlYWNiZDNhNzZiZDgyZjNiMjg3Y2FmOTk1ZDk5NmY2NDk1ZTQyNmY0YmMwYTVjMjEzNmU5ZGRlMGIwMTg1NTE2NWQ0YWYxMDRmZGRiYTNlZjc4NjQ1NmIxMDYwNTg4MzAxNjY4YzNmZTk2ODhjNjMyNTZjYWI1YTg=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1721706989141,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "vi"],
+    "blueprints": []
+  }
+}
