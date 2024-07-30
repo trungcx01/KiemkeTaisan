@@ -1,0 +1,29 @@
+{
+  "taisanApp": {
+    "banghiKiemke": {
+      "home": {
+        "title": "Banghi Kiemkes",
+        "createLabel": "Create a new Banghi Kiemke",
+        "createOrEditLabel": "Create or edit a Banghi Kiemke",
+        "notFound": "No Banghi Kiemkes found"
+      },
+      "created": "A new Banghi Kiemke is created with identifier {{ param }}",
+      "updated": "A Banghi Kiemke is updated with identifier {{ param }}",
+      "deleted": "A Banghi Kiemke is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Banghi Kiemke {{ id }}?"
+      },
+      "detail": {
+        "title": "Banghi Kiemke"
+      },
+      "soluong": "Soluong",
+      "nguyengia": "Nguyengia",
+      "giatriConlai": "Giatri Conlai",
+      "ghichu": "Ghichu",
+      "tinhtrangSudung": "Tinhtrang Sudung",
+      "hinhthucXuly": "Hinhthuc Xuly",
+      "taisan": "Taisan",
+      "kiemkeTaisan": "Kiemke Taisan"
+    }
+  }
+}

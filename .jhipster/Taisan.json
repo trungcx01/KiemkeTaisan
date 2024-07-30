@@ -1,0 +1,185 @@
+{
+    "name": "Taisan",
+    "fields": [
+        {
+            "fieldName": "maTaisan",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tenTaisan",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tenRutgon",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "model",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "loaiTaisan",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mota",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ngayNhan",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ngaySudung",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "ngaySanxuat",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "thoigianSudung",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ngayHethan",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "haomon",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nguyengia",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "soHopdongMua",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "soHoadonMua",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ngayHoadon",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "trangthai",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hangSanxuat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nuocSanxuat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "congsuatSudung",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "dientichSudung",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "donviTinh",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "giatriConlai",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tangNguyengia",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nguon",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vitri",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "donviQuanly",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "donviSudung",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "soluong",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "nhanvien",
+            "otherEntityRelationshipName": "taisan",
+            "relationshipValidateRules": "required",
+            "relationshipName": "nguoiQuanly",
+            "otherEntityField": "ten",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "banghiKiemke",
+            "otherEntityRelationshipName": "taisan",
+            "relationshipName": "banghiKiemke"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "danhmucTaisan",
+            "otherEntityRelationshipName": "taisan",
+            "relationshipValidateRules": "required",
+            "relationshipName": "danhmucTaisan",
+            "otherEntityField": "ten"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "donviCungcap",
+            "otherEntityRelationshipName": "taisan",
+            "relationshipName": "donviCungcap",
+            "otherEntityField": "ten"
+        }
+    ],
+    "changelogDate": "20240723040141",
+    "entityTableName": "taisan",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

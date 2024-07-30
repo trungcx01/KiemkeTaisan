@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="donviCungcap">
+            <h2><span jhiTranslate="taisanApp.donviCungcap.detail.title">Donvi Cungcap</span> {{donviCungcap.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="taisanApp.donviCungcap.maDVCC">Ma DVCC</span></dt>
+                <dd>
+                    <span>{{donviCungcap.maDVCC}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.donviCungcap.ten">Ten</span></dt>
+                <dd>
+                    <span>{{donviCungcap.ten}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.donviCungcap.diachi">Diachi</span></dt>
+                <dd>
+                    <span>{{donviCungcap.diachi}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.donviCungcap.soDienThoai">So Dien Thoai</span></dt>
+                <dd>
+                    <span>{{donviCungcap.soDienThoai}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.donviCungcap.email">Email</span></dt>
+                <dd>
+                    <span>{{donviCungcap.email}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/donvi-cungcap', donviCungcap.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

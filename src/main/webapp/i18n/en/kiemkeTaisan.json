@@ -1,0 +1,28 @@
+{
+  "taisanApp": {
+    "kiemkeTaisan": {
+      "home": {
+        "title": "Kiemke Taisans",
+        "createLabel": "Create a new Kiemke Taisan",
+        "createOrEditLabel": "Create or edit a Kiemke Taisan",
+        "notFound": "No Kiemke Taisans found"
+      },
+      "created": "A new Kiemke Taisan is created with identifier {{ param }}",
+      "updated": "A Kiemke Taisan is updated with identifier {{ param }}",
+      "deleted": "A Kiemke Taisan is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Kiemke Taisan {{ id }}?"
+      },
+      "detail": {
+        "title": "Kiemke Taisan"
+      },
+      "sophieu": "Sophieu",
+      "ngayLapphieu": "Ngay Lapphieu",
+      "ngayKiemke": "Ngay Kiemke",
+      "donviSudung": "Donvi Sudung",
+      "ghichu": "Ghichu",
+      "nhanvienKiemkes": "Nhanvien Kiemkes",
+      "banghiKiemkes": "Banghi Kiemkes"
+    }
+  }
+}

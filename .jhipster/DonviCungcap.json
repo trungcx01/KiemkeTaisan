@@ -1,0 +1,49 @@
+{
+    "name": "DonviCungcap",
+    "fields": [
+        {
+            "fieldName": "maDVCC",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ten",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "diachi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "soDienThoai",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "taisan",
+            "otherEntityRelationshipName": "donviCungcap",
+            "relationshipName": "taisan"
+        }
+    ],
+    "changelogDate": "20240723040137",
+    "entityTableName": "donvi_cungcap",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

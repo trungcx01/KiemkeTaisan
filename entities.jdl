@@ -1,0 +1,92 @@
+entity Nhanvien {
+  maNV String required
+  ten String required
+  chucvu String
+  diachi String
+  gioitinh Integer required
+  sdt String maxlength(11)
+}
+
+entity DanhmucTaisan {
+  maDMTS String required
+  ten String required
+  mota String
+  ngaytao LocalDate
+  ngayCapnhat LocalDate
+}
+entity DonviCungcap {
+  maDVCC String required
+  ten String required
+  diachi String
+  soDienThoai String
+  email String
+}
+
+entity BanghiKiemke {
+  soluong Integer required
+    nguyengia BigDecimal required
+    giatriConlai BigDecimal required
+    ghichu String
+    tinhtrangSudung Integer
+    hinhthucXuly Integer
+}
+entity KiemkeTaisan {
+  sophieu String required
+    ngayLapphieu LocalDate required
+    ngayKiemke LocalDate required
+    donviSudung String required
+    ghichu String
+}
+entity NhanvienKiemke {
+  daidien String required
+  vaitro Integer required
+}
+entity Taisan {
+  maTaisan String required
+  tenTaisan String required
+  tenRutgon String required
+  model String
+  serial String
+  loaiTaisan Integer required
+  mota String
+  ngayNhan LocalDate required
+  ngaySudung LocalDate
+  ngaySanxuat LocalDate
+  thoigianSudung Integer
+  ngayHethan LocalDate
+  haomon Integer
+  nguyengia BigDecimal
+  soHopdongMua String
+  soHoadonMua String
+  ngayHoadon LocalDate
+  trangthai Integer 
+  hangSanxuat String
+  nuocSanxuat String
+  congsuatSudung Double
+  dientichSudung Double
+  donviTinh String
+  giatriConlai Integer
+  tangNguyengia BigDecimal
+  nguon String 
+  vitri String 
+  donviQuanly String 
+  donviSudung String
+  soluong Integer required
+}
+
+relationship OneToOne {
+  Taisan{nguoiQuanly(ten) required} to Nhanvien
+  NhanvienKiemke{nhanvien(ten) required} to Nhanvien
+}
+relationship OneToMany {
+  DanhmucTaisan to Taisan{danhmucTaisan(ten) required}
+  DonviCungcap to Taisan{donviCungcap(ten)}
+  Taisan to BanghiKiemke{taisan(tenTaisan) required} 
+  KiemkeTaisan{nhanvienKiemkes} to NhanvienKiemke{kiemkeTaisan}
+  KiemkeTaisan{banghiKiemkes} to BanghiKiemke{kiemkeTaisan}
+}
+paginate * with pagination
+service all with serviceImpl
+dto all with mapstruct
+filter Taisan
+filter Nhanvien

@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="taisanApp.banghiKiemke.home.title">Banghi Kiemkes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-banghi-kiemke" [routerLink]="['/banghi-kiemke/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="taisanApp.banghiKiemke.home.createLabel">
+            Create a new Banghi Kiemke
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="banghiKiemkes?.length === 0">
+        <span jhiTranslate="taisanApp.banghiKiemke.home.notFound">No banghiKiemkes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="banghiKiemkes?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="soluong"><span jhiTranslate="taisanApp.banghiKiemke.soluong">Soluong</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="nguyengia"><span jhiTranslate="taisanApp.banghiKiemke.nguyengia">Nguyengia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="giatriConlai"><span jhiTranslate="taisanApp.banghiKiemke.giatriConlai">Giatri Conlai</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ghichu"><span jhiTranslate="taisanApp.banghiKiemke.ghichu">Ghichu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tinhtrangSudung"><span jhiTranslate="taisanApp.banghiKiemke.tinhtrangSudung">Tinhtrang Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="hinhthucXuly"><span jhiTranslate="taisanApp.banghiKiemke.hinhthucXuly">Hinhthuc Xuly</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="taisanTenTaisan"><span jhiTranslate="taisanApp.banghiKiemke.taisan">Taisan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="kiemkeTaisanId"><span jhiTranslate="taisanApp.banghiKiemke.kiemkeTaisan">Kiemke Taisan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let banghiKiemke of banghiKiemkes ;trackBy: trackId">
+                <td><a [routerLink]="['/banghi-kiemke', banghiKiemke.id, 'view' ]">{{banghiKiemke.id}}</a></td>
+                <td>{{banghiKiemke.soluong}}</td>
+                <td>{{banghiKiemke.nguyengia}}</td>
+                <td>{{banghiKiemke.giatriConlai}}</td>
+                <td>{{banghiKiemke.ghichu}}</td>
+                <td>{{banghiKiemke.tinhtrangSudung}}</td>
+                <td>{{banghiKiemke.hinhthucXuly}}</td>
+                <td>
+                    <div *ngIf="banghiKiemke.taisanId">
+                        <a [routerLink]="['/taisan', banghiKiemke.taisanId , 'view' ]" >{{banghiKiemke.taisanTenTaisan}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="banghiKiemke.kiemkeTaisanId">
+                        <a [routerLink]="['/kiemke-taisan', banghiKiemke.kiemkeTaisanId , 'view' ]" >{{banghiKiemke.kiemkeTaisanId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/banghi-kiemke', banghiKiemke.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/banghi-kiemke', banghiKiemke.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(banghiKiemke)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="banghiKiemkes?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-danhmuc-taisan-heading" jhiTranslate="taisanApp.danhmucTaisan.home.createOrEditLabel">Create or edit a Danhmuc Taisan</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.maDMTS" for="field_maDMTS">Ma DMTS</label>
+                    <input type="text" class="form-control" name="maDMTS" id="field_maDMTS"
+                           formControlName="maDMTS"/>
+                    <div *ngIf="editForm.get('maDMTS')!.invalid && (editForm.get('maDMTS')!.dirty || editForm.get('maDMTS')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('maDMTS')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.ten" for="field_ten">Ten</label>
+                    <input type="text" class="form-control" name="ten" id="field_ten"
+                           formControlName="ten"/>
+                    <div *ngIf="editForm.get('ten')!.invalid && (editForm.get('ten')!.dirty || editForm.get('ten')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ten')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.mota" for="field_mota">Mota</label>
+                    <input type="text" class="form-control" name="mota" id="field_mota"
+                           formControlName="mota"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.ngaytao" for="field_ngaytao">Ngaytao</label>
+                    <div class="input-group">
+                        <input id="field_ngaytao" type="text" class="form-control" name="ngaytao" ngbDatepicker  #ngaytaoDp="ngbDatepicker" formControlName="ngaytao"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngaytaoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.ngayCapnhat" for="field_ngayCapnhat">Ngay Capnhat</label>
+                    <div class="input-group">
+                        <input id="field_ngayCapnhat" type="text" class="form-control" name="ngayCapnhat" ngbDatepicker  #ngayCapnhatDp="ngbDatepicker" formControlName="ngayCapnhat"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngayCapnhatDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -11,7 +11,7 @@ import { NgJhipsterModule, translatePartialLoader, missingTranslationHandler, Jh
 import locale from '@angular/common/locales/en';
 
 import * as moment from 'moment';
-import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateMomentAdapter } from 'app/shared/util/datepicker-adapter';
 
 import { AuthInterceptor } from 'app/blocks/interceptor/auth.interceptor';
@@ -20,6 +20,7 @@ import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.int
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 
 import { fontAwesomeIcons } from './icons/font-awesome-icons';
+import { CustomDateParserFormatter } from 'app/shared/util/custom-datepicker';
 
 @NgModule({
   imports: [
@@ -31,50 +32,51 @@ import { fontAwesomeIcons } from './icons/font-awesome-icons';
       alertAsToast: false,
       alertTimeout: 5000,
       i18nEnabled: true,
-      defaultI18nLang: 'en'
+      defaultI18nLang: 'en',
     }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: translatePartialLoader,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
       missingTranslationHandler: {
         provide: MissingTranslationHandler,
         useFactory: missingTranslationHandler,
-        deps: [JhiConfigService]
-      }
-    })
+        deps: [JhiConfigService],
+      },
+    }),
   ],
   providers: [
     Title,
     {
       provide: LOCALE_ID,
-      useValue: 'en'
+      useValue: 'en',
     },
     { provide: NgbDateAdapter, useClass: NgbDateMomentAdapter },
+    { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthExpiredInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: NotificationInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class TaisanCoreModule {
   constructor(iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig, languageService: JhiLanguageService) {

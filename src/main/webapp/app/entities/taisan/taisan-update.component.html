@@ -1,0 +1,271 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-taisan-heading" jhiTranslate="taisanApp.taisan.home.createOrEditLabel">Create or edit a Taisan</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.maTaisan" for="field_maTaisan">Ma Taisan</label>
+                    <input type="text" class="form-control" name="maTaisan" id="field_maTaisan"
+                           formControlName="maTaisan"/>
+                    <div *ngIf="editForm.get('maTaisan')!.invalid && (editForm.get('maTaisan')!.dirty || editForm.get('maTaisan')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('maTaisan')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.tenTaisan" for="field_tenTaisan">Ten Taisan</label>
+                    <input type="text" class="form-control" name="tenTaisan" id="field_tenTaisan"
+                           formControlName="tenTaisan"/>
+                    <div *ngIf="editForm.get('tenTaisan')!.invalid && (editForm.get('tenTaisan')!.dirty || editForm.get('tenTaisan')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tenTaisan')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.tenRutgon" for="field_tenRutgon">Ten Rutgon</label>
+                    <input type="text" class="form-control" name="tenRutgon" id="field_tenRutgon"
+                           formControlName="tenRutgon"/>
+                    <div *ngIf="editForm.get('tenRutgon')!.invalid && (editForm.get('tenRutgon')!.dirty || editForm.get('tenRutgon')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tenRutgon')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.model" for="field_model">Model</label>
+                    <input type="text" class="form-control" name="model" id="field_model"
+                           formControlName="model"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.serial" for="field_serial">Serial</label>
+                    <input type="text" class="form-control" name="serial" id="field_serial"
+                           formControlName="serial"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.loaiTaisan" for="field_loaiTaisan">Loai Taisan</label>
+                    <input type="number" class="form-control" name="loaiTaisan" id="field_loaiTaisan"
+                           formControlName="loaiTaisan"/>
+                    <div *ngIf="editForm.get('loaiTaisan')!.invalid && (editForm.get('loaiTaisan')!.dirty || editForm.get('loaiTaisan')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('loaiTaisan')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('loaiTaisan')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.mota" for="field_mota">Mota</label>
+                    <input type="text" class="form-control" name="mota" id="field_mota"
+                           formControlName="mota"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.ngayNhan" for="field_ngayNhan">Ngay Nhan</label>
+                    <div class="input-group">
+                        <input id="field_ngayNhan" type="text" class="form-control" name="ngayNhan" ngbDatepicker  #ngayNhanDp="ngbDatepicker" formControlName="ngayNhan"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngayNhanDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('ngayNhan')!.invalid && (editForm.get('ngayNhan')!.dirty || editForm.get('ngayNhan')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ngayNhan')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.ngaySudung" for="field_ngaySudung">Ngay Sudung</label>
+                    <div class="input-group">
+                        <input id="field_ngaySudung" type="text" class="form-control" name="ngaySudung" ngbDatepicker  #ngaySudungDp="ngbDatepicker" formControlName="ngaySudung"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngaySudungDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.ngaySanxuat" for="field_ngaySanxuat">Ngay Sanxuat</label>
+                    <div class="input-group">
+                        <input id="field_ngaySanxuat" type="text" class="form-control" name="ngaySanxuat" ngbDatepicker  #ngaySanxuatDp="ngbDatepicker" formControlName="ngaySanxuat"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngaySanxuatDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.thoigianSudung" for="field_thoigianSudung">Thoigian Sudung</label>
+                    <input type="number" class="form-control" name="thoigianSudung" id="field_thoigianSudung"
+                           formControlName="thoigianSudung"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.ngayHethan" for="field_ngayHethan">Ngay Hethan</label>
+                    <div class="input-group">
+                        <input id="field_ngayHethan" type="text" class="form-control" name="ngayHethan" ngbDatepicker  #ngayHethanDp="ngbDatepicker" formControlName="ngayHethan"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngayHethanDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.haomon" for="field_haomon">Haomon</label>
+                    <input type="number" class="form-control" name="haomon" id="field_haomon"
+                           formControlName="haomon"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.nguyengia" for="field_nguyengia">Nguyengia</label>
+                    <input type="number" class="form-control" name="nguyengia" id="field_nguyengia"
+                           formControlName="nguyengia"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.soHopdongMua" for="field_soHopdongMua">So Hopdong Mua</label>
+                    <input type="text" class="form-control" name="soHopdongMua" id="field_soHopdongMua"
+                           formControlName="soHopdongMua"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.soHoadonMua" for="field_soHoadonMua">So Hoadon Mua</label>
+                    <input type="text" class="form-control" name="soHoadonMua" id="field_soHoadonMua"
+                           formControlName="soHoadonMua"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.ngayHoadon" for="field_ngayHoadon">Ngay Hoadon</label>
+                    <div class="input-group">
+                        <input id="field_ngayHoadon" type="text" class="form-control" name="ngayHoadon" ngbDatepicker  #ngayHoadonDp="ngbDatepicker" formControlName="ngayHoadon"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngayHoadonDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.trangthai" for="field_trangthai">Trangthai</label>
+                    <input type="number" class="form-control" name="trangthai" id="field_trangthai"
+                           formControlName="trangthai"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.hangSanxuat" for="field_hangSanxuat">Hang Sanxuat</label>
+                    <input type="text" class="form-control" name="hangSanxuat" id="field_hangSanxuat"
+                           formControlName="hangSanxuat"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.nuocSanxuat" for="field_nuocSanxuat">Nuoc Sanxuat</label>
+                    <input type="text" class="form-control" name="nuocSanxuat" id="field_nuocSanxuat"
+                           formControlName="nuocSanxuat"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.congsuatSudung" for="field_congsuatSudung">Congsuat Sudung</label>
+                    <input type="number" class="form-control" name="congsuatSudung" id="field_congsuatSudung"
+                           formControlName="congsuatSudung"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.dientichSudung" for="field_dientichSudung">Dientich Sudung</label>
+                    <input type="number" class="form-control" name="dientichSudung" id="field_dientichSudung"
+                           formControlName="dientichSudung"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.donviTinh" for="field_donviTinh">Donvi Tinh</label>
+                    <input type="text" class="form-control" name="donviTinh" id="field_donviTinh"
+                           formControlName="donviTinh"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.giatriConlai" for="field_giatriConlai">Giatri Conlai</label>
+                    <input type="number" class="form-control" name="giatriConlai" id="field_giatriConlai"
+                           formControlName="giatriConlai"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.tangNguyengia" for="field_tangNguyengia">Tang Nguyengia</label>
+                    <input type="number" class="form-control" name="tangNguyengia" id="field_tangNguyengia"
+                           formControlName="tangNguyengia"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.nguon" for="field_nguon">Nguon</label>
+                    <input type="text" class="form-control" name="nguon" id="field_nguon"
+                           formControlName="nguon"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.vitri" for="field_vitri">Vitri</label>
+                    <input type="text" class="form-control" name="vitri" id="field_vitri"
+                           formControlName="vitri"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.donviQuanly" for="field_donviQuanly">Donvi Quanly</label>
+                    <input type="text" class="form-control" name="donviQuanly" id="field_donviQuanly"
+                           formControlName="donviQuanly"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.donviSudung" for="field_donviSudung">Donvi Sudung</label>
+                    <input type="text" class="form-control" name="donviSudung" id="field_donviSudung"
+                           formControlName="donviSudung"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.soluong" for="field_soluong">Soluong</label>
+                    <input type="number" class="form-control" name="soluong" id="field_soluong"
+                           formControlName="soluong"/>
+                    <div *ngIf="editForm.get('soluong')!.invalid && (editForm.get('soluong')!.dirty || editForm.get('soluong')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('soluong')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('soluong')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.nguoiQuanly" for="field_nguoiQuanly">Nguoi Quanly</label>
+                    <select class="form-control" id="field_nguoiQuanly" name="nguoiQuanly" formControlName="nguoiQuanlyId">
+                        <option *ngIf="!editForm.get('nguoiQuanlyId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="nhanvienOption.id" *ngFor="let nhanvienOption of nguoiquanlies; trackBy: trackById">{{nhanvienOption.ten}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('nguoiQuanlyId')!.invalid && (editForm.get('nguoiQuanlyId')!.dirty || editForm.get('nguoiQuanlyId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('nguoiQuanlyId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.danhmucTaisan" for="field_danhmucTaisan">Danhmuc Taisan</label>
+                    <select class="form-control" id="field_danhmucTaisan" name="danhmucTaisan" formControlName="danhmucTaisanId">
+                        <option *ngIf="!editForm.get('danhmucTaisanId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="danhmucTaisanOption.id" *ngFor="let danhmucTaisanOption of danhmuctaisans; trackBy: trackById">{{danhmucTaisanOption.ten}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('danhmucTaisanId')!.invalid && (editForm.get('danhmucTaisanId')!.dirty || editForm.get('danhmucTaisanId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('danhmucTaisanId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.taisan.donviCungcap" for="field_donviCungcap">Donvi Cungcap</label>
+                    <select class="form-control" id="field_donviCungcap" name="donviCungcap" formControlName="donviCungcapId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="donviCungcapOption.id" *ngFor="let donviCungcapOption of donvicungcaps; trackBy: trackById">{{donviCungcapOption.ten}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

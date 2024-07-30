@@ -1,0 +1,139 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="taisanApp.taisan.home.title">Taisans</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-taisan" [routerLink]="['/taisan/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="taisanApp.taisan.home.createLabel">
+            Create a new Taisan
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="taisans?.length === 0">
+        <span jhiTranslate="taisanApp.taisan.home.notFound">No taisans found</span>
+    </div>
+    <div class="table-responsive" *ngIf="taisans?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="maTaisan"><span jhiTranslate="taisanApp.taisan.maTaisan">Ma Taisan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tenTaisan"><span jhiTranslate="taisanApp.taisan.tenTaisan">Ten Taisan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tenRutgon"><span jhiTranslate="taisanApp.taisan.tenRutgon">Ten Rutgon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="model"><span jhiTranslate="taisanApp.taisan.model">Model</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="serial"><span jhiTranslate="taisanApp.taisan.serial">Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="loaiTaisan"><span jhiTranslate="taisanApp.taisan.loaiTaisan">Loai Taisan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="mota"><span jhiTranslate="taisanApp.taisan.mota">Mota</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngayNhan"><span jhiTranslate="taisanApp.taisan.ngayNhan">Ngay Nhan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngaySudung"><span jhiTranslate="taisanApp.taisan.ngaySudung">Ngay Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngaySanxuat"><span jhiTranslate="taisanApp.taisan.ngaySanxuat">Ngay Sanxuat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="thoigianSudung"><span jhiTranslate="taisanApp.taisan.thoigianSudung">Thoigian Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngayHethan"><span jhiTranslate="taisanApp.taisan.ngayHethan">Ngay Hethan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="haomon"><span jhiTranslate="taisanApp.taisan.haomon">Haomon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="nguyengia"><span jhiTranslate="taisanApp.taisan.nguyengia">Nguyengia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="soHopdongMua"><span jhiTranslate="taisanApp.taisan.soHopdongMua">So Hopdong Mua</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="soHoadonMua"><span jhiTranslate="taisanApp.taisan.soHoadonMua">So Hoadon Mua</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngayHoadon"><span jhiTranslate="taisanApp.taisan.ngayHoadon">Ngay Hoadon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="trangthai"><span jhiTranslate="taisanApp.taisan.trangthai">Trangthai</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="hangSanxuat"><span jhiTranslate="taisanApp.taisan.hangSanxuat">Hang Sanxuat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="nuocSanxuat"><span jhiTranslate="taisanApp.taisan.nuocSanxuat">Nuoc Sanxuat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="congsuatSudung"><span jhiTranslate="taisanApp.taisan.congsuatSudung">Congsuat Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dientichSudung"><span jhiTranslate="taisanApp.taisan.dientichSudung">Dientich Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="donviTinh"><span jhiTranslate="taisanApp.taisan.donviTinh">Donvi Tinh</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="giatriConlai"><span jhiTranslate="taisanApp.taisan.giatriConlai">Giatri Conlai</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tangNguyengia"><span jhiTranslate="taisanApp.taisan.tangNguyengia">Tang Nguyengia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="nguon"><span jhiTranslate="taisanApp.taisan.nguon">Nguon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="vitri"><span jhiTranslate="taisanApp.taisan.vitri">Vitri</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="donviQuanly"><span jhiTranslate="taisanApp.taisan.donviQuanly">Donvi Quanly</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="donviSudung"><span jhiTranslate="taisanApp.taisan.donviSudung">Donvi Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="soluong"><span jhiTranslate="taisanApp.taisan.soluong">Soluong</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="nguoiQuanlyTen"><span jhiTranslate="taisanApp.taisan.nguoiQuanly">Nguoi Quanly</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="danhmucTaisanTen"><span jhiTranslate="taisanApp.taisan.danhmucTaisan">Danhmuc Taisan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="donviCungcapTen"><span jhiTranslate="taisanApp.taisan.donviCungcap">Donvi Cungcap</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let taisan of taisans ;trackBy: trackId">
+                <td><a [routerLink]="['/taisan', taisan.id, 'view' ]">{{taisan.id}}</a></td>
+                <td>{{taisan.maTaisan}}</td>
+                <td>{{taisan.tenTaisan}}</td>
+                <td>{{taisan.tenRutgon}}</td>
+                <td>{{taisan.model}}</td>
+                <td>{{taisan.serial}}</td>
+                <td>{{taisan.loaiTaisan}}</td>
+                <td>{{taisan.mota}}</td>
+                <td>{{taisan.ngayNhan | date:'mediumDate'}}</td>
+                <td>{{taisan.ngaySudung | date:'mediumDate'}}</td>
+                <td>{{taisan.ngaySanxuat | date:'mediumDate'}}</td>
+                <td>{{taisan.thoigianSudung}}</td>
+                <td>{{taisan.ngayHethan | date:'mediumDate'}}</td>
+                <td>{{taisan.haomon}}</td>
+                <td>{{taisan.nguyengia}}</td>
+                <td>{{taisan.soHopdongMua}}</td>
+                <td>{{taisan.soHoadonMua}}</td>
+                <td>{{taisan.ngayHoadon | date:'mediumDate'}}</td>
+                <td>{{taisan.trangthai}}</td>
+                <td>{{taisan.hangSanxuat}}</td>
+                <td>{{taisan.nuocSanxuat}}</td>
+                <td>{{taisan.congsuatSudung}}</td>
+                <td>{{taisan.dientichSudung}}</td>
+                <td>{{taisan.donviTinh}}</td>
+                <td>{{taisan.giatriConlai}}</td>
+                <td>{{taisan.tangNguyengia}}</td>
+                <td>{{taisan.nguon}}</td>
+                <td>{{taisan.vitri}}</td>
+                <td>{{taisan.donviQuanly}}</td>
+                <td>{{taisan.donviSudung}}</td>
+                <td>{{taisan.soluong}}</td>
+                <td>
+                    <div *ngIf="taisan.nguoiQuanlyId">
+                        <a [routerLink]="['/nhanvien', taisan.nguoiQuanlyId , 'view' ]" >{{taisan.nguoiQuanlyTen}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="taisan.danhmucTaisanId">
+                        <a [routerLink]="['/danhmuc-taisan', taisan.danhmucTaisanId , 'view' ]" >{{taisan.danhmucTaisanTen}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="taisan.donviCungcapId">
+                        <a [routerLink]="['/donvi-cungcap', taisan.donviCungcapId , 'view' ]" >{{taisan.donviCungcapTen}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/taisan', taisan.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/taisan', taisan.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(taisan)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="taisans?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

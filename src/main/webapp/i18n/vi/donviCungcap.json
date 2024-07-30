@@ -1,0 +1,27 @@
+{
+  "taisanApp": {
+    "donviCungcap": {
+      "home": {
+        "title": "Donvi Cungcaps",
+        "createLabel": "Thêm mới một Donvi Cungcap",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Donvi Cungcap",
+        "notFound": "No Donvi Cungcaps found"
+      },
+      "created": "Một Donvi Cungcap mới được tạo với định danh {{ param }}",
+      "updated": "Một Donvi Cungcap cập nhật với định danh {{ param }}",
+      "deleted": "Một Donvi Cungcap đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Donvi Cungcap {{ id }}?"
+      },
+      "detail": {
+        "title": "Donvi Cungcap"
+      },
+      "maDVCC": "Ma DVCC",
+      "ten": "Ten",
+      "diachi": "Diachi",
+      "soDienThoai": "So Dien Thoai",
+      "email": "Email",
+      "taisan": "Taisan"
+    }
+  }
+}

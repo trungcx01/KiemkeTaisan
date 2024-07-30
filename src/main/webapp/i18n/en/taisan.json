@@ -1,0 +1,55 @@
+{
+  "taisanApp": {
+    "taisan": {
+      "home": {
+        "title": "Taisans",
+        "createLabel": "Create a new Taisan",
+        "createOrEditLabel": "Create or edit a Taisan",
+        "notFound": "No Taisans found"
+      },
+      "created": "A new Taisan is created with identifier {{ param }}",
+      "updated": "A Taisan is updated with identifier {{ param }}",
+      "deleted": "A Taisan is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Taisan {{ id }}?"
+      },
+      "detail": {
+        "title": "Taisan"
+      },
+      "maTaisan": "Ma Taisan",
+      "tenTaisan": "Ten Taisan",
+      "tenRutgon": "Ten Rutgon",
+      "model": "Model",
+      "serial": "Serial",
+      "loaiTaisan": "Loai Taisan",
+      "mota": "Mota",
+      "ngayNhan": "Ngay Nhan",
+      "ngaySudung": "Ngay Sudung",
+      "ngaySanxuat": "Ngay Sanxuat",
+      "thoigianSudung": "Thoigian Sudung",
+      "ngayHethan": "Ngay Hethan",
+      "haomon": "Haomon",
+      "nguyengia": "Nguyengia",
+      "soHopdongMua": "So Hopdong Mua",
+      "soHoadonMua": "So Hoadon Mua",
+      "ngayHoadon": "Ngay Hoadon",
+      "trangthai": "Trangthai",
+      "hangSanxuat": "Hang Sanxuat",
+      "nuocSanxuat": "Nuoc Sanxuat",
+      "congsuatSudung": "Congsuat Sudung",
+      "dientichSudung": "Dientich Sudung",
+      "donviTinh": "Donvi Tinh",
+      "giatriConlai": "Giatri Conlai",
+      "tangNguyengia": "Tang Nguyengia",
+      "nguon": "Nguon",
+      "vitri": "Vitri",
+      "donviQuanly": "Donvi Quanly",
+      "donviSudung": "Donvi Sudung",
+      "soluong": "Soluong",
+      "nguoiQuanly": "Nguoi Quanly",
+      "banghiKiemke": "Banghi Kiemke",
+      "danhmucTaisan": "Danhmuc Taisan",
+      "donviCungcap": "Donvi Cungcap"
+    }
+  }
+}

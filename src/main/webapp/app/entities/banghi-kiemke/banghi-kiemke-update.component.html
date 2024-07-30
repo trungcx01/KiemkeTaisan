@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-banghi-kiemke-heading" jhiTranslate="taisanApp.banghiKiemke.home.createOrEditLabel">Create or edit a Banghi Kiemke</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.soluong" for="field_soluong">Soluong</label>
+                    <input type="number" class="form-control" name="soluong" id="field_soluong"
+                           formControlName="soluong"/>
+                    <div *ngIf="editForm.get('soluong')!.invalid && (editForm.get('soluong')!.dirty || editForm.get('soluong')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('soluong')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('soluong')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.nguyengia" for="field_nguyengia">Nguyengia</label>
+                    <input type="number" class="form-control" name="nguyengia" id="field_nguyengia"
+                           formControlName="nguyengia"/>
+                    <div *ngIf="editForm.get('nguyengia')!.invalid && (editForm.get('nguyengia')!.dirty || editForm.get('nguyengia')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nguyengia')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('nguyengia')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.giatriConlai" for="field_giatriConlai">Giatri Conlai</label>
+                    <input type="number" class="form-control" name="giatriConlai" id="field_giatriConlai"
+                           formControlName="giatriConlai"/>
+                    <div *ngIf="editForm.get('giatriConlai')!.invalid && (editForm.get('giatriConlai')!.dirty || editForm.get('giatriConlai')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('giatriConlai')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('giatriConlai')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.ghichu" for="field_ghichu">Ghichu</label>
+                    <input type="text" class="form-control" name="ghichu" id="field_ghichu"
+                           formControlName="ghichu"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.tinhtrangSudung" for="field_tinhtrangSudung">Tinhtrang Sudung</label>
+                    <input type="number" class="form-control" name="tinhtrangSudung" id="field_tinhtrangSudung"
+                           formControlName="tinhtrangSudung"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.hinhthucXuly" for="field_hinhthucXuly">Hinhthuc Xuly</label>
+                    <input type="number" class="form-control" name="hinhthucXuly" id="field_hinhthucXuly"
+                           formControlName="hinhthucXuly"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.taisan" for="field_taisan">Taisan</label>
+                    <select class="form-control" id="field_taisan" name="taisan" formControlName="taisanId">
+                        <option *ngIf="!editForm.get('taisanId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="taisanOption.id" *ngFor="let taisanOption of taisans; trackBy: trackById">{{taisanOption.tenTaisan}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('taisanId')!.invalid && (editForm.get('taisanId')!.dirty || editForm.get('taisanId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('taisanId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="taisanApp.banghiKiemke.kiemkeTaisan" for="field_kiemkeTaisan">Kiemke Taisan</label>
+                    <select class="form-control" id="field_kiemkeTaisan" name="kiemkeTaisan" formControlName="kiemkeTaisanId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="kiemkeTaisanOption.id" *ngFor="let kiemkeTaisanOption of kiemketaisans; trackBy: trackById">{{kiemkeTaisanOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

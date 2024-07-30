@@ -1,0 +1,47 @@
+{
+    "name": "NhanvienKiemke",
+    "fields": [
+        {
+            "fieldName": "daidien",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "vaitro",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "nhanvien",
+            "otherEntityRelationshipName": "nhanvienKiemke",
+            "relationshipValidateRules": "required",
+            "relationshipName": "nhanvien",
+            "otherEntityField": "ten",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "kiemkeTaisan",
+            "otherEntityRelationshipName": "nhanvienKiemkes",
+            "relationshipName": "kiemkeTaisan",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20240723040140",
+    "entityTableName": "nhanvien_kiemke",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

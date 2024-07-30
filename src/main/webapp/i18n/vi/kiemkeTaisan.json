@@ -1,0 +1,28 @@
+{
+  "taisanApp": {
+    "kiemkeTaisan": {
+      "home": {
+        "title": "Kiemke Taisans",
+        "createLabel": "Thêm mới một Kiemke Taisan",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Kiemke Taisan",
+        "notFound": "No Kiemke Taisans found"
+      },
+      "created": "Một Kiemke Taisan mới được tạo với định danh {{ param }}",
+      "updated": "Một Kiemke Taisan cập nhật với định danh {{ param }}",
+      "deleted": "Một Kiemke Taisan đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Kiemke Taisan {{ id }}?"
+      },
+      "detail": {
+        "title": "Kiemke Taisan"
+      },
+      "sophieu": "Sophieu",
+      "ngayLapphieu": "Ngay Lapphieu",
+      "ngayKiemke": "Ngay Kiemke",
+      "donviSudung": "Donvi Sudung",
+      "ghichu": "Ghichu",
+      "nhanvienKiemkes": "Nhanvien Kiemkes",
+      "banghiKiemkes": "Banghi Kiemkes"
+    }
+  }
+}

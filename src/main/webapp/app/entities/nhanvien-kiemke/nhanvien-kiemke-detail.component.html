@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="nhanvienKiemke">
+            <h2><span jhiTranslate="taisanApp.nhanvienKiemke.detail.title">Nhanvien Kiemke</span> {{nhanvienKiemke.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="taisanApp.nhanvienKiemke.daidien">Daidien</span></dt>
+                <dd>
+                    <span>{{nhanvienKiemke.daidien}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.nhanvienKiemke.vaitro">Vaitro</span></dt>
+                <dd>
+                    <span>{{nhanvienKiemke.vaitro}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.nhanvienKiemke.nhanvien">Nhanvien</span></dt>
+                <dd>
+                    <div *ngIf="nhanvienKiemke.nhanvienId">
+                        <a [routerLink]="['/nhanvien', nhanvienKiemke.nhanvienId, 'view']">{{nhanvienKiemke.nhanvienTen}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.nhanvienKiemke.kiemkeTaisan">Kiemke Taisan</span></dt>
+                <dd>
+                    <div *ngIf="nhanvienKiemke.kiemkeTaisanId">
+                        <a [routerLink]="['/kiemke-taisan', nhanvienKiemke.kiemkeTaisanId, 'view']">{{nhanvienKiemke.kiemkeTaisanId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/nhanvien-kiemke', nhanvienKiemke.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

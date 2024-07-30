@@ -1,0 +1,27 @@
+{
+  "taisanApp": {
+    "danhmucTaisan": {
+      "home": {
+        "title": "Danhmuc Taisans",
+        "createLabel": "Create a new Danhmuc Taisan",
+        "createOrEditLabel": "Create or edit a Danhmuc Taisan",
+        "notFound": "No Danhmuc Taisans found"
+      },
+      "created": "A new Danhmuc Taisan is created with identifier {{ param }}",
+      "updated": "A Danhmuc Taisan is updated with identifier {{ param }}",
+      "deleted": "A Danhmuc Taisan is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Danhmuc Taisan {{ id }}?"
+      },
+      "detail": {
+        "title": "Danhmuc Taisan"
+      },
+      "maDMTS": "Ma DMTS",
+      "ten": "Ten",
+      "mota": "Mota",
+      "ngaytao": "Ngaytao",
+      "ngayCapnhat": "Ngay Capnhat",
+      "taisan": "Taisan"
+    }
+  }
+}

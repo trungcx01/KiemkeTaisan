@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="danhmucTaisan">
+            <h2><span jhiTranslate="taisanApp.danhmucTaisan.detail.title">Danhmuc Taisan</span> {{danhmucTaisan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="taisanApp.danhmucTaisan.maDMTS">Ma DMTS</span></dt>
+                <dd>
+                    <span>{{danhmucTaisan.maDMTS}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.danhmucTaisan.ten">Ten</span></dt>
+                <dd>
+                    <span>{{danhmucTaisan.ten}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.danhmucTaisan.mota">Mota</span></dt>
+                <dd>
+                    <span>{{danhmucTaisan.mota}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.danhmucTaisan.ngaytao">Ngaytao</span></dt>
+                <dd>
+                    <span>{{danhmucTaisan.ngaytao}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.danhmucTaisan.ngayCapnhat">Ngay Capnhat</span></dt>
+                <dd>
+                    <span>{{danhmucTaisan.ngayCapnhat}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/danhmuc-taisan', danhmucTaisan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

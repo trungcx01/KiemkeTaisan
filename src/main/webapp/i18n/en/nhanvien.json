@@ -1,0 +1,27 @@
+{
+  "taisanApp": {
+    "nhanvien": {
+      "home": {
+        "title": "Nhanviens",
+        "createLabel": "Create a new Nhanvien",
+        "createOrEditLabel": "Create or edit a Nhanvien",
+        "notFound": "No Nhanviens found"
+      },
+      "created": "A new Nhanvien is created with identifier {{ param }}",
+      "updated": "A Nhanvien is updated with identifier {{ param }}",
+      "deleted": "A Nhanvien is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Nhanvien {{ id }}?"
+      },
+      "detail": {
+        "title": "Nhanvien"
+      },
+      "maNV": "Ma NV",
+      "ten": "Ten",
+      "chucvu": "Chucvu",
+      "diachi": "Diachi",
+      "gioitinh": "Gioitinh",
+      "sdt": "Sdt"
+    }
+  }
+}

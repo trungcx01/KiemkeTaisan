@@ -1,0 +1,25 @@
+{
+  "taisanApp": {
+    "nhanvienKiemke": {
+      "home": {
+        "title": "Nhanvien Kiemkes",
+        "createLabel": "Thêm mới một Nhanvien Kiemke",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Nhanvien Kiemke",
+        "notFound": "No Nhanvien Kiemkes found"
+      },
+      "created": "Một Nhanvien Kiemke mới được tạo với định danh {{ param }}",
+      "updated": "Một Nhanvien Kiemke cập nhật với định danh {{ param }}",
+      "deleted": "Một Nhanvien Kiemke đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Nhanvien Kiemke {{ id }}?"
+      },
+      "detail": {
+        "title": "Nhanvien Kiemke"
+      },
+      "daidien": "Daidien",
+      "vaitro": "Vaitro",
+      "nhanvien": "Nhanvien",
+      "kiemkeTaisan": "Kiemke Taisan"
+    }
+  }
+}

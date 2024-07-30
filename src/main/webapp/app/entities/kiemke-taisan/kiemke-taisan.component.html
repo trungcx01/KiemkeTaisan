@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="taisanApp.kiemkeTaisan.home.title">Kiemke Taisans</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-kiemke-taisan" [routerLink]="['/kiemke-taisan/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="taisanApp.kiemkeTaisan.home.createLabel">
+            Create a new Kiemke Taisan
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="kiemkeTaisans?.length === 0">
+        <span jhiTranslate="taisanApp.kiemkeTaisan.home.notFound">No kiemkeTaisans found</span>
+    </div>
+    <div class="table-responsive" *ngIf="kiemkeTaisans?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sophieu"><span jhiTranslate="taisanApp.kiemkeTaisan.sophieu">Sophieu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngayLapphieu"><span jhiTranslate="taisanApp.kiemkeTaisan.ngayLapphieu">Ngay Lapphieu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngayKiemke"><span jhiTranslate="taisanApp.kiemkeTaisan.ngayKiemke">Ngay Kiemke</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="donviSudung"><span jhiTranslate="taisanApp.kiemkeTaisan.donviSudung">Donvi Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ghichu"><span jhiTranslate="taisanApp.kiemkeTaisan.ghichu">Ghichu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let kiemkeTaisan of kiemkeTaisans ;trackBy: trackId">
+                <td><a [routerLink]="['/kiemke-taisan', kiemkeTaisan.id, 'view' ]">{{kiemkeTaisan.id}}</a></td>
+                <td>{{kiemkeTaisan.sophieu}}</td>
+                <td>{{kiemkeTaisan.ngayLapphieu | date:'dd/MM/yyyy'}}</td>
+                <td>{{kiemkeTaisan.ngayKiemke | date:'dd/MM/yyyy'}}</td>
+                <td>{{kiemkeTaisan.donviSudung}}</td>
+                <td>{{kiemkeTaisan.ghichu}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/kiemke-taisan', kiemkeTaisan.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/kiemke-taisan', kiemkeTaisan.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(kiemkeTaisan)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="kiemkeTaisans?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "taisanApp": {
+    "danhmucTaisan": {
+      "home": {
+        "title": "Danhmuc Taisans",
+        "createLabel": "Thêm mới một Danhmuc Taisan",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Danhmuc Taisan",
+        "notFound": "No Danhmuc Taisans found"
+      },
+      "created": "Một Danhmuc Taisan mới được tạo với định danh {{ param }}",
+      "updated": "Một Danhmuc Taisan cập nhật với định danh {{ param }}",
+      "deleted": "Một Danhmuc Taisan đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Danhmuc Taisan {{ id }}?"
+      },
+      "detail": {
+        "title": "Danhmuc Taisan"
+      },
+      "maDMTS": "Ma DMTS",
+      "ten": "Ten",
+      "mota": "Mota",
+      "ngaytao": "Ngaytao",
+      "ngayCapnhat": "Ngay Capnhat",
+      "taisan": "Taisan"
+    }
+  }
+}

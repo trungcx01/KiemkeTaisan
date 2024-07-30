@@ -7,6 +7,13 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "nhanvien": "Nhanvien",
+        "danhmucTaisan": "Danhmuc Taisan",
+        "donviCungcap": "Donvi Cungcap",
+        "banghiKiemke": "Banghi Kiemke",
+        "kiemkeTaisan": "Kiemke Taisan",
+        "nhanvienKiemke": "Nhanvien Kiemke",
+        "taisan": "Taisan",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

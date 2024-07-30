@@ -1,0 +1,25 @@
+{
+  "taisanApp": {
+    "nhanvienKiemke": {
+      "home": {
+        "title": "Nhanvien Kiemkes",
+        "createLabel": "Create a new Nhanvien Kiemke",
+        "createOrEditLabel": "Create or edit a Nhanvien Kiemke",
+        "notFound": "No Nhanvien Kiemkes found"
+      },
+      "created": "A new Nhanvien Kiemke is created with identifier {{ param }}",
+      "updated": "A Nhanvien Kiemke is updated with identifier {{ param }}",
+      "deleted": "A Nhanvien Kiemke is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Nhanvien Kiemke {{ id }}?"
+      },
+      "detail": {
+        "title": "Nhanvien Kiemke"
+      },
+      "daidien": "Daidien",
+      "vaitro": "Vaitro",
+      "nhanvien": "Nhanvien",
+      "kiemkeTaisan": "Kiemke Taisan"
+    }
+  }
+}

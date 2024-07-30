@@ -1,0 +1,61 @@
+{
+    "name": "KiemkeTaisan",
+    "fields": [
+        {
+            "fieldName": "sophieu",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ngayLapphieu",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ngayKiemke",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "donviSudung",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ghichu",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "nhanvienKiemke",
+            "otherEntityRelationshipName": "kiemkeTaisan",
+            "relationshipName": "nhanvienKiemkes"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "banghiKiemke",
+            "otherEntityRelationshipName": "kiemkeTaisan",
+            "relationshipName": "banghiKiemkes"
+        }
+    ],
+    "changelogDate": "20240723040139",
+    "entityTableName": "kiemke_taisan",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

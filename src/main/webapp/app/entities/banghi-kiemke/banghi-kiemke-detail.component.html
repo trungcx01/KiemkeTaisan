@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="banghiKiemke">
+            <h2><span jhiTranslate="taisanApp.banghiKiemke.detail.title">Banghi Kiemke</span> {{banghiKiemke.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.soluong">Soluong</span></dt>
+                <dd>
+                    <span>{{banghiKiemke.soluong}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.nguyengia">Nguyengia</span></dt>
+                <dd>
+                    <span>{{banghiKiemke.nguyengia}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.giatriConlai">Giatri Conlai</span></dt>
+                <dd>
+                    <span>{{banghiKiemke.giatriConlai}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.ghichu">Ghichu</span></dt>
+                <dd>
+                    <span>{{banghiKiemke.ghichu}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.tinhtrangSudung">Tinhtrang Sudung</span></dt>
+                <dd>
+                    <span>{{banghiKiemke.tinhtrangSudung}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.hinhthucXuly">Hinhthuc Xuly</span></dt>
+                <dd>
+                    <span>{{banghiKiemke.hinhthucXuly}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.taisan">Taisan</span></dt>
+                <dd>
+                    <div *ngIf="banghiKiemke.taisanId">
+                        <a [routerLink]="['/taisan', banghiKiemke.taisanId, 'view']">{{banghiKiemke.taisanTenTaisan}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.banghiKiemke.kiemkeTaisan">Kiemke Taisan</span></dt>
+                <dd>
+                    <div *ngIf="banghiKiemke.kiemkeTaisanId">
+                        <a [routerLink]="['/kiemke-taisan', banghiKiemke.kiemkeTaisanId, 'view']">{{banghiKiemke.kiemkeTaisanId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/banghi-kiemke', banghiKiemke.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

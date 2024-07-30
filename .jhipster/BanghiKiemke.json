@@ -1,0 +1,65 @@
+{
+    "name": "BanghiKiemke",
+    "fields": [
+        {
+            "fieldName": "soluong",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nguyengia",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "giatriConlai",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ghichu",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tinhtrangSudung",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hinhthucXuly",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "taisan",
+            "otherEntityRelationshipName": "banghiKiemke",
+            "relationshipValidateRules": "required",
+            "relationshipName": "taisan",
+            "otherEntityField": "tenTaisan"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "kiemkeTaisan",
+            "otherEntityRelationshipName": "banghiKiemkes",
+            "relationshipName": "kiemkeTaisan",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20240723040138",
+    "entityTableName": "banghi_kiemke",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

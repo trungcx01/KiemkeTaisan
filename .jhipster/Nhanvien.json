@@ -1,0 +1,53 @@
+{
+    "name": "Nhanvien",
+    "fields": [
+        {
+            "fieldName": "maNV",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ten",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "chucvu",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "diachi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gioitinh",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sdt",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 11
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20240723040135",
+    "entityTableName": "nhanvien",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

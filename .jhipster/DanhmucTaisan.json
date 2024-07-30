@@ -1,0 +1,49 @@
+{
+    "name": "DanhmucTaisan",
+    "fields": [
+        {
+            "fieldName": "maDMTS",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ten",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mota",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ngaytao",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "ngayCapnhat",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "taisan",
+            "otherEntityRelationshipName": "danhmucTaisan",
+            "relationshipName": "taisan"
+        }
+    ],
+    "changelogDate": "20240723040136",
+    "entityTableName": "danhmuc_taisan",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

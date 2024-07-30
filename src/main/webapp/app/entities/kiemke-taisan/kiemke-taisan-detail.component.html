@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="kiemkeTaisan">
+            <h2><span jhiTranslate="taisanApp.kiemkeTaisan.detail.title">Kiemke Taisan</span> {{kiemkeTaisan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="taisanApp.kiemkeTaisan.sophieu">Sophieu</span></dt>
+                <dd>
+                    <span>{{kiemkeTaisan.sophieu}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.kiemkeTaisan.ngayLapphieu">Ngay Lapphieu</span></dt>
+                <dd>
+                    <span>{{kiemkeTaisan.ngayLapphieu}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.kiemkeTaisan.ngayKiemke">Ngay Kiemke</span></dt>
+                <dd>
+                    <span>{{kiemkeTaisan.ngayKiemke}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.kiemkeTaisan.donviSudung">Donvi Sudung</span></dt>
+                <dd>
+                    <span>{{kiemkeTaisan.donviSudung}}</span>
+                </dd>
+                <dt><span jhiTranslate="taisanApp.kiemkeTaisan.ghichu">Ghichu</span></dt>
+                <dd>
+                    <span>{{kiemkeTaisan.ghichu}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/kiemke-taisan', kiemkeTaisan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
