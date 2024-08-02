@@ -34,6 +34,7 @@ public class DonviCungcap implements Serializable {
     @Field("so_dien_thoai")
     private String soDienThoai;
 
+    @NotNull
     @Field("email")
     private String email;
 

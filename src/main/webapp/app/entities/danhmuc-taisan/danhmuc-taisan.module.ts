@@ -11,6 +11,6 @@ import { danhmucTaisanRoute } from './danhmuc-taisan.route';
 @NgModule({
   imports: [TaisanSharedModule, RouterModule.forChild(danhmucTaisanRoute)],
   declarations: [DanhmucTaisanComponent, DanhmucTaisanDetailComponent, DanhmucTaisanUpdateComponent, DanhmucTaisanDeleteDialogComponent],
-  entryComponents: [DanhmucTaisanDeleteDialogComponent],
+  entryComponents: [DanhmucTaisanDeleteDialogComponent]
 })
 export class TaisanDanhmucTaisanModule {}

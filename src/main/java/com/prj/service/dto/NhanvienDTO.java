@@ -1,4 +1,5 @@
 package com.prj.service.dto;
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class NhanvienDTO implements Serializable {
     @NotNull
     private String ten;
 
+    @NotNull
     private String chucvu;
 
     private String diachi;
@@ -23,8 +25,17 @@ public class NhanvienDTO implements Serializable {
     @NotNull
     private Integer gioitinh;
 
+    @NotNull
     @Size(max = 11)
     private String sdt;
+
+    @NotNull
+    private String phongban;
+
+    @NotNull
+    private String email;
+
+    private LocalDate ngayThamgia;
 
 
     public String getId() {
@@ -83,6 +94,30 @@ public class NhanvienDTO implements Serializable {
         this.sdt = sdt;
     }
 
+    public String getPhongban() {
+        return phongban;
+    }
+
+    public void setPhongban(String phongban) {
+        this.phongban = phongban;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getNgayThamgia() {
+        return ngayThamgia;
+    }
+
+    public void setNgayThamgia(LocalDate ngayThamgia) {
+        this.ngayThamgia = ngayThamgia;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -114,6 +149,9 @@ public class NhanvienDTO implements Serializable {
             ", diachi='" + getDiachi() + "'" +
             ", gioitinh=" + getGioitinh() +
             ", sdt='" + getSdt() + "'" +
+            ", phongban='" + getPhongban() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", ngayThamgia='" + getNgayThamgia() + "'" +
             "}";
     }
 }

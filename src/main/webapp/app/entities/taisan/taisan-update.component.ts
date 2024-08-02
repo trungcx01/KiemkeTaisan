@@ -5,7 +5,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as moment from 'moment';
 
 import { ITaisan, Taisan } from 'app/shared/model/taisan.model';
 import { TaisanService } from './taisan.service';
@@ -20,7 +19,7 @@ type SelectableEntity = INhanvien | IDanhmucTaisan | IDonviCungcap;
 
 @Component({
   selector: 'jhi-taisan-update',
-  templateUrl: './taisan-update.component.html',
+  templateUrl: './taisan-update.component.html'
 })
 export class TaisanUpdateComponent implements OnInit {
   isSaving = false;
@@ -70,7 +69,7 @@ export class TaisanUpdateComponent implements OnInit {
     nguoiQuanlyId: [null, Validators.required],
     danhmucTaisanId: [null, Validators.required],
     donviCungcapId: [],
-    soluong: [null, Validators.required],
+    soluong: [null, Validators.required]
   });
 
   constructor(
@@ -79,7 +78,7 @@ export class TaisanUpdateComponent implements OnInit {
     protected danhmucTaisanService: DanhmucTaisanService,
     protected donviCungcapService: DonviCungcapService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -91,7 +90,7 @@ export class TaisanUpdateComponent implements OnInit {
         .pipe(
           map((res: HttpResponse<INhanvien[]>) => {
             return res.body ? res.body : [];
-          }),
+          })
         )
         .subscribe((resBody: INhanvien[]) => {
           if (!taisan.nguoiQuanlyId) {
@@ -102,7 +101,7 @@ export class TaisanUpdateComponent implements OnInit {
               .pipe(
                 map((subRes: HttpResponse<INhanvien>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                }),
+                })
               )
               .subscribe((concatRes: INhanvien[]) => {
                 this.nguoiquanlies = concatRes;
@@ -115,7 +114,7 @@ export class TaisanUpdateComponent implements OnInit {
         .pipe(
           map((res: HttpResponse<IDanhmucTaisan[]>) => {
             return res.body ? res.body : [];
-          }),
+          })
         )
         .subscribe((resBody: IDanhmucTaisan[]) => (this.danhmuctaisans = resBody));
 
@@ -124,7 +123,7 @@ export class TaisanUpdateComponent implements OnInit {
         .pipe(
           map((res: HttpResponse<IDonviCungcap[]>) => {
             return res.body ? res.body : [];
-          }),
+          })
         )
         .subscribe((resBody: IDonviCungcap[]) => (this.donvicungcaps = resBody));
     });
@@ -165,7 +164,7 @@ export class TaisanUpdateComponent implements OnInit {
       nguoiQuanlyId: taisan.nguoiQuanlyId,
       danhmucTaisanId: taisan.danhmucTaisanId,
       donviCungcapId: taisan.donviCungcapId,
-      soluong: taisan.soluong,
+      soluong: taisan.soluong
     });
   }
 
@@ -219,14 +218,14 @@ export class TaisanUpdateComponent implements OnInit {
       nguoiQuanlyId: this.editForm.get(['nguoiQuanlyId'])!.value,
       danhmucTaisanId: this.editForm.get(['danhmucTaisanId'])!.value,
       donviCungcapId: this.editForm.get(['donviCungcapId'])!.value,
-      soluong: this.editForm.get(['soluong'])!.value,
+      soluong: this.editForm.get(['soluong'])!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITaisan>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError(),
+      () => this.onSaveError()
     );
   }
 

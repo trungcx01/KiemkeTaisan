@@ -20,6 +20,7 @@ public class DonviCungcapDTO implements Serializable {
 
     private String soDienThoai;
 
+    @NotNull
     private String email;
 
 

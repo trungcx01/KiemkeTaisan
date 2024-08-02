@@ -21,7 +21,10 @@
       "chucvu": "Chucvu",
       "diachi": "Diachi",
       "gioitinh": "Gioitinh",
-      "sdt": "Sdt"
+      "sdt": "Sdt",
+      "phongban": "Phongban",
+      "email": "Email",
+      "ngayThamgia": "Ngay Thamgia"
     }
   }
 }

@@ -13,7 +13,7 @@ import { NhanvienDeleteDialogComponent } from './nhanvien-delete-dialog.componen
 
 @Component({
   selector: 'jhi-nhanvien',
-  templateUrl: './nhanvien.component.html',
+  templateUrl: './nhanvien.component.html'
 })
 export class NhanvienComponent implements OnInit, OnDestroy {
   nhanviens?: INhanvien[];
@@ -30,7 +30,7 @@ export class NhanvienComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal,
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number): void {
@@ -39,11 +39,11 @@ export class NhanvienComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe(
         (res: HttpResponse<INhanvien[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError(),
+        () => this.onError()
       );
   }
 
@@ -93,8 +93,8 @@ export class NhanvienComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
-      },
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
     });
     this.nhanviens = data ? data : [];
   }

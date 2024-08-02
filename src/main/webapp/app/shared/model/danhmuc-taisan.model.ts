@@ -7,7 +7,6 @@ export interface IDanhmucTaisan {
   ten?: string;
   mota?: string;
   ngaytao?: Moment;
-  ngayCapnhat?: Moment;
   taisans?: ITaisan[];
 }
 
@@ -18,7 +17,6 @@ export class DanhmucTaisan implements IDanhmucTaisan {
     public ten?: string,
     public mota?: string,
     public ngaytao?: Moment,
-    public ngayCapnhat?: Moment,
-    public taisans?: ITaisan[],
+    public taisans?: ITaisan[]
   ) {}
 }

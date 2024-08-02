@@ -10,13 +10,13 @@ describe('Component Tests', () => {
   describe('DonviCungcap Management Detail Component', () => {
     let comp: DonviCungcapDetailComponent;
     let fixture: ComponentFixture<DonviCungcapDetailComponent>;
-    const route = { data: of({ donviCungcap: new DonviCungcap('123') }) } as any as ActivatedRoute;
+    const route = ({ data: of({ donviCungcap: new DonviCungcap('123') }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [DonviCungcapDetailComponent],
-        providers: [{ provide: ActivatedRoute, useValue: route }],
+        providers: [{ provide: ActivatedRoute, useValue: route }]
       })
         .overrideTemplate(DonviCungcapDetailComponent, '')
         .compileComponents();

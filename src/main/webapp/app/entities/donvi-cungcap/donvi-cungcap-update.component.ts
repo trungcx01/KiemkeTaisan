@@ -10,7 +10,7 @@ import { DonviCungcapService } from './donvi-cungcap.service';
 
 @Component({
   selector: 'jhi-donvi-cungcap-update',
-  templateUrl: './donvi-cungcap-update.component.html',
+  templateUrl: './donvi-cungcap-update.component.html'
 })
 export class DonviCungcapUpdateComponent implements OnInit {
   isSaving = false;
@@ -21,14 +21,10 @@ export class DonviCungcapUpdateComponent implements OnInit {
     ten: [null, [Validators.required]],
     diachi: [],
     soDienThoai: [],
-    email: [],
+    email: [null, [Validators.required]]
   });
 
-  constructor(
-    protected donviCungcapService: DonviCungcapService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-  ) {}
+  constructor(protected donviCungcapService: DonviCungcapService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ donviCungcap }) => {
@@ -43,7 +39,7 @@ export class DonviCungcapUpdateComponent implements OnInit {
       ten: donviCungcap.ten,
       diachi: donviCungcap.diachi,
       soDienThoai: donviCungcap.soDienThoai,
-      email: donviCungcap.email,
+      email: donviCungcap.email
     });
   }
 
@@ -69,14 +65,14 @@ export class DonviCungcapUpdateComponent implements OnInit {
       ten: this.editForm.get(['ten'])!.value,
       diachi: this.editForm.get(['diachi'])!.value,
       soDienThoai: this.editForm.get(['soDienThoai'])!.value,
-      email: this.editForm.get(['email'])!.value,
+      email: this.editForm.get(['email'])!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDonviCungcap>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError(),
+      () => this.onSaveError()
     );
   }
 

@@ -11,6 +11,6 @@ import { donviCungcapRoute } from './donvi-cungcap.route';
 @NgModule({
   imports: [TaisanSharedModule, RouterModule.forChild(donviCungcapRoute)],
   declarations: [DonviCungcapComponent, DonviCungcapDetailComponent, DonviCungcapUpdateComponent, DonviCungcapDeleteDialogComponent],
-  entryComponents: [DonviCungcapDeleteDialogComponent],
+  entryComponents: [DonviCungcapDeleteDialogComponent]
 })
 export class TaisanDonviCungcapModule {}

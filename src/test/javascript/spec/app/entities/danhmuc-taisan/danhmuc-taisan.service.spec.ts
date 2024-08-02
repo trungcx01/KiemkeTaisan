@@ -16,7 +16,7 @@ describe('Service Tests', () => {
     let currentDate: moment.Moment;
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule]
       });
       expectedResult = null;
       injector = getTestBed();
@@ -24,17 +24,16 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new DanhmucTaisan('ID', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate, currentDate);
+      elemDefault = new DanhmucTaisan('ID', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            ngaytao: currentDate.format(DATE_FORMAT),
-            ngayCapnhat: currentDate.format(DATE_FORMAT),
+            ngaytao: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
         service
           .find('123')
@@ -50,17 +49,15 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 'ID',
-            ngaytao: currentDate.format(DATE_FORMAT),
-            ngayCapnhat: currentDate.format(DATE_FORMAT),
+            ngaytao: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign(
           {
-            ngaytao: currentDate,
-            ngayCapnhat: currentDate,
+            ngaytao: currentDate
           },
-          returnedFromService,
+          returnedFromService
         );
         service
           .create(new DanhmucTaisan())
@@ -77,18 +74,16 @@ describe('Service Tests', () => {
             maDMTS: 'BBBBBB',
             ten: 'BBBBBB',
             mota: 'BBBBBB',
-            ngaytao: currentDate.format(DATE_FORMAT),
-            ngayCapnhat: currentDate.format(DATE_FORMAT),
+            ngaytao: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
 
         const expected = Object.assign(
           {
-            ngaytao: currentDate,
-            ngayCapnhat: currentDate,
+            ngaytao: currentDate
           },
-          returnedFromService,
+          returnedFromService
         );
         service
           .update(expected)
@@ -105,23 +100,21 @@ describe('Service Tests', () => {
             maDMTS: 'BBBBBB',
             ten: 'BBBBBB',
             mota: 'BBBBBB',
-            ngaytao: currentDate.format(DATE_FORMAT),
-            ngayCapnhat: currentDate.format(DATE_FORMAT),
+            ngaytao: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign(
           {
-            ngaytao: currentDate,
-            ngayCapnhat: currentDate,
+            ngaytao: currentDate
           },
-          returnedFromService,
+          returnedFromService
         );
         service
           .query()
           .pipe(
             take(1),
-            map(resp => resp.body),
+            map(resp => resp.body)
           )
           .subscribe(body => (expectedResult = body));
         const req = httpMock.expectOne({ method: 'GET' });

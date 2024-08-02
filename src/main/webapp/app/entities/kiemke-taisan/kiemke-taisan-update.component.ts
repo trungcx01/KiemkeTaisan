@@ -9,24 +9,21 @@ import { IKiemkeTaisan, KiemkeTaisan } from 'app/shared/model/kiemke-taisan.mode
 import { KiemkeTaisanService } from './kiemke-taisan.service';
 import { NhanvienService } from '../nhanvien/nhanvien.service';
 import { TaisanService } from '../taisan/taisan.service';
-import { formatNumber } from '@angular/common';
-import { MoneyFormatPipe } from 'app/money-format.pipe';
 
 @Component({
   selector: 'jhi-kiemke-taisan-update',
   templateUrl: './kiemke-taisan-update.component.html',
-  styleUrls: ['./kiemke-taisan-update.component.scss'],
+  styleUrls: ['./kiemke-taisan-update.component.scss']
 })
 export class KiemkeTaisanUpdateComponent implements OnInit {
   isSaving = false;
   ngayLapphieuDp: any;
   ngayKiemkeDp: any;
   nhanviens: any;
-  result: any;
   taisans: any;
-  isEditBanghi: any;
+  page = 1;
+  sizePerPage = 1;
   donviSudungOptions: string[] = [
-    'All',
     'Phòng Hành chính - Quản trị',
     'Phòng Kế hoạch - Tài chính',
     'Phòng Vật tư - Thiết bị y tế',
@@ -63,7 +60,7 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
     'Khoa Cấp cứu',
     'Khoa Chăm sóc giảm nhẹ',
     'Phòng Bảo vệ',
-    'Phòng Thư viện',
+    'Phòng Thư viện'
   ];
 
   editForm = this.fb.group({
@@ -74,7 +71,7 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
     donviSudung: [null, [Validators.required]],
     ghichu: [],
     nhanvienKiemkes: this.fb.array([this.nhanvienKiemkeForm()]),
-    banghiKiemkes: this.fb.array([this.banghiKiemkeForm()]),
+    banghiKiemkes: this.fb.array([this.banghiKiemkeForm()])
   });
 
   constructor(
@@ -83,12 +80,15 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
     protected nhanvienService: NhanvienService,
     protected taisanService: TaisanService,
     private cdr: ChangeDetectorRef,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ kiemkeTaisan }) => {
       this.updateForm(kiemkeTaisan);
+      if (!kiemkeTaisan.id) {
+        this.nhanvienKiemkes.push(this.nhanvienKiemkeForm());
+      }
     });
 
     this.nhanvienService.query().subscribe((res: any) => {
@@ -110,7 +110,7 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
     return this.fb.group({
       nhanvienId: [null, [Validators.required]],
       daidien: [null, [Validators.required]],
-      vaitro: [null, [Validators.required]],
+      vaitro: [null, [Validators.required]]
     });
   }
 
@@ -128,7 +128,7 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
       giatriConlai: [null, [Validators.required]],
       tinhtrangSudung: [null, [Validators.required]],
       hinhthucXuly: [null, [Validators.required]],
-      ghichu: [],
+      ghichu: []
     });
   }
 
@@ -162,7 +162,7 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
         soluongBandau: this.taisans[i].soluong,
         nguyengiaBandau: this.taisans[i].nguyengia,
         giatriConlaiBandau: this.taisans[i].giatriConlai,
-        ghichu: [''],
+        ghichu: ['']
       });
     }
     this.cdr.detectChanges();
@@ -191,51 +191,55 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
       ngayLapphieu: kiemkeTaisan.ngayLapphieu,
       ngayKiemke: kiemkeTaisan.ngayKiemke,
       donviSudung: kiemkeTaisan.donviSudung,
-      ghichu: kiemkeTaisan.ghichu,
+      ghichu: kiemkeTaisan.ghichu
     });
 
     this.banghiKiemkes.clear();
 
-    const taisanRequests = kiemkeTaisan
-      .banghiKiemkes!.reverse()!
-      .map(banghiKiemke => this.taisanService.find(banghiKiemke.taisanId ? banghiKiemke.taisanId : ''));
+    if (kiemkeTaisan.banghiKiemkes) {
+      const taisanRequests = kiemkeTaisan.banghiKiemkes.map(banghiKiemke =>
+        this.taisanService.find(banghiKiemke.taisanId ? banghiKiemke.taisanId : '')
+      );
 
-    forkJoin(taisanRequests).subscribe(responses => {
-      responses.forEach((res, index) => {
-        const banghiKiemke = kiemkeTaisan.banghiKiemkes![index];
-        const taisan = res.body!;
+      forkJoin(taisanRequests).subscribe(responses => {
+        responses.forEach((res, index) => {
+          const banghiKiemke = kiemkeTaisan.banghiKiemkes![index];
+          const taisan = res.body!;
 
-        this.banghiKiemkes.push(
-          this.fb.group({
-            taisanId: banghiKiemke.taisanId,
-            nguyengia: banghiKiemke.nguyengia,
-            soluong: banghiKiemke.soluong,
-            giatriConlai: banghiKiemke.giatriConlai,
-            tinhtrangSudung: banghiKiemke.tinhtrangSudung,
-            hinhthucXuly: banghiKiemke.hinhthucXuly,
-            maTaisan: taisan.maTaisan,
-            tenTaisan: taisan.tenTaisan,
-            donviSudung: taisan.donviSudung,
-            soluongBandau: taisan.soluong,
-            nguyengiaBandau: taisan.nguyengia,
-            giatriConlaiBandau: taisan.giatriConlai,
-            ghichu: banghiKiemke.ghichu,
-          }),
-        );
+          this.banghiKiemkes.push(
+            this.fb.group({
+              taisanId: banghiKiemke.taisanId,
+              nguyengia: banghiKiemke.nguyengia,
+              soluong: banghiKiemke.soluong,
+              giatriConlai: banghiKiemke.giatriConlai,
+              tinhtrangSudung: banghiKiemke.tinhtrangSudung,
+              hinhthucXuly: banghiKiemke.hinhthucXuly,
+              maTaisan: taisan.maTaisan,
+              tenTaisan: taisan.tenTaisan,
+              donviSudung: taisan.donviSudung,
+              soluongBandau: taisan.soluong,
+              nguyengiaBandau: taisan.nguyengia,
+              giatriConlaiBandau: taisan.giatriConlai,
+              ghichu: banghiKiemke.ghichu
+            })
+          );
+        });
       });
-    });
+    }
 
     this.nhanvienKiemkes.clear();
-    const nhanvienKiemkesRequest = kiemkeTaisan.nhanvienKiemkes!.reverse();
-    nhanvienKiemkesRequest.map(nhanvienKiemke => {
-      this.nhanvienKiemkes.push(
-        this.fb.group({
-          nhanvienId: nhanvienKiemke.nhanvienId,
-          daidien: nhanvienKiemke.daidien,
-          vaitro: nhanvienKiemke.vaitro,
-        }),
-      );
-    });
+    if (kiemkeTaisan.nhanvienKiemkes) {
+      const nhanvienKiemkesRequest = kiemkeTaisan.nhanvienKiemkes;
+      nhanvienKiemkesRequest.map(nhanvienKiemke => {
+        this.nhanvienKiemkes.push(
+          this.fb.group({
+            nhanvienId: nhanvienKiemke.nhanvienId,
+            daidien: nhanvienKiemke.daidien,
+            vaitro: nhanvienKiemke.vaitro
+          })
+        );
+      });
+    }
   }
 
   previousState(): void {
@@ -252,6 +256,13 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
     }
   }
 
+  nextPage(): void {
+    if (this.page < Math.ceil(this.banghiKiemkes.controls.length / this.sizePerPage)) {
+      this.page += 1;
+      this.cdr.detectChanges();
+    }
+  }
+
   private createFromForm(): IKiemkeTaisan {
     return {
       ...new KiemkeTaisan(),
@@ -262,14 +273,14 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
       donviSudung: this.editForm.get(['donviSudung'])!.value,
       ghichu: this.editForm.get(['ghichu'])!.value,
       banghiKiemkes: this.editForm.get('banghiKiemkes')!.value,
-      nhanvienKiemkes: this.editForm.get('nhanvienKiemkes')!.value,
+      nhanvienKiemkes: this.editForm.get('nhanvienKiemkes')!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IKiemkeTaisan>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError(),
+      () => this.onSaveError()
     );
   }
 

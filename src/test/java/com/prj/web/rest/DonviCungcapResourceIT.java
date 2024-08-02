@@ -203,6 +203,24 @@ public class DonviCungcapResourceIT {
     }
 
     @Test
+    public void checkEmailIsRequired() throws Exception {
+        int databaseSizeBeforeTest = donviCungcapRepository.findAll().size();
+        // set the field null
+        donviCungcap.setEmail(null);
+
+        // Create the DonviCungcap, which fails.
+        DonviCungcapDTO donviCungcapDTO = donviCungcapMapper.toDto(donviCungcap);
+
+        restDonviCungcapMockMvc.perform(post("/api/donvi-cungcaps")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(donviCungcapDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<DonviCungcap> donviCungcapList = donviCungcapRepository.findAll();
+        assertThat(donviCungcapList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllDonviCungcaps() throws Exception {
         // Initialize the database
         donviCungcapRepository.save(donviCungcap);

@@ -1,15 +1,15 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-11">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-nhanvien-heading" jhiTranslate="taisanApp.nhanvien.home.createOrEditLabel">Create or edit a Nhanvien</h2>
-            <div>
+            <div class="row">
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                <!-- <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
-                </div>
-                <div class="form-group">
+                </div> -->
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.maNV" for="field_maNV">Ma NV</label>
                     <input type="text" class="form-control" name="maNV" id="field_maNV"
                            formControlName="maNV"/>
@@ -20,7 +20,7 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.ten" for="field_ten">Ten</label>
                     <input type="text" class="form-control" name="ten" id="field_ten"
                            formControlName="ten"/>
@@ -31,17 +31,23 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.chucvu" for="field_chucvu">Chucvu</label>
                     <input type="text" class="form-control" name="chucvu" id="field_chucvu"
                            formControlName="chucvu"/>
+                    <div *ngIf="editForm.get('chucvu')!.invalid && (editForm.get('chucvu')!.dirty || editForm.get('chucvu')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('chucvu')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.diachi" for="field_diachi">Diachi</label>
                     <input type="text" class="form-control" name="diachi" id="field_diachi"
                            formControlName="diachi"/>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.gioitinh" for="field_gioitinh">Gioitinh</label>
                     <input type="number" class="form-control" name="gioitinh" id="field_gioitinh"
                            formControlName="gioitinh"/>
@@ -56,15 +62,50 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.sdt" for="field_sdt">Sdt</label>
                     <input type="text" class="form-control" name="sdt" id="field_sdt"
                            formControlName="sdt"/>
                     <div *ngIf="editForm.get('sdt')!.invalid && (editForm.get('sdt')!.dirty || editForm.get('sdt')!.touched)">
                         <small class="form-text text-danger"
+                               *ngIf="editForm.get('sdt')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
                                *ngIf="editForm.get('sdt')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 11 }">
                         This field cannot be longer than 11 characters.
                         </small>
+                    </div>
+                </div>
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                    <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.phongban" for="field_phongban">Phongban</label>
+                    <input type="text" class="form-control" name="phongban" id="field_phongban"
+                           formControlName="phongban"/>
+                    <div *ngIf="editForm.get('phongban')!.invalid && (editForm.get('phongban')!.dirty || editForm.get('phongban')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phongban')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                    <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                    <label class="form-control-label" jhiTranslate="taisanApp.nhanvien.ngayThamgia" for="field_ngayThamgia">Ngay Thamgia</label>
+                    <div class="input-group">
+                        <input id="field_ngayThamgia" type="text" class="form-control" name="ngayThamgia" ngbDatepicker  #ngayThamgiaDp="ngbDatepicker" formControlName="ngayThamgia"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ngayThamgiaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
                     </div>
                 </div>
 

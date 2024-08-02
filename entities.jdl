@@ -1,10 +1,13 @@
 entity Nhanvien {
   maNV String required
   ten String required
-  chucvu String
+  chucvu String required
   diachi String
   gioitinh Integer required
-  sdt String maxlength(11)
+  sdt String maxlength(11) required
+  phongban String required
+  email String required
+  ngayThamgia LocalDate 
 }
 
 entity DanhmucTaisan {
@@ -12,14 +15,13 @@ entity DanhmucTaisan {
   ten String required
   mota String
   ngaytao LocalDate
-  ngayCapnhat LocalDate
 }
 entity DonviCungcap {
   maDVCC String required
   ten String required
   diachi String
   soDienThoai String
-  email String
+  email String required
 }
 
 entity BanghiKiemke {

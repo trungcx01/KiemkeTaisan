@@ -10,13 +10,13 @@ describe('Component Tests', () => {
   describe('Nhanvien Management Detail Component', () => {
     let comp: NhanvienDetailComponent;
     let fixture: ComponentFixture<NhanvienDetailComponent>;
-    const route = { data: of({ nhanvien: new Nhanvien('123') }) } as any as ActivatedRoute;
+    const route = ({ data: of({ nhanvien: new Nhanvien('123') }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [NhanvienDetailComponent],
-        providers: [{ provide: ActivatedRoute, useValue: route }],
+        providers: [{ provide: ActivatedRoute, useValue: route }]
       })
         .overrideTemplate(NhanvienDetailComponent, '')
         .compileComponents();

@@ -13,7 +13,7 @@ import { DonviCungcapDeleteDialogComponent } from './donvi-cungcap-delete-dialog
 
 @Component({
   selector: 'jhi-donvi-cungcap',
-  templateUrl: './donvi-cungcap.component.html',
+  templateUrl: './donvi-cungcap.component.html'
 })
 export class DonviCungcapComponent implements OnInit, OnDestroy {
   donviCungcaps?: IDonviCungcap[];
@@ -30,7 +30,7 @@ export class DonviCungcapComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal,
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number): void {
@@ -39,11 +39,11 @@ export class DonviCungcapComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe(
         (res: HttpResponse<IDonviCungcap[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError(),
+        () => this.onError()
       );
   }
 
@@ -93,8 +93,8 @@ export class DonviCungcapComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
-      },
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
     });
     this.donviCungcaps = data ? data : [];
   }

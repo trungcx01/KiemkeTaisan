@@ -18,7 +18,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [DonviCungcapUpdateComponent],
-        providers: [FormBuilder],
+        providers: [FormBuilder]
       })
         .overrideTemplate(DonviCungcapUpdateComponent, '')
         .compileComponents();

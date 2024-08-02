@@ -6,7 +6,7 @@ import { IDanhmucTaisan } from 'app/shared/model/danhmuc-taisan.model';
 import { DanhmucTaisanService } from './danhmuc-taisan.service';
 
 @Component({
-  templateUrl: './danhmuc-taisan-delete-dialog.component.html',
+  templateUrl: './danhmuc-taisan-delete-dialog.component.html'
 })
 export class DanhmucTaisanDeleteDialogComponent {
   danhmucTaisan?: IDanhmucTaisan;
@@ -14,7 +14,7 @@ export class DanhmucTaisanDeleteDialogComponent {
   constructor(
     protected danhmucTaisanService: DanhmucTaisanService,
     public activeModal: NgbActiveModal,
-    protected eventManager: JhiEventManager,
+    protected eventManager: JhiEventManager
   ) {}
 
   clear(): void {

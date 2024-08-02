@@ -1,15 +1,15 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-11">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-danhmuc-taisan-heading" jhiTranslate="taisanApp.danhmucTaisan.home.createOrEditLabel">Create or edit a Danhmuc Taisan</h2>
-            <div>
+            <div class="row">
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                <!-- <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
-                </div>
-                <div class="form-group">
+                </div> -->
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.maDMTS" for="field_maDMTS">Ma DMTS</label>
                     <input type="text" class="form-control" name="maDMTS" id="field_maDMTS"
                            formControlName="maDMTS"/>
@@ -20,7 +20,7 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.ten" for="field_ten">Ten</label>
                     <input type="text" class="form-control" name="ten" id="field_ten"
                            formControlName="ten"/>
@@ -31,26 +31,17 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.mota" for="field_mota">Mota</label>
                     <input type="text" class="form-control" name="mota" id="field_mota"
                            formControlName="mota"/>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.ngaytao" for="field_ngaytao">Ngaytao</label>
                     <div class="input-group">
                         <input id="field_ngaytao" type="text" class="form-control" name="ngaytao" ngbDatepicker  #ngaytaoDp="ngbDatepicker" formControlName="ngaytao"/>
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="ngaytaoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="taisanApp.danhmucTaisan.ngayCapnhat" for="field_ngayCapnhat">Ngay Capnhat</label>
-                    <div class="input-group">
-                        <input id="field_ngayCapnhat" type="text" class="form-control" name="ngayCapnhat" ngbDatepicker  #ngayCapnhatDp="ngbDatepicker" formControlName="ngayCapnhat"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="ngayCapnhatDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                     </div>
                 </div>

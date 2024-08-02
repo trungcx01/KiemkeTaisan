@@ -38,6 +38,11 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": ["en", "vi"],
-    "blueprints": []
+    "blueprints": [],
+    "appsFolders": ["taisan"],
+    "directoryPath": "../",
+    "clusteredDbApps": ["taisan"],
+    "monitoring": "no",
+    "consoleOptions": []
   }
 }

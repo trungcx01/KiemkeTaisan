@@ -17,7 +17,10 @@
         },
         {
             "fieldName": "chucvu",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "diachi",
@@ -34,9 +37,28 @@
             "fieldName": "sdt",
             "fieldType": "String",
             "fieldValidateRules": [
-                "maxlength"
+                "maxlength",
+                "required"
             ],
             "fieldValidateRulesMaxlength": 11
+        },
+        {
+            "fieldName": "phongban",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ngayThamgia",
+            "fieldType": "LocalDate"
         }
     ],
     "relationships": [],

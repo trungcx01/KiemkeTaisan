@@ -49,9 +49,6 @@ public class DanhmucTaisanResourceIT {
     private static final LocalDate DEFAULT_NGAYTAO = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_NGAYTAO = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_NGAY_CAPNHAT = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_NGAY_CAPNHAT = LocalDate.now(ZoneId.systemDefault());
-
     @Autowired
     private DanhmucTaisanRepository danhmucTaisanRepository;
 
@@ -100,8 +97,7 @@ public class DanhmucTaisanResourceIT {
             .maDMTS(DEFAULT_MA_DMTS)
             .ten(DEFAULT_TEN)
             .mota(DEFAULT_MOTA)
-            .ngaytao(DEFAULT_NGAYTAO)
-            .ngayCapnhat(DEFAULT_NGAY_CAPNHAT);
+            .ngaytao(DEFAULT_NGAYTAO);
         return danhmucTaisan;
     }
     /**
@@ -115,8 +111,7 @@ public class DanhmucTaisanResourceIT {
             .maDMTS(UPDATED_MA_DMTS)
             .ten(UPDATED_TEN)
             .mota(UPDATED_MOTA)
-            .ngaytao(UPDATED_NGAYTAO)
-            .ngayCapnhat(UPDATED_NGAY_CAPNHAT);
+            .ngaytao(UPDATED_NGAYTAO);
         return danhmucTaisan;
     }
 
@@ -145,7 +140,6 @@ public class DanhmucTaisanResourceIT {
         assertThat(testDanhmucTaisan.getTen()).isEqualTo(DEFAULT_TEN);
         assertThat(testDanhmucTaisan.getMota()).isEqualTo(DEFAULT_MOTA);
         assertThat(testDanhmucTaisan.getNgaytao()).isEqualTo(DEFAULT_NGAYTAO);
-        assertThat(testDanhmucTaisan.getNgayCapnhat()).isEqualTo(DEFAULT_NGAY_CAPNHAT);
     }
 
     @Test
@@ -217,8 +211,7 @@ public class DanhmucTaisanResourceIT {
             .andExpect(jsonPath("$.[*].maDMTS").value(hasItem(DEFAULT_MA_DMTS)))
             .andExpect(jsonPath("$.[*].ten").value(hasItem(DEFAULT_TEN)))
             .andExpect(jsonPath("$.[*].mota").value(hasItem(DEFAULT_MOTA)))
-            .andExpect(jsonPath("$.[*].ngaytao").value(hasItem(DEFAULT_NGAYTAO.toString())))
-            .andExpect(jsonPath("$.[*].ngayCapnhat").value(hasItem(DEFAULT_NGAY_CAPNHAT.toString())));
+            .andExpect(jsonPath("$.[*].ngaytao").value(hasItem(DEFAULT_NGAYTAO.toString())));
     }
     
     @Test
@@ -234,8 +227,7 @@ public class DanhmucTaisanResourceIT {
             .andExpect(jsonPath("$.maDMTS").value(DEFAULT_MA_DMTS))
             .andExpect(jsonPath("$.ten").value(DEFAULT_TEN))
             .andExpect(jsonPath("$.mota").value(DEFAULT_MOTA))
-            .andExpect(jsonPath("$.ngaytao").value(DEFAULT_NGAYTAO.toString()))
-            .andExpect(jsonPath("$.ngayCapnhat").value(DEFAULT_NGAY_CAPNHAT.toString()));
+            .andExpect(jsonPath("$.ngaytao").value(DEFAULT_NGAYTAO.toString()));
     }
 
     @Test
@@ -258,8 +250,7 @@ public class DanhmucTaisanResourceIT {
             .maDMTS(UPDATED_MA_DMTS)
             .ten(UPDATED_TEN)
             .mota(UPDATED_MOTA)
-            .ngaytao(UPDATED_NGAYTAO)
-            .ngayCapnhat(UPDATED_NGAY_CAPNHAT);
+            .ngaytao(UPDATED_NGAYTAO);
         DanhmucTaisanDTO danhmucTaisanDTO = danhmucTaisanMapper.toDto(updatedDanhmucTaisan);
 
         restDanhmucTaisanMockMvc.perform(put("/api/danhmuc-taisans")
@@ -275,7 +266,6 @@ public class DanhmucTaisanResourceIT {
         assertThat(testDanhmucTaisan.getTen()).isEqualTo(UPDATED_TEN);
         assertThat(testDanhmucTaisan.getMota()).isEqualTo(UPDATED_MOTA);
         assertThat(testDanhmucTaisan.getNgaytao()).isEqualTo(UPDATED_NGAYTAO);
-        assertThat(testDanhmucTaisan.getNgayCapnhat()).isEqualTo(UPDATED_NGAY_CAPNHAT);
     }
 
     @Test

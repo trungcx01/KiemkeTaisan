@@ -89,7 +89,7 @@ public class TaisanServiceImpl implements TaisanService {
     @Override
     public List<TaisanDTO> getAllTaisansByDonviSudung(String donviSudung) {
         log.debug("Request to get All Taisans By DonviSudung : {}", donviSudung);
-        if (donviSudung.equals("All")){
+        if (donviSudung.equals("all")){
             return taisanRepository.findAll().stream().map(i -> taisanMapper.toDto(i)).collect(Collectors.toList());
         }
         return taisanRepository.getAllTaisansByDonviSudung(donviSudung).stream().map(i -> taisanMapper.toDto(i)).collect(Collectors.toList());

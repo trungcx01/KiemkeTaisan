@@ -10,11 +10,11 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
         return {
           day: +dateParts[0],
           month: +dateParts[1],
-          year: +dateParts[2],
+          year: +dateParts[2]
         };
       }
     }
-    return null;
+    return { day: 1, month: 1, year: 1900 };
   }
 
   format(date: NgbDateStruct): string {

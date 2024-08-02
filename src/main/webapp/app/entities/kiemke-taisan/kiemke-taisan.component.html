@@ -33,7 +33,7 @@
                 <td>{{kiemkeTaisan.sophieu}}</td>
                 <td>{{kiemkeTaisan.ngayLapphieu | date:'dd/MM/yyyy'}}</td>
                 <td>{{kiemkeTaisan.ngayKiemke | date:'dd/MM/yyyy'}}</td>
-                <td>{{kiemkeTaisan.donviSudung}}</td>
+                <td>{{kiemkeTaisan.donviSudung === 'all' ? "Tất cả bộ phận" : kiemkeTaisan.donviSudung}}</td>
                 <td>{{kiemkeTaisan.ghichu}}</td>
                 <td class="text-right">
                     <div class="btn-group">

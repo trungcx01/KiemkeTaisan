@@ -25,6 +25,9 @@
             <th scope="col"  jhiSortBy="diachi"><span jhiTranslate="taisanApp.nhanvien.diachi">Diachi</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="gioitinh"><span jhiTranslate="taisanApp.nhanvien.gioitinh">Gioitinh</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="sdt"><span jhiTranslate="taisanApp.nhanvien.sdt">Sdt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="phongban"><span jhiTranslate="taisanApp.nhanvien.phongban">Phongban</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="email"><span jhiTranslate="taisanApp.nhanvien.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ngayThamgia"><span jhiTranslate="taisanApp.nhanvien.ngayThamgia">Ngay Thamgia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -37,6 +40,9 @@
                 <td>{{nhanvien.diachi}}</td>
                 <td>{{nhanvien.gioitinh}}</td>
                 <td>{{nhanvien.sdt}}</td>
+                <td>{{nhanvien.phongban}}</td>
+                <td>{{nhanvien.email}}</td>
+                <td>{{nhanvien.ngayThamgia | date:'mediumDate'}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

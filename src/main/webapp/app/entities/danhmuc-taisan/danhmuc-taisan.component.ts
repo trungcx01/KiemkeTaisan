@@ -13,7 +13,7 @@ import { DanhmucTaisanDeleteDialogComponent } from './danhmuc-taisan-delete-dial
 
 @Component({
   selector: 'jhi-danhmuc-taisan',
-  templateUrl: './danhmuc-taisan.component.html',
+  templateUrl: './danhmuc-taisan.component.html'
 })
 export class DanhmucTaisanComponent implements OnInit, OnDestroy {
   danhmucTaisans?: IDanhmucTaisan[];
@@ -30,7 +30,7 @@ export class DanhmucTaisanComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal,
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number): void {
@@ -39,11 +39,11 @@ export class DanhmucTaisanComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe(
         (res: HttpResponse<IDanhmucTaisan[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError(),
+        () => this.onError()
       );
   }
 
@@ -93,8 +93,8 @@ export class DanhmucTaisanComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
-      },
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
     });
     this.danhmucTaisans = data ? data : [];
   }

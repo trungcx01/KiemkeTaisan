@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export interface INhanvien {
   id?: string;
   maNV?: string;
@@ -6,6 +8,9 @@ export interface INhanvien {
   diachi?: string;
   gioitinh?: number;
   sdt?: string;
+  phongban?: string;
+  email?: string;
+  ngayThamgia?: Moment;
 }
 
 export class Nhanvien implements INhanvien {
@@ -17,5 +22,8 @@ export class Nhanvien implements INhanvien {
     public diachi?: string,
     public gioitinh?: number,
     public sdt?: string,
+    public phongban?: string,
+    public email?: string,
+    public ngayThamgia?: Moment
   ) {}
 }

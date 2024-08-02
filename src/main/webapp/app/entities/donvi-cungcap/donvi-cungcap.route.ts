@@ -14,10 +14,7 @@ import { DonviCungcapUpdateComponent } from './donvi-cungcap-update.component';
 
 @Injectable({ providedIn: 'root' })
 export class DonviCungcapResolve implements Resolve<IDonviCungcap> {
-  constructor(
-    private service: DonviCungcapService,
-    private router: Router,
-  ) {}
+  constructor(private service: DonviCungcapService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IDonviCungcap> | Observable<never> {
     const id = route.params['id'];
@@ -30,7 +27,7 @@ export class DonviCungcapResolve implements Resolve<IDonviCungcap> {
             this.router.navigate(['404']);
             return EMPTY;
           }
-        }),
+        })
       );
     }
     return of(new DonviCungcap());
@@ -42,49 +39,49 @@ export const donviCungcapRoute: Routes = [
     path: '',
     component: DonviCungcapComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: JhiResolvePagingParams
     },
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'taisanApp.donviCungcap.home.title',
+      pageTitle: 'taisanApp.donviCungcap.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/view',
     component: DonviCungcapDetailComponent,
     resolve: {
-      donviCungcap: DonviCungcapResolve,
+      donviCungcap: DonviCungcapResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.donviCungcap.home.title',
+      pageTitle: 'taisanApp.donviCungcap.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new',
     component: DonviCungcapUpdateComponent,
     resolve: {
-      donviCungcap: DonviCungcapResolve,
+      donviCungcap: DonviCungcapResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.donviCungcap.home.title',
+      pageTitle: 'taisanApp.donviCungcap.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/edit',
     component: DonviCungcapUpdateComponent,
     resolve: {
-      donviCungcap: DonviCungcapResolve,
+      donviCungcap: DonviCungcapResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.donviCungcap.home.title',
+      pageTitle: 'taisanApp.donviCungcap.home.title'
     },
-    canActivate: [UserRouteAccessService],
-  },
+    canActivate: [UserRouteAccessService]
+  }
 ];

@@ -18,7 +18,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [KiemkeTaisanUpdateComponent],
-        providers: [FormBuilder],
+        providers: [FormBuilder]
       })
         .overrideTemplate(KiemkeTaisanUpdateComponent, '')
         .compileComponents();
@@ -32,6 +32,8 @@ describe('Component Tests', () => {
       it('Should call update service on save for existing entity', fakeAsync(() => {
         // GIVEN
         const entity = new KiemkeTaisan('123');
+        entity.banghiKiemkes = [];
+        entity.nhanvienKiemkes = [];
         spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.updateForm(entity);
         // WHEN
@@ -46,6 +48,8 @@ describe('Component Tests', () => {
       it('Should call create service on save for new entity', fakeAsync(() => {
         // GIVEN
         const entity = new KiemkeTaisan();
+        entity.banghiKiemkes = [];
+        entity.nhanvienKiemkes = [];
         spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.updateForm(entity);
         // WHEN

@@ -52,9 +52,7 @@ export class DanhmucTaisanService {
 
   protected convertDateFromClient(danhmucTaisan: IDanhmucTaisan): IDanhmucTaisan {
     const copy: IDanhmucTaisan = Object.assign({}, danhmucTaisan, {
-      ngaytao: danhmucTaisan.ngaytao && danhmucTaisan.ngaytao.isValid() ? danhmucTaisan.ngaytao.format(DATE_FORMAT) : undefined,
-      ngayCapnhat:
-        danhmucTaisan.ngayCapnhat && danhmucTaisan.ngayCapnhat.isValid() ? danhmucTaisan.ngayCapnhat.format(DATE_FORMAT) : undefined,
+      ngaytao: danhmucTaisan.ngaytao && danhmucTaisan.ngaytao.isValid() ? danhmucTaisan.ngaytao.format(DATE_FORMAT) : undefined
     });
     return copy;
   }
@@ -62,7 +60,6 @@ export class DanhmucTaisanService {
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.ngaytao = res.body.ngaytao ? moment(res.body.ngaytao) : undefined;
-      res.body.ngayCapnhat = res.body.ngayCapnhat ? moment(res.body.ngayCapnhat) : undefined;
     }
     return res;
   }
@@ -71,7 +68,6 @@ export class DanhmucTaisanService {
     if (res.body) {
       res.body.forEach((danhmucTaisan: IDanhmucTaisan) => {
         danhmucTaisan.ngaytao = danhmucTaisan.ngaytao ? moment(danhmucTaisan.ngaytao) : undefined;
-        danhmucTaisan.ngayCapnhat = danhmucTaisan.ngayCapnhat ? moment(danhmucTaisan.ngayCapnhat) : undefined;
       });
     }
     return res;

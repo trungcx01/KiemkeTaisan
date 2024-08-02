@@ -6,7 +6,7 @@ import { IDonviCungcap } from 'app/shared/model/donvi-cungcap.model';
 import { DonviCungcapService } from './donvi-cungcap.service';
 
 @Component({
-  templateUrl: './donvi-cungcap-delete-dialog.component.html',
+  templateUrl: './donvi-cungcap-delete-dialog.component.html'
 })
 export class DonviCungcapDeleteDialogComponent {
   donviCungcap?: IDonviCungcap;
@@ -14,7 +14,7 @@ export class DonviCungcapDeleteDialogComponent {
   constructor(
     protected donviCungcapService: DonviCungcapService,
     public activeModal: NgbActiveModal,
-    protected eventManager: JhiEventManager,
+    protected eventManager: JhiEventManager
   ) {}
 
   clear(): void {

@@ -6,16 +6,12 @@ import { INhanvien } from 'app/shared/model/nhanvien.model';
 import { NhanvienService } from './nhanvien.service';
 
 @Component({
-  templateUrl: './nhanvien-delete-dialog.component.html',
+  templateUrl: './nhanvien-delete-dialog.component.html'
 })
 export class NhanvienDeleteDialogComponent {
   nhanvien?: INhanvien;
 
-  constructor(
-    protected nhanvienService: NhanvienService,
-    public activeModal: NgbActiveModal,
-    protected eventManager: JhiEventManager,
-  ) {}
+  constructor(protected nhanvienService: NhanvienService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
   clear(): void {
     this.activeModal.dismiss();

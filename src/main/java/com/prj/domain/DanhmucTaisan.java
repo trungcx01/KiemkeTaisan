@@ -35,9 +35,6 @@ public class DanhmucTaisan implements Serializable {
     @Field("ngaytao")
     private LocalDate ngaytao;
 
-    @Field("ngay_capnhat")
-    private LocalDate ngayCapnhat;
-
     @DBRef
     @Field("taisan")
     private Set<Taisan> taisans = new HashSet<>();
@@ -103,19 +100,6 @@ public class DanhmucTaisan implements Serializable {
         this.ngaytao = ngaytao;
     }
 
-    public LocalDate getNgayCapnhat() {
-        return ngayCapnhat;
-    }
-
-    public DanhmucTaisan ngayCapnhat(LocalDate ngayCapnhat) {
-        this.ngayCapnhat = ngayCapnhat;
-        return this;
-    }
-
-    public void setNgayCapnhat(LocalDate ngayCapnhat) {
-        this.ngayCapnhat = ngayCapnhat;
-    }
-
     public Set<Taisan> getTaisans() {
         return taisans;
     }
@@ -166,7 +150,6 @@ public class DanhmucTaisan implements Serializable {
             ", ten='" + getTen() + "'" +
             ", mota='" + getMota() + "'" +
             ", ngaytao='" + getNgaytao() + "'" +
-            ", ngayCapnhat='" + getNgayCapnhat() + "'" +
             "}";
     }
 }

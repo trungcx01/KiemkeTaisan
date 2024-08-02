@@ -21,8 +21,6 @@ public class DanhmucTaisanDTO implements Serializable {
 
     private LocalDate ngaytao;
 
-    private LocalDate ngayCapnhat;
-
 
     public String getId() {
         return id;
@@ -64,14 +62,6 @@ public class DanhmucTaisanDTO implements Serializable {
         this.ngaytao = ngaytao;
     }
 
-    public LocalDate getNgayCapnhat() {
-        return ngayCapnhat;
-    }
-
-    public void setNgayCapnhat(LocalDate ngayCapnhat) {
-        this.ngayCapnhat = ngayCapnhat;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,7 +91,6 @@ public class DanhmucTaisanDTO implements Serializable {
             ", ten='" + getTen() + "'" +
             ", mota='" + getMota() + "'" +
             ", ngaytao='" + getNgaytao() + "'" +
-            ", ngayCapnhat='" + getNgayCapnhat() + "'" +
             "}";
     }
 }

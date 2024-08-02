@@ -18,7 +18,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [NhanvienUpdateComponent],
-        providers: [FormBuilder],
+        providers: [FormBuilder]
       })
         .overrideTemplate(NhanvienUpdateComponent, '')
         .compileComponents();

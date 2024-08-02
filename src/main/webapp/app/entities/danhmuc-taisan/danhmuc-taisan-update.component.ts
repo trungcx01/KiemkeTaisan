@@ -11,27 +11,21 @@ import { DanhmucTaisanService } from './danhmuc-taisan.service';
 
 @Component({
   selector: 'jhi-danhmuc-taisan-update',
-  templateUrl: './danhmuc-taisan-update.component.html',
+  templateUrl: './danhmuc-taisan-update.component.html'
 })
 export class DanhmucTaisanUpdateComponent implements OnInit {
   isSaving = false;
   ngaytaoDp: any;
-  ngayCapnhatDp: any;
 
   editForm = this.fb.group({
     id: [],
     maDMTS: [null, [Validators.required]],
     ten: [null, [Validators.required]],
     mota: [],
-    ngaytao: [],
-    ngayCapnhat: [],
+    ngaytao: []
   });
 
-  constructor(
-    protected danhmucTaisanService: DanhmucTaisanService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-  ) {}
+  constructor(protected danhmucTaisanService: DanhmucTaisanService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ danhmucTaisan }) => {
@@ -45,8 +39,7 @@ export class DanhmucTaisanUpdateComponent implements OnInit {
       maDMTS: danhmucTaisan.maDMTS,
       ten: danhmucTaisan.ten,
       mota: danhmucTaisan.mota,
-      ngaytao: danhmucTaisan.ngaytao,
-      ngayCapnhat: danhmucTaisan.ngayCapnhat,
+      ngaytao: danhmucTaisan.ngaytao
     });
   }
 
@@ -71,15 +64,14 @@ export class DanhmucTaisanUpdateComponent implements OnInit {
       maDMTS: this.editForm.get(['maDMTS'])!.value,
       ten: this.editForm.get(['ten'])!.value,
       mota: this.editForm.get(['mota'])!.value,
-      ngaytao: this.editForm.get(['ngaytao'])!.value,
-      ngayCapnhat: this.editForm.get(['ngayCapnhat'])!.value,
+      ngaytao: this.editForm.get(['ngaytao'])!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDanhmucTaisan>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError(),
+      () => this.onSaveError()
     );
   }
 

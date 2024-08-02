@@ -18,7 +18,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [DanhmucTaisanUpdateComponent],
-        providers: [FormBuilder],
+        providers: [FormBuilder]
       })
         .overrideTemplate(DanhmucTaisanUpdateComponent, '')
         .compileComponents();

@@ -20,7 +20,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
-        declarations: [DanhmucTaisanDeleteDialogComponent],
+        declarations: [DanhmucTaisanDeleteDialogComponent]
       })
         .overrideTemplate(DanhmucTaisanDeleteDialogComponent, '')
         .compileComponents();
@@ -46,7 +46,7 @@ describe('Component Tests', () => {
           expect(service.delete).toHaveBeenCalledWith('123');
           expect(mockActiveModal.closeSpy).toHaveBeenCalled();
           expect(mockEventManager.broadcastSpy).toHaveBeenCalled();
-        }),
+        })
       ));
       it('Should not call delete service on clear', () => {
         // GIVEN

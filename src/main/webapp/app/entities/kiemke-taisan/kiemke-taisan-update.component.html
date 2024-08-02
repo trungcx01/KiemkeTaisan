@@ -1,11 +1,13 @@
 <div class="row justify-content-center">
   <div class="col-12">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 class="ml-2" id="jhi-kiemke-taisan-heading" jhiTranslate="taisanApp.kiemkeTaisan.home.createOrEditLabel">Create or edit a Kiemke Taisan</h2>
-      <div class="row col-12">
+      <h2 class="ml-2" id="jhi-kiemke-taisan-heading" jhiTranslate="taisanApp.kiemkeTaisan.home.createOrEditLabel">
+        Create or edit a Kiemke Taisan
+      </h2>
+      <div class="row col-11">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="form-group col-3">
+        <div class="form-group col-lg-3 col-md-6 col-sm-12">
           <label class="form-control-label" jhiTranslate="taisanApp.kiemkeTaisan.sophieu" for="field_sophieu">Sophieu</label>
           <span *ngIf="editForm.get('sophieu')?.errors?.required" style="color: red;">*</span>
           <input type="text" class="form-control" name="sophieu" id="field_sophieu" formControlName="sophieu" />
@@ -19,8 +21,10 @@
             </small>
           </div>
         </div>
-        <div class="form-group col-4">
-          <label class="form-control-label" jhiTranslate="taisanApp.kiemkeTaisan.ngayLapphieu" for="field_ngayLapphieu">Ngay Lapphieu</label>
+        <div class="form-group col-lg-3 col-md-6 col-sm-12">
+          <label class="form-control-label" jhiTranslate="taisanApp.kiemkeTaisan.ngayLapphieu" for="field_ngayLapphieu"
+            >Ngay Lapphieu</label
+          >
           <span *ngIf="editForm.get('ngayLapphieu')?.errors?.required" style="color: red;">*</span>
           <div class="input-group">
             <input
@@ -50,7 +54,7 @@
             </small>
           </div>
         </div>
-        <div class="form-group col-4">
+        <div class="form-group col-lg-3 col-md-6 col-sm-12">
           <label class="form-control-label" jhiTranslate="taisanApp.kiemkeTaisan.ngayKiemke" for="field_ngayKiemke">Ngay Kiemke</label>
           <span *ngIf="editForm.get('ngayKiemke')?.errors?.required" style="color: red;">*</span>
           <div class="input-group">
@@ -79,11 +83,12 @@
             </small>
           </div>
         </div>
-        <div class="form-group col-3">
+        <div class="form-group col-lg-3 col-md-6 col-sm-12">
           <label class="form-control-label" jhiTranslate="taisanApp.kiemkeTaisan.donviSudung" for="field_donviSudung">Donvi Sudung</label>
           <span *ngIf="editForm.get('donviSudung')?.errors?.required" style="color: red;">*</span>
           <select class="form-control" formControlName="donviSudung" (click)="onDonviSudungChange()">
-            <option *ngFor="let u of donviSudungOptions" [ngValue]="u">{{u}}</option>
+            <option value="all">Tất cả bộ phận</option>
+            <option *ngFor="let u of donviSudungOptions" [ngValue]="u">{{ u }}</option>
           </select>
           <div *ngIf="editForm.get('donviSudung')!.invalid && (editForm.get('donviSudung')!.dirty || editForm.get('donviSudung')!.touched)">
             <small
@@ -95,157 +100,206 @@
             </small>
           </div>
         </div>
-        <div class="form-group col-4">
+        <div class="form-group col-12">
           <label class="form-control-label" jhiTranslate="taisanApp.kiemkeTaisan.ghichu" for="field_ghichu">Ghichu</label>
           <input type="text" class="form-control" name="ghichu" id="field_ghichu" formControlName="ghichu" />
         </div>
-
-        <div class="col-11 mt-4" style="border: 1px solid #ececec; margin: 0 12px; padding:14px; background-color:#fbfbfb">
-          <h6 class="mb-3">Ban kiểm kê</h6>
-          <ng-container formArrayName="nhanvienKiemkes" *ngFor="let item of nhanvienKiemkes.controls; let i = index">
-            <div class="row mb-2" [formGroupName]="i" [ngStyle]="{ 'border-left': 'none' }">
-              <div class="col-1">
-                <input class="form-control" [value]="i + 1" disabled>
-              </div>
-              <div class="col-3">
-                <select class="form-control col-12" formControlName="nhanvienId">
-                  <option [ngValue]="null">Nhân viên</option>
-                  <option *ngFor="let item of nhanviens" [ngValue]="item.id">{{ item.ten }} - {{ item.chucvu }}</option>
-                </select>
-              </div>
-
-              <div class="col-4">
-                <input placeholder="Đại diện" type="text" class="form-control" formControlName="daidien" />
-              </div>
-
-              <div class="col-3">
-                <input placeholder="Vai trò" type="text" class="form-control" formControlName="vaitro" />
-              </div>
-              <div class="icon col-1 d-flex">
-                <button type="button" style="font-size: 10px; height: 36px" class="btn btn-danger" (click)="removeNhanvienKiemke(i)">
-                  <fa-icon [icon]="'minus'"></fa-icon>
-                </button>
-                <button type="button" style="font-size: 10px; height: 36px" class="btn btn-primary ml-1" (click)="addNewNhanvienKiemke()">
-                  <fa-icon [icon]="'plus'"></fa-icon>
-                </button>
-              </div>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="col-12 mt-1" >
-          <ng-container class="row col-11" >
-            <h6 class=" mb-2 mt-4">Thông tin kiểm kê tài sản</h6>
-            <div class="table-responsive">
-              <table  class="table table-bordered text-center">
-                <thead>
-                  <tr class="col-12">
-                    <th class="align-middle" rowspan="2">STT</th>
-                    <th class="align-middle" rowspan="2">Mã Tài sản</th>
-                    <th class="align-middle" rowspan="2">Tên Tài sản</th>
-                    <th class="align-middle" rowspan="2">Đơn vị sử dụng</th>
-                    <th class="align-middle" colspan="3">Theo kế toán</th>
-                    <th class="align-middle" colspan="3">Theo kiểm kê</th>
-                    <th class="align-middle" colspan="3">Chênh lệch</th>
-    
-                    <th class="align-middle" rowspan="2">Tình trạng sử dụng</th>
-                    <th class="align-middle" rowspan="2">Hình thức xử lý</th>
-                    <th class="align-middle" rowspan="2">Ghi chú</th>
-                  
-                  </tr>
-                  <tr>
-                    <th class="align-middle" scope="col">Số lượng</th>
-                    <th class="align-middle" scope="col">Nguyên giá</th>
-                    <th class="align-middle" scope="col">Giá trị còn lại</th>
-    
-                    <th class="align-middle" scope="co">Số lượng</th>
-                    <th class="align-middle" scope="col">Nguyên giá</th>
-                    <th class="align-middle" scope="col">Giá trị còn lại</th>
-    
-                    <th class="align-middle" scope="col">Số lượng</th>
-                    <th class="align-middle" scope="col">Nguyên giá</th>
-                    <th class="align-middle" scope="col">Giá trị còn lại</th>
-                  </tr>
-                </thead>
-              <tbody formArrayName="banghiKiemkes"  >
-                  <tr *ngFor="let item of banghiKiemkes.controls; let j = index" [formGroupName]="j" >      
-                    <td class="align-middle">{{j + 1}}</td>
-                    <td class="align-middle">
-                      <input style="width: 80px" disabled [type]="text" formControlName="maTaisan">
-                    </td>
-                    <td class="align-middle">
-                      <textarea style="width: 200px" disabled formControlName="tenTaisan"></textarea>
-                    </td>
-                    <td class="align-middle">
-                      <textarea disabled formControlName="donviSudung"></textarea>
-                    </td>
-                    <td class="align-middle">
-                      <input disabled style="width: 50px"  type="text"  formControlName="soluongBandau">
-                    </td>
-                    <td class="align-middle">
-                      <input style="width: 90px" disabled type="text"  formControlName="nguyengiaBandau">
-                    </td>
-                    <td class="align-middle">
-                      <input style="width: 50px" disabled type="text" formControlName="giatriConlaiBandau">
-                    </td>
-                    <td class="align-middle">
-                      <input ng-model="soluong"  style="width: 50px" type="number" class="form-control text-center" formControlName="soluong">
-                    </td>
-                    <td class="align-middle">
-                      <input class="form-control" style="width: 100px" type="text"  formControlName="nguyengia">
-                    </td>
-                    <td class="align-middle">
-                      <input style="width: 50px" type="number" class="form-control text-center" formControlName="giatriConlai">
-                    </td>
-                    <td class="align-middle">
-                      <input disabled class="form-control" [value]="item.get('soluong').value - item.get('soluongBandau').value"/>
-                    </td>
-                    <td class="align-middle">
-                      <input disabled class="form-control" [value]="item.get('nguyengia').value - item.get('nguyengiaBandau').value | moneyFormat "/>
-                    </td>
-                    <td class="align-middle">
-                      <input disabled class="form-control" [value]="item.get('giatriConlai').value - item.get('giatriConlaiBandau').value"/>
-                    </td>
-                    <td class="align-middle">
-                      <select
-                      style="width: fit-content"
-                        class="form-control"
-                        formControlName="tinhtrangSudung"
-                      >
-                        <option [ngValue]="1">Sử dụng</option>
-                        <option [ngValue]="2">Không sử dụng</option>
-                        <option [ngValue]="3">Thanh lý</option>
-                        <option [ngValue]="4">Chuyển nhượng</option>
-                        <option [ngValue]="5">Cho thuê</option>
-                        <option [ngValue]="6">Bảo quản</option>
-                        <option [ngValue]="7">Chuyển giao</option>
-                      </select>
-                    </td>
-                    <td class="align-middle">
-                      <select class="form-control" formControlName="hinhthucXuly" style="width: fit-content">
-                        <option [ngValue]="1">Ghi tăng</option>
-                        <option [ngValue]="2">Ghi giảm</option>
-                        <option [ngValue]="3">Đánh giá lại</option>
-                      </select>
-                    </td>
-                    <td class="align-middle">
-                      <textarea
-                      style="width: fit-content"
-                        class="form-control"
-                        rows="3"
-                        formControlName="ghichu"
-                      ></textarea>
-                    </td>
-                  </tr>
-                </tbody>
-                
-              </table>
-            </div>
-          </ng-container>
-        </div>
-
       </div>
-      <div class="mt-3"> 
+      <div class=" col-11 mt-4">
+        <h6 class="mt-2 mb-2">Ban kiểm kê</h6>
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Nhân viên</th>
+              <th>Đại diện</th>
+              <th>Vai trò</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody formArrayName="nhanvienKiemkes">
+            <ng-container *ngFor="let item of nhanvienKiemkes.controls; let i = index" [formGroupName]="i">
+              <tr>
+                <td class="text-center">
+                  <p>{{ i + 1 }}</p>
+                </td>
+                <td>
+                  <select class="form-control" formControlName="nhanvienId">
+                    <option *ngFor="let item of nhanviens" [ngValue]="item.id">{{ item.ten }} - {{ item.chucvu }}</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="text" class="form-control" formControlName="daidien" />
+                </td>
+                <td>
+                  <!-- <input type="text" class="form-control" formControlName="vaitro" /> -->
+                   <select class="form-control" formControlName="vaitro">
+                    <option value="0">Trưởng ban</option>
+                    <option value="1">Ủy viên</option>
+                   </select>
+                </td>
+                <td>
+                  <a
+                    [hidden]="i < nhanvienKiemkes.controls.length - 1"
+                    style="display: inline-block; font-size: 12px; padding: 3px 6px; border: 0.5px solid #e6e5e5; color: #000; background: #fff;"
+                    (click)="addNewNhanvienKiemke()"
+                  >
+                    <fa-icon [icon]="'plus-square'"></fa-icon>
+                  </a>
+                  <a
+                    [hidden]="nhanvienKiemkes.controls.length === 0"
+                    style="display: inline-block; font-size: 12px; padding: 3px 6px; border: 0.5px solid #e6e5e5; color: #000; background: #fff;"
+                    (click)="removeNhanvienKiemke(i)"
+                  >
+                    <fa-icon [icon]="'trash-alt'"></fa-icon>
+                  </a>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-12 mt-1">
+        <ng-container class="row col-11">
+          <h6 class=" mb-2 mt-4">Thông tin kiểm kê tài sản</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered text-center table-striped-vertical">
+              <thead >
+                <tr class="col-12">
+                  <th rowspan="2">STT</th>
+                  <th rowspan="2">Mã Tài sản</th>
+                  <th rowspan="2">Tên Tài sản</th>
+                  <th rowspan="2">Đơn vị sử dụng</th>
+                  <th colspan="3">Theo kế toán</th>
+                  <th colspan="3">Theo kiểm kê</th>
+                  <th colspan="3">Chênh lệch</th>
+
+                  <th rowspan="2">Tình trạng sử dụng</th>
+                  <th rowspan="2">Hình thức xử lý</th>
+                  <th rowspan="2">Ghi chú</th>
+                </tr>
+                <tr>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Nguyên giá</th>
+                  <th scope="col">Giá trị còn lại</th>
+
+                  <th scope="co">Số lượng</th>
+                  <th scope="col">Nguyên giá</th>
+                  <th scope="col">Giá trị còn lại</th>
+
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Nguyên giá</th>
+                  <th scope="col">Giá trị còn lại</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="banghiKiemkes">
+                <tr
+                  *ngFor="let item of banghiKiemkes.controls; let j = index"
+                  [formGroupName]="j"
+                >
+                  <td class="align-middle">{{ j + 1 }}</td>
+                  <td class="align-middle">
+                    <!-- <input style="width: 80px" disabled type="text" formControlName="maTaisan" /> -->
+                    <span>{{item.get('maTaisan').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <textarea style="width: 200px" disabled formControlName="tenTaisan"></textarea> -->
+                     <span>{{item.get('tenTaisan').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <textarea disabled formControlName="donviSudung"></textarea> -->
+                    <span>{{item.get('donviSudung').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <input disabled style="width: 50px" type="text" formControlName="soluongBandau" /> -->
+                    <span>{{item.get('soluongBandau').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <input style="width: 90px" disabled type="text" formControlName="nguyengiaBandau" /> -->
+                    <span>{{item.get('nguyengiaBandau').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <input style="width: 50px" disabled type="text" formControlName="giatriConlaiBandau" /> -->
+                    <span>{{item.get('giatriConlaiBandau').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <input
+                      ng-model="soluong"
+                      style="width: 50px"
+                      type="number"
+                      class="form-control text-center"
+                      min="0"
+                      formControlName="soluong"
+                    />
+                  </td>
+                  <td class="align-middle">
+                    <input class="form-control" style="width: 100px" type="text" formControlName="nguyengia"  />
+                  </td>
+                  <td class="align-middle">
+                    <input style="width: 50px"  min="0" type="number" class="form-control text-center" formControlName="giatriConlai" />
+                  </td>
+                  <td class="align-middle">
+                    <!-- <input
+                      style="width: 50px"
+                      disabled
+                      class="form-control"
+                      [value]="item.get('soluong').value - item.get('soluongBandau').value"
+                    /> -->
+                    <span>{{item.get('soluong').value - item.get('soluongBandau').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <input
+                      style="width: 50px"
+                      disabled
+                      class="form-control"
+                      [value]="item.get('nguyengia').value - item.get('nguyengiaBandau').value"
+                    /> -->
+                    <span>{{item.get('nguyengia').value - item.get('nguyengiaBandau').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <!-- <input
+                      style="width: 50px"
+                      disabled
+                      class="form-control"
+                      [value]="item.get('giatriConlai').value - item.get('giatriConlaiBandau').value"
+                    /> -->
+                    <span>{{item.get('giatriConlai').value - item.get('giatriConlaiBandau').value}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <select style="width: fit-content" class="form-control" formControlName="tinhtrangSudung">
+                      <option [ngValue]="1">Sử dụng</option>
+                      <option [ngValue]="2">Không sử dụng</option>
+                      <option [ngValue]="3">Thanh lý</option>
+                      <option [ngValue]="4">Chuyển nhượng</option>
+                      <option [ngValue]="5">Cho thuê</option>
+                      <option [ngValue]="6">Bảo quản</option>
+                      <option [ngValue]="7">Chuyển giao</option>
+                    </select>
+                  </td>
+                  <td class="align-middle">
+                    <select class="form-control" formControlName="hinhthucXuly" style="width: fit-content">
+                      <option [ngValue]="1">Ghi tăng</option>
+                      <option [ngValue]="2">Ghi giảm</option>
+                      <option [ngValue]="3">Đánh giá lại</option>
+                    </select>
+                  </td>
+                  <td class="align-middle">
+                    <textarea style="width: fit-content" class="form-control" rows="3" formControlName="ghichu"></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="justify-content-center d-flex col-3">
+              <button type="button" class="btn col-5">Previous</button>
+              <input readonly class="form-control col-2" [value]="page"> 
+              <button type="button" class="btn col-5" (click)="nextPage()">Next</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="mt-3">
         <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
           <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>

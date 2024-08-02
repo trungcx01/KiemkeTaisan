@@ -25,7 +25,10 @@
         },
         {
             "fieldName": "email",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "relationships": [

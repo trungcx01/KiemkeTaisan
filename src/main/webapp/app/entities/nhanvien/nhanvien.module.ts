@@ -11,6 +11,6 @@ import { nhanvienRoute } from './nhanvien.route';
 @NgModule({
   imports: [TaisanSharedModule, RouterModule.forChild(nhanvienRoute)],
   declarations: [NhanvienComponent, NhanvienDetailComponent, NhanvienUpdateComponent, NhanvienDeleteDialogComponent],
-  entryComponents: [NhanvienDeleteDialogComponent],
+  entryComponents: [NhanvienDeleteDialogComponent]
 })
 export class TaisanNhanvienModule {}

@@ -14,10 +14,7 @@ import { NhanvienUpdateComponent } from './nhanvien-update.component';
 
 @Injectable({ providedIn: 'root' })
 export class NhanvienResolve implements Resolve<INhanvien> {
-  constructor(
-    private service: NhanvienService,
-    private router: Router,
-  ) {}
+  constructor(private service: NhanvienService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<INhanvien> | Observable<never> {
     const id = route.params['id'];
@@ -30,7 +27,7 @@ export class NhanvienResolve implements Resolve<INhanvien> {
             this.router.navigate(['404']);
             return EMPTY;
           }
-        }),
+        })
       );
     }
     return of(new Nhanvien());
@@ -42,49 +39,49 @@ export const nhanvienRoute: Routes = [
     path: '',
     component: NhanvienComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: JhiResolvePagingParams
     },
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'taisanApp.nhanvien.home.title',
+      pageTitle: 'taisanApp.nhanvien.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/view',
     component: NhanvienDetailComponent,
     resolve: {
-      nhanvien: NhanvienResolve,
+      nhanvien: NhanvienResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.nhanvien.home.title',
+      pageTitle: 'taisanApp.nhanvien.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new',
     component: NhanvienUpdateComponent,
     resolve: {
-      nhanvien: NhanvienResolve,
+      nhanvien: NhanvienResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.nhanvien.home.title',
+      pageTitle: 'taisanApp.nhanvien.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/edit',
     component: NhanvienUpdateComponent,
     resolve: {
-      nhanvien: NhanvienResolve,
+      nhanvien: NhanvienResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.nhanvien.home.title',
+      pageTitle: 'taisanApp.nhanvien.home.title'
     },
-    canActivate: [UserRouteAccessService],
-  },
+    canActivate: [UserRouteAccessService]
+  }
 ];

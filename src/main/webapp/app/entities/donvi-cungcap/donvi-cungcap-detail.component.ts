@@ -5,7 +5,7 @@ import { IDonviCungcap } from 'app/shared/model/donvi-cungcap.model';
 
 @Component({
   selector: 'jhi-donvi-cungcap-detail',
-  templateUrl: './donvi-cungcap-detail.component.html',
+  templateUrl: './donvi-cungcap-detail.component.html'
 })
 export class DonviCungcapDetailComponent implements OnInit {
   donviCungcap: IDonviCungcap | null = null;

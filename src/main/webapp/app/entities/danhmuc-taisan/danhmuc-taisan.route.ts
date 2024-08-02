@@ -14,10 +14,7 @@ import { DanhmucTaisanUpdateComponent } from './danhmuc-taisan-update.component'
 
 @Injectable({ providedIn: 'root' })
 export class DanhmucTaisanResolve implements Resolve<IDanhmucTaisan> {
-  constructor(
-    private service: DanhmucTaisanService,
-    private router: Router,
-  ) {}
+  constructor(private service: DanhmucTaisanService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IDanhmucTaisan> | Observable<never> {
     const id = route.params['id'];
@@ -30,7 +27,7 @@ export class DanhmucTaisanResolve implements Resolve<IDanhmucTaisan> {
             this.router.navigate(['404']);
             return EMPTY;
           }
-        }),
+        })
       );
     }
     return of(new DanhmucTaisan());
@@ -42,49 +39,49 @@ export const danhmucTaisanRoute: Routes = [
     path: '',
     component: DanhmucTaisanComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: JhiResolvePagingParams
     },
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'taisanApp.danhmucTaisan.home.title',
+      pageTitle: 'taisanApp.danhmucTaisan.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/view',
     component: DanhmucTaisanDetailComponent,
     resolve: {
-      danhmucTaisan: DanhmucTaisanResolve,
+      danhmucTaisan: DanhmucTaisanResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.danhmucTaisan.home.title',
+      pageTitle: 'taisanApp.danhmucTaisan.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new',
     component: DanhmucTaisanUpdateComponent,
     resolve: {
-      danhmucTaisan: DanhmucTaisanResolve,
+      danhmucTaisan: DanhmucTaisanResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.danhmucTaisan.home.title',
+      pageTitle: 'taisanApp.danhmucTaisan.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/edit',
     component: DanhmucTaisanUpdateComponent,
     resolve: {
-      danhmucTaisan: DanhmucTaisanResolve,
+      danhmucTaisan: DanhmucTaisanResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.danhmucTaisan.home.title',
+      pageTitle: 'taisanApp.danhmucTaisan.home.title'
     },
-    canActivate: [UserRouteAccessService],
-  },
+    canActivate: [UserRouteAccessService]
+  }
 ];

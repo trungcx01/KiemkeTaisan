@@ -18,6 +18,6 @@ export class DonviCungcap implements IDonviCungcap {
     public diachi?: string,
     public soDienThoai?: string,
     public email?: string,
-    public taisans?: ITaisan[],
+    public taisans?: ITaisan[]
   ) {}
 }

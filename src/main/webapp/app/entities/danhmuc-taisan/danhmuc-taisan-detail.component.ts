@@ -5,7 +5,7 @@ import { IDanhmucTaisan } from 'app/shared/model/danhmuc-taisan.model';
 
 @Component({
   selector: 'jhi-danhmuc-taisan-detail',
-  templateUrl: './danhmuc-taisan-detail.component.html',
+  templateUrl: './danhmuc-taisan-detail.component.html'
 })
 export class DanhmucTaisanDetailComponent implements OnInit {
   danhmucTaisan: IDanhmucTaisan | null = null;

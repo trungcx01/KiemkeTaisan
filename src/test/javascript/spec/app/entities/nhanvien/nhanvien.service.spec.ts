@@ -1,6 +1,8 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { take, map } from 'rxjs/operators';
+import * as moment from 'moment';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { NhanvienService } from 'app/entities/nhanvien/nhanvien.service';
 import { INhanvien, Nhanvien } from 'app/shared/model/nhanvien.model';
 
@@ -11,21 +13,28 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: INhanvien;
     let expectedResult: INhanvien | INhanvien[] | boolean | null;
+    let currentDate: moment.Moment;
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule]
       });
       expectedResult = null;
       injector = getTestBed();
       service = injector.get(NhanvienService);
       httpMock = injector.get(HttpTestingController);
+      currentDate = moment();
 
-      elemDefault = new Nhanvien('ID', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 'AAAAAAA');
+      elemDefault = new Nhanvien('ID', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            ngayThamgia: currentDate.format(DATE_FORMAT)
+          },
+          elemDefault
+        );
         service
           .find('123')
           .pipe(take(1))
@@ -40,10 +49,16 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 'ID',
+            ngayThamgia: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            ngayThamgia: currentDate
+          },
+          returnedFromService
+        );
         service
           .create(new Nhanvien())
           .pipe(take(1))
@@ -62,11 +77,19 @@ describe('Service Tests', () => {
             diachi: 'BBBBBB',
             gioitinh: 1,
             sdt: 'BBBBBB',
+            phongban: 'BBBBBB',
+            email: 'BBBBBB',
+            ngayThamgia: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            ngayThamgia: currentDate
+          },
+          returnedFromService
+        );
         service
           .update(expected)
           .pipe(take(1))
@@ -85,15 +108,23 @@ describe('Service Tests', () => {
             diachi: 'BBBBBB',
             gioitinh: 1,
             sdt: 'BBBBBB',
+            phongban: 'BBBBBB',
+            email: 'BBBBBB',
+            ngayThamgia: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            ngayThamgia: currentDate
+          },
+          returnedFromService
+        );
         service
           .query()
           .pipe(
             take(1),
-            map(resp => resp.body),
+            map(resp => resp.body)
           )
           .subscribe(body => (expectedResult = body));
         const req = httpMock.expectOne({ method: 'GET' });

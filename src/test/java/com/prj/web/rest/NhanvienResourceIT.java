@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.Validator;
 
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static com.prj.web.rest.TestUtil.createFormattingConversionService;
@@ -52,6 +54,15 @@ public class NhanvienResourceIT {
 
     private static final String DEFAULT_SDT = "AAAAAAAAAA";
     private static final String UPDATED_SDT = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PHONGBAN = "AAAAAAAAAA";
+    private static final String UPDATED_PHONGBAN = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_NGAY_THAMGIA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_NGAY_THAMGIA = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private NhanvienRepository nhanvienRepository;
@@ -103,7 +114,10 @@ public class NhanvienResourceIT {
             .chucvu(DEFAULT_CHUCVU)
             .diachi(DEFAULT_DIACHI)
             .gioitinh(DEFAULT_GIOITINH)
-            .sdt(DEFAULT_SDT);
+            .sdt(DEFAULT_SDT)
+            .phongban(DEFAULT_PHONGBAN)
+            .email(DEFAULT_EMAIL)
+            .ngayThamgia(DEFAULT_NGAY_THAMGIA);
         return nhanvien;
     }
     /**
@@ -119,7 +133,10 @@ public class NhanvienResourceIT {
             .chucvu(UPDATED_CHUCVU)
             .diachi(UPDATED_DIACHI)
             .gioitinh(UPDATED_GIOITINH)
-            .sdt(UPDATED_SDT);
+            .sdt(UPDATED_SDT)
+            .phongban(UPDATED_PHONGBAN)
+            .email(UPDATED_EMAIL)
+            .ngayThamgia(UPDATED_NGAY_THAMGIA);
         return nhanvien;
     }
 
@@ -150,6 +167,9 @@ public class NhanvienResourceIT {
         assertThat(testNhanvien.getDiachi()).isEqualTo(DEFAULT_DIACHI);
         assertThat(testNhanvien.getGioitinh()).isEqualTo(DEFAULT_GIOITINH);
         assertThat(testNhanvien.getSdt()).isEqualTo(DEFAULT_SDT);
+        assertThat(testNhanvien.getPhongban()).isEqualTo(DEFAULT_PHONGBAN);
+        assertThat(testNhanvien.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testNhanvien.getNgayThamgia()).isEqualTo(DEFAULT_NGAY_THAMGIA);
     }
 
     @Test
@@ -209,10 +229,82 @@ public class NhanvienResourceIT {
     }
 
     @Test
+    public void checkChucvuIsRequired() throws Exception {
+        int databaseSizeBeforeTest = nhanvienRepository.findAll().size();
+        // set the field null
+        nhanvien.setChucvu(null);
+
+        // Create the Nhanvien, which fails.
+        NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(nhanvien);
+
+        restNhanvienMockMvc.perform(post("/api/nhanviens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(nhanvienDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Nhanvien> nhanvienList = nhanvienRepository.findAll();
+        assertThat(nhanvienList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void checkGioitinhIsRequired() throws Exception {
         int databaseSizeBeforeTest = nhanvienRepository.findAll().size();
         // set the field null
         nhanvien.setGioitinh(null);
+
+        // Create the Nhanvien, which fails.
+        NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(nhanvien);
+
+        restNhanvienMockMvc.perform(post("/api/nhanviens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(nhanvienDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Nhanvien> nhanvienList = nhanvienRepository.findAll();
+        assertThat(nhanvienList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkSdtIsRequired() throws Exception {
+        int databaseSizeBeforeTest = nhanvienRepository.findAll().size();
+        // set the field null
+        nhanvien.setSdt(null);
+
+        // Create the Nhanvien, which fails.
+        NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(nhanvien);
+
+        restNhanvienMockMvc.perform(post("/api/nhanviens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(nhanvienDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Nhanvien> nhanvienList = nhanvienRepository.findAll();
+        assertThat(nhanvienList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkPhongbanIsRequired() throws Exception {
+        int databaseSizeBeforeTest = nhanvienRepository.findAll().size();
+        // set the field null
+        nhanvien.setPhongban(null);
+
+        // Create the Nhanvien, which fails.
+        NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(nhanvien);
+
+        restNhanvienMockMvc.perform(post("/api/nhanviens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(nhanvienDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Nhanvien> nhanvienList = nhanvienRepository.findAll();
+        assertThat(nhanvienList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkEmailIsRequired() throws Exception {
+        int databaseSizeBeforeTest = nhanvienRepository.findAll().size();
+        // set the field null
+        nhanvien.setEmail(null);
 
         // Create the Nhanvien, which fails.
         NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(nhanvien);
@@ -241,7 +333,10 @@ public class NhanvienResourceIT {
             .andExpect(jsonPath("$.[*].chucvu").value(hasItem(DEFAULT_CHUCVU)))
             .andExpect(jsonPath("$.[*].diachi").value(hasItem(DEFAULT_DIACHI)))
             .andExpect(jsonPath("$.[*].gioitinh").value(hasItem(DEFAULT_GIOITINH)))
-            .andExpect(jsonPath("$.[*].sdt").value(hasItem(DEFAULT_SDT)));
+            .andExpect(jsonPath("$.[*].sdt").value(hasItem(DEFAULT_SDT)))
+            .andExpect(jsonPath("$.[*].phongban").value(hasItem(DEFAULT_PHONGBAN)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].ngayThamgia").value(hasItem(DEFAULT_NGAY_THAMGIA.toString())));
     }
     
     @Test
@@ -259,7 +354,10 @@ public class NhanvienResourceIT {
             .andExpect(jsonPath("$.chucvu").value(DEFAULT_CHUCVU))
             .andExpect(jsonPath("$.diachi").value(DEFAULT_DIACHI))
             .andExpect(jsonPath("$.gioitinh").value(DEFAULT_GIOITINH))
-            .andExpect(jsonPath("$.sdt").value(DEFAULT_SDT));
+            .andExpect(jsonPath("$.sdt").value(DEFAULT_SDT))
+            .andExpect(jsonPath("$.phongban").value(DEFAULT_PHONGBAN))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.ngayThamgia").value(DEFAULT_NGAY_THAMGIA.toString()));
     }
 
     @Test
@@ -284,7 +382,10 @@ public class NhanvienResourceIT {
             .chucvu(UPDATED_CHUCVU)
             .diachi(UPDATED_DIACHI)
             .gioitinh(UPDATED_GIOITINH)
-            .sdt(UPDATED_SDT);
+            .sdt(UPDATED_SDT)
+            .phongban(UPDATED_PHONGBAN)
+            .email(UPDATED_EMAIL)
+            .ngayThamgia(UPDATED_NGAY_THAMGIA);
         NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(updatedNhanvien);
 
         restNhanvienMockMvc.perform(put("/api/nhanviens")
@@ -302,6 +403,9 @@ public class NhanvienResourceIT {
         assertThat(testNhanvien.getDiachi()).isEqualTo(UPDATED_DIACHI);
         assertThat(testNhanvien.getGioitinh()).isEqualTo(UPDATED_GIOITINH);
         assertThat(testNhanvien.getSdt()).isEqualTo(UPDATED_SDT);
+        assertThat(testNhanvien.getPhongban()).isEqualTo(UPDATED_PHONGBAN);
+        assertThat(testNhanvien.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testNhanvien.getNgayThamgia()).isEqualTo(UPDATED_NGAY_THAMGIA);
     }
 
     @Test

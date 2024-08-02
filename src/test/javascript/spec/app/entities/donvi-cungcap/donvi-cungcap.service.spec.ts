@@ -13,7 +13,7 @@ describe('Service Tests', () => {
     let expectedResult: IDonviCungcap | IDonviCungcap[] | boolean | null;
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule]
       });
       expectedResult = null;
       injector = getTestBed();
@@ -39,9 +39,9 @@ describe('Service Tests', () => {
       it('should create a DonviCungcap', () => {
         const returnedFromService = Object.assign(
           {
-            id: 'ID',
+            id: 'ID'
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign({}, returnedFromService);
         service
@@ -60,9 +60,9 @@ describe('Service Tests', () => {
             ten: 'BBBBBB',
             diachi: 'BBBBBB',
             soDienThoai: 'BBBBBB',
-            email: 'BBBBBB',
+            email: 'BBBBBB'
           },
-          elemDefault,
+          elemDefault
         );
 
         const expected = Object.assign({}, returnedFromService);
@@ -82,16 +82,16 @@ describe('Service Tests', () => {
             ten: 'BBBBBB',
             diachi: 'BBBBBB',
             soDienThoai: 'BBBBBB',
-            email: 'BBBBBB',
+            email: 'BBBBBB'
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign({}, returnedFromService);
         service
           .query()
           .pipe(
             take(1),
-            map(resp => resp.body),
+            map(resp => resp.body)
           )
           .subscribe(body => (expectedResult = body));
         const req = httpMock.expectOne({ method: 'GET' });

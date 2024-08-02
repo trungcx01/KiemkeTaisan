@@ -5,7 +5,7 @@ import { INhanvien } from 'app/shared/model/nhanvien.model';
 
 @Component({
   selector: 'jhi-nhanvien-detail',
-  templateUrl: './nhanvien-detail.component.html',
+  templateUrl: './nhanvien-detail.component.html'
 })
 export class NhanvienDetailComponent implements OnInit {
   nhanvien: INhanvien | null = null;
