@@ -2,10 +2,10 @@
   "taisanApp": {
     "donviCungcap": {
       "home": {
-        "title": "Donvi Cungcaps",
-        "createLabel": "Thêm mới một Donvi Cungcap",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Donvi Cungcap",
-        "notFound": "No Donvi Cungcaps found"
+        "title": "Đơn vị cung cấp",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới/cập nhật",
+        "notFound": "Không tìm thấy Đơn vị cung cấp"
       },
       "created": "Một Donvi Cungcap mới được tạo với định danh {{ param }}",
       "updated": "Một Donvi Cungcap cập nhật với định danh {{ param }}",
@@ -14,14 +14,14 @@
         "question": "Bạn có chắc là muốn xóa Donvi Cungcap {{ id }}?"
       },
       "detail": {
-        "title": "Donvi Cungcap"
+        "title": "Đơn vị cung cấp"
       },
-      "maDVCC": "Ma DVCC",
-      "ten": "Ten",
-      "diachi": "Diachi",
-      "soDienThoai": "So Dien Thoai",
+      "maDVCC": "Mã DVCC",
+      "ten": "Tên",
+      "diachi": "Địa chỉ",
+      "soDienThoai": "Số điện thoại",
       "email": "Email",
-      "taisan": "Taisan"
+      "taisan": "Tài sản"
     }
   }
 }

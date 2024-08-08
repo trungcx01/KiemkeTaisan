@@ -27,7 +27,6 @@ export interface ITaisan {
   dientichSudung?: number;
   donviTinh?: string;
   giatriConlai?: number;
-  tangNguyengia?: number;
   nguon?: string;
   vitri?: string;
   donviQuanly?: string;
@@ -69,7 +68,6 @@ export class Taisan implements ITaisan {
     public dientichSudung?: number,
     public donviTinh?: string,
     public giatriConlai?: number,
-    public tangNguyengia?: number,
     public nguon?: string,
     public vitri?: string,
     public donviQuanly?: string,
@@ -81,6 +79,6 @@ export class Taisan implements ITaisan {
     public danhmucTaisanTen?: string,
     public danhmucTaisanId?: string,
     public donviCungcapTen?: string,
-    public donviCungcapId?: string,
+    public donviCungcapId?: string
   ) {}
 }

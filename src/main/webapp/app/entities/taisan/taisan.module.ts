@@ -11,6 +11,6 @@ import { taisanRoute } from './taisan.route';
 @NgModule({
   imports: [TaisanSharedModule, RouterModule.forChild(taisanRoute)],
   declarations: [TaisanComponent, TaisanDetailComponent, TaisanUpdateComponent, TaisanDeleteDialogComponent],
-  entryComponents: [TaisanDeleteDialogComponent],
+  entryComponents: [TaisanDeleteDialogComponent]
 })
 export class TaisanTaisanModule {}

@@ -43,7 +43,6 @@
             <th scope="col"  jhiSortBy="dientichSudung"><span jhiTranslate="taisanApp.taisan.dientichSudung">Dientich Sudung</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="donviTinh"><span jhiTranslate="taisanApp.taisan.donviTinh">Donvi Tinh</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="giatriConlai"><span jhiTranslate="taisanApp.taisan.giatriConlai">Giatri Conlai</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="tangNguyengia"><span jhiTranslate="taisanApp.taisan.tangNguyengia">Tang Nguyengia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="nguon"><span jhiTranslate="taisanApp.taisan.nguon">Nguon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="vitri"><span jhiTranslate="taisanApp.taisan.vitri">Vitri</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="donviQuanly"><span jhiTranslate="taisanApp.taisan.donviQuanly">Donvi Quanly</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -57,36 +56,35 @@
             </thead>
             <tbody>
             <tr *ngFor="let taisan of taisans ;trackBy: trackId">
-                <td><a [routerLink]="['/taisan', taisan.id, 'view' ]">{{taisan.id}}</a></td>
+                <td>{{taisan.id}}</td>
                 <td>{{taisan.maTaisan}}</td>
                 <td>{{taisan.tenTaisan}}</td>
                 <td>{{taisan.tenRutgon}}</td>
                 <td>{{taisan.model}}</td>
                 <td>{{taisan.serial}}</td>
-                <td>{{taisan.loaiTaisan}}</td>
+                <td>{{taisan.loaiTaisan === 0 ? 'Tài sản cố định' : (taisan.loaiTaisan === 1 ? 'Tài sản lưu động' : 'Tài sản vô hình')}}</td>
                 <td>{{taisan.mota}}</td>
-                <td>{{taisan.ngayNhan | date:'mediumDate'}}</td>
-                <td>{{taisan.ngaySudung | date:'mediumDate'}}</td>
-                <td>{{taisan.ngaySanxuat | date:'mediumDate'}}</td>
+                <td>{{taisan.ngayNhan | date:'dd/MM/yyyy'}}</td>
+                <td>{{taisan.ngaySudung | date:'dd/MM/yyyy'}}</td>
+                <td>{{taisan.ngaySanxuat | date:'dd/MM/yyyy'}}</td>
                 <td>{{taisan.thoigianSudung}}</td>
-                <td>{{taisan.ngayHethan | date:'mediumDate'}}</td>
+                <td>{{taisan.ngayHethan | date:'dd/MM/yyyy'}}</td>
                 <td>{{taisan.haomon}}</td>
-                <td>{{taisan.nguyengia}}</td>
+                <td>{{taisan.nguyengia | number}}</td>
                 <td>{{taisan.soHopdongMua}}</td>
                 <td>{{taisan.soHoadonMua}}</td>
-                <td>{{taisan.ngayHoadon | date:'mediumDate'}}</td>
-                <td>{{taisan.trangthai}}</td>
-                <td>{{taisan.hangSanxuat}}</td>
-                <td>{{taisan.nuocSanxuat}}</td>
+                <td>{{taisan.ngayHoadon | date:'dd/MM/yyyy'}}</td>
+                <td>{{taisan.trangthai === '0' ? 'Hoạt động' : 'Không hoạt động'}}</td>
+                <td>{{taisan.hangSanxuat === '0' ? 'Lắp ráp trong nước' : 'Đơn vị sản xuất nước ngoài'}}</td>
+                <td>{{Countries[taisan.nuocSanxuat]}}</td>
                 <td>{{taisan.congsuatSudung}}</td>
                 <td>{{taisan.dientichSudung}}</td>
                 <td>{{taisan.donviTinh}}</td>
-                <td>{{taisan.giatriConlai}}</td>
-                <td>{{taisan.tangNguyengia}}</td>
+                <td>{{taisan.giatriConlai | number}}</td>
                 <td>{{taisan.nguon}}</td>
                 <td>{{taisan.vitri}}</td>
-                <td>{{taisan.donviQuanly}}</td>
-                <td>{{taisan.donviSudung}}</td>
+                <td>{{Donvi[taisan.donviQuanly]}}</td>
+                <td>{{Donvi[taisan.donviSudung]}}</td>
                 <td>{{taisan.soluong}}</td>
                 <td>
                     <div *ngIf="taisan.nguoiQuanlyId">
@@ -105,12 +103,6 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/taisan', taisan.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
                         <button type="submit"
                                 [routerLink]="['/taisan', taisan.id, 'edit']"
                                 class="btn btn-primary btn-sm">

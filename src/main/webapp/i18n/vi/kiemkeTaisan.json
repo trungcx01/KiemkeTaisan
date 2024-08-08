@@ -2,10 +2,10 @@
   "taisanApp": {
     "kiemkeTaisan": {
       "home": {
-        "title": "Kiemke Taisans",
-        "createLabel": "Thêm mới một Kiemke Taisan",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Kiemke Taisan",
-        "notFound": "No Kiemke Taisans found"
+        "title": "Kiểm kê Tài sản",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới/cập nhật",
+        "notFound": "Không tìm thấy Kiểm kê Tài sản!"
       },
       "created": "Một Kiemke Taisan mới được tạo với định danh {{ param }}",
       "updated": "Một Kiemke Taisan cập nhật với định danh {{ param }}",
@@ -14,13 +14,13 @@
         "question": "Bạn có chắc là muốn xóa Kiemke Taisan {{ id }}?"
       },
       "detail": {
-        "title": "Kiemke Taisan"
+        "title": "Kiểm kê Tài sản"
       },
-      "sophieu": "Sophieu",
-      "ngayLapphieu": "Ngay Lapphieu",
-      "ngayKiemke": "Ngay Kiemke",
-      "donviSudung": "Donvi Sudung",
-      "ghichu": "Ghichu",
+      "sophieu": "Số phiếu",
+      "ngayLapphieu": "Ngày lập phiếu",
+      "ngayKiemke": "Ngày Kiểm kê",
+      "donviSudung": "Đơn vị sử dụng",
+      "ghichu": "Ghi chú",
       "nhanvienKiemkes": "Nhanvien Kiemkes",
       "banghiKiemkes": "Banghi Kiemkes"
     }

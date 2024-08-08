@@ -109,11 +109,8 @@ public class TaisanResourceIT {
     private static final String DEFAULT_DONVI_TINH = "AAAAAAAAAA";
     private static final String UPDATED_DONVI_TINH = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_GIATRI_CONLAI = 1;
-    private static final Integer UPDATED_GIATRI_CONLAI = 2;
-
-    private static final BigDecimal DEFAULT_TANG_NGUYENGIA = new BigDecimal(1);
-    private static final BigDecimal UPDATED_TANG_NGUYENGIA = new BigDecimal(2);
+    private static final BigDecimal DEFAULT_GIATRI_CONLAI = new BigDecimal(1);
+    private static final BigDecimal UPDATED_GIATRI_CONLAI = new BigDecimal(2);
 
     private static final String DEFAULT_NGUON = "AAAAAAAAAA";
     private static final String UPDATED_NGUON = "BBBBBBBBBB";
@@ -199,7 +196,6 @@ public class TaisanResourceIT {
             .dientichSudung(DEFAULT_DIENTICH_SUDUNG)
             .donviTinh(DEFAULT_DONVI_TINH)
             .giatriConlai(DEFAULT_GIATRI_CONLAI)
-            .tangNguyengia(DEFAULT_TANG_NGUYENGIA)
             .nguon(DEFAULT_NGUON)
             .vitri(DEFAULT_VITRI)
             .donviQuanly(DEFAULT_DONVI_QUANLY)
@@ -249,7 +245,6 @@ public class TaisanResourceIT {
             .dientichSudung(UPDATED_DIENTICH_SUDUNG)
             .donviTinh(UPDATED_DONVI_TINH)
             .giatriConlai(UPDATED_GIATRI_CONLAI)
-            .tangNguyengia(UPDATED_TANG_NGUYENGIA)
             .nguon(UPDATED_NGUON)
             .vitri(UPDATED_VITRI)
             .donviQuanly(UPDATED_DONVI_QUANLY)
@@ -313,7 +308,6 @@ public class TaisanResourceIT {
         assertThat(testTaisan.getDientichSudung()).isEqualTo(DEFAULT_DIENTICH_SUDUNG);
         assertThat(testTaisan.getDonviTinh()).isEqualTo(DEFAULT_DONVI_TINH);
         assertThat(testTaisan.getGiatriConlai()).isEqualTo(DEFAULT_GIATRI_CONLAI);
-        assertThat(testTaisan.getTangNguyengia()).isEqualTo(DEFAULT_TANG_NGUYENGIA);
         assertThat(testTaisan.getNguon()).isEqualTo(DEFAULT_NGUON);
         assertThat(testTaisan.getVitri()).isEqualTo(DEFAULT_VITRI);
         assertThat(testTaisan.getDonviQuanly()).isEqualTo(DEFAULT_DONVI_QUANLY);
@@ -482,8 +476,7 @@ public class TaisanResourceIT {
             .andExpect(jsonPath("$.[*].congsuatSudung").value(hasItem(DEFAULT_CONGSUAT_SUDUNG.doubleValue())))
             .andExpect(jsonPath("$.[*].dientichSudung").value(hasItem(DEFAULT_DIENTICH_SUDUNG.doubleValue())))
             .andExpect(jsonPath("$.[*].donviTinh").value(hasItem(DEFAULT_DONVI_TINH)))
-            .andExpect(jsonPath("$.[*].giatriConlai").value(hasItem(DEFAULT_GIATRI_CONLAI)))
-            .andExpect(jsonPath("$.[*].tangNguyengia").value(hasItem(DEFAULT_TANG_NGUYENGIA.intValue())))
+            .andExpect(jsonPath("$.[*].giatriConlai").value(hasItem(DEFAULT_GIATRI_CONLAI.intValue())))
             .andExpect(jsonPath("$.[*].nguon").value(hasItem(DEFAULT_NGUON)))
             .andExpect(jsonPath("$.[*].vitri").value(hasItem(DEFAULT_VITRI)))
             .andExpect(jsonPath("$.[*].donviQuanly").value(hasItem(DEFAULT_DONVI_QUANLY)))
@@ -524,8 +517,7 @@ public class TaisanResourceIT {
             .andExpect(jsonPath("$.congsuatSudung").value(DEFAULT_CONGSUAT_SUDUNG.doubleValue()))
             .andExpect(jsonPath("$.dientichSudung").value(DEFAULT_DIENTICH_SUDUNG.doubleValue()))
             .andExpect(jsonPath("$.donviTinh").value(DEFAULT_DONVI_TINH))
-            .andExpect(jsonPath("$.giatriConlai").value(DEFAULT_GIATRI_CONLAI))
-            .andExpect(jsonPath("$.tangNguyengia").value(DEFAULT_TANG_NGUYENGIA.intValue()))
+            .andExpect(jsonPath("$.giatriConlai").value(DEFAULT_GIATRI_CONLAI.intValue()))
             .andExpect(jsonPath("$.nguon").value(DEFAULT_NGUON))
             .andExpect(jsonPath("$.vitri").value(DEFAULT_VITRI))
             .andExpect(jsonPath("$.donviQuanly").value(DEFAULT_DONVI_QUANLY))
@@ -574,7 +566,6 @@ public class TaisanResourceIT {
             .dientichSudung(UPDATED_DIENTICH_SUDUNG)
             .donviTinh(UPDATED_DONVI_TINH)
             .giatriConlai(UPDATED_GIATRI_CONLAI)
-            .tangNguyengia(UPDATED_TANG_NGUYENGIA)
             .nguon(UPDATED_NGUON)
             .vitri(UPDATED_VITRI)
             .donviQuanly(UPDATED_DONVI_QUANLY)
@@ -615,7 +606,6 @@ public class TaisanResourceIT {
         assertThat(testTaisan.getDientichSudung()).isEqualTo(UPDATED_DIENTICH_SUDUNG);
         assertThat(testTaisan.getDonviTinh()).isEqualTo(UPDATED_DONVI_TINH);
         assertThat(testTaisan.getGiatriConlai()).isEqualTo(UPDATED_GIATRI_CONLAI);
-        assertThat(testTaisan.getTangNguyengia()).isEqualTo(UPDATED_TANG_NGUYENGIA);
         assertThat(testTaisan.getNguon()).isEqualTo(UPDATED_NGUON);
         assertThat(testTaisan.getVitri()).isEqualTo(UPDATED_VITRI);
         assertThat(testTaisan.getDonviQuanly()).isEqualTo(UPDATED_DONVI_QUANLY);

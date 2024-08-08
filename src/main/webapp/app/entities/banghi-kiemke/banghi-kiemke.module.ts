@@ -11,6 +11,6 @@ import { banghiKiemkeRoute } from './banghi-kiemke.route';
 @NgModule({
   imports: [TaisanSharedModule, RouterModule.forChild(banghiKiemkeRoute)],
   declarations: [BanghiKiemkeComponent, BanghiKiemkeDetailComponent, BanghiKiemkeUpdateComponent, BanghiKiemkeDeleteDialogComponent],
-  entryComponents: [BanghiKiemkeDeleteDialogComponent],
+  entryComponents: [BanghiKiemkeDeleteDialogComponent]
 })
 export class TaisanBanghiKiemkeModule {}

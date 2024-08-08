@@ -14,10 +14,7 @@ import { BanghiKiemkeUpdateComponent } from './banghi-kiemke-update.component';
 
 @Injectable({ providedIn: 'root' })
 export class BanghiKiemkeResolve implements Resolve<IBanghiKiemke> {
-  constructor(
-    private service: BanghiKiemkeService,
-    private router: Router,
-  ) {}
+  constructor(private service: BanghiKiemkeService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IBanghiKiemke> | Observable<never> {
     const id = route.params['id'];
@@ -30,7 +27,7 @@ export class BanghiKiemkeResolve implements Resolve<IBanghiKiemke> {
             this.router.navigate(['404']);
             return EMPTY;
           }
-        }),
+        })
       );
     }
     return of(new BanghiKiemke());
@@ -42,49 +39,49 @@ export const banghiKiemkeRoute: Routes = [
     path: '',
     component: BanghiKiemkeComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: JhiResolvePagingParams
     },
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'taisanApp.banghiKiemke.home.title',
+      pageTitle: 'taisanApp.banghiKiemke.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/view',
     component: BanghiKiemkeDetailComponent,
     resolve: {
-      banghiKiemke: BanghiKiemkeResolve,
+      banghiKiemke: BanghiKiemkeResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.banghiKiemke.home.title',
+      pageTitle: 'taisanApp.banghiKiemke.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new',
     component: BanghiKiemkeUpdateComponent,
     resolve: {
-      banghiKiemke: BanghiKiemkeResolve,
+      banghiKiemke: BanghiKiemkeResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.banghiKiemke.home.title',
+      pageTitle: 'taisanApp.banghiKiemke.home.title'
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/edit',
     component: BanghiKiemkeUpdateComponent,
     resolve: {
-      banghiKiemke: BanghiKiemkeResolve,
+      banghiKiemke: BanghiKiemkeResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'taisanApp.banghiKiemke.home.title',
+      pageTitle: 'taisanApp.banghiKiemke.home.title'
     },
-    canActivate: [UserRouteAccessService],
-  },
+    canActivate: [UserRouteAccessService]
+  }
 ];

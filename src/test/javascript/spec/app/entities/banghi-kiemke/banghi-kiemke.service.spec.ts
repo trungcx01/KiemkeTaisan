@@ -13,14 +13,14 @@ describe('Service Tests', () => {
     let expectedResult: IBanghiKiemke | IBanghiKiemke[] | boolean | null;
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule]
       });
       expectedResult = null;
       injector = getTestBed();
       service = injector.get(BanghiKiemkeService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new BanghiKiemke('ID', 0, 0, 0, 'AAAAAAA', 0, 0);
+      elemDefault = new BanghiKiemke('ID', 0, 0, 0, 0, 0, 'AAAAAAA', 0, 0);
     });
 
     describe('Service methods', () => {
@@ -39,9 +39,9 @@ describe('Service Tests', () => {
       it('should create a BanghiKiemke', () => {
         const returnedFromService = Object.assign(
           {
-            id: 'ID',
+            id: 'ID'
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign({}, returnedFromService);
         service
@@ -56,14 +56,16 @@ describe('Service Tests', () => {
       it('should update a BanghiKiemke', () => {
         const returnedFromService = Object.assign(
           {
+            soluongBandau: 1,
+            giatriConlaiBandau: 1,
             soluong: 1,
             nguyengia: 1,
             giatriConlai: 1,
             ghichu: 'BBBBBB',
             tinhtrangSudung: 1,
-            hinhthucXuly: 1,
+            hinhthucXuly: 1
           },
-          elemDefault,
+          elemDefault
         );
 
         const expected = Object.assign({}, returnedFromService);
@@ -79,21 +81,23 @@ describe('Service Tests', () => {
       it('should return a list of BanghiKiemke', () => {
         const returnedFromService = Object.assign(
           {
+            soluongBandau: 1,
+            giatriConlaiBandau: 1,
             soluong: 1,
             nguyengia: 1,
             giatriConlai: 1,
             ghichu: 'BBBBBB',
             tinhtrangSudung: 1,
-            hinhthucXuly: 1,
+            hinhthucXuly: 1
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign({}, returnedFromService);
         service
           .query()
           .pipe(
             take(1),
-            map(resp => resp.body),
+            map(resp => resp.body)
           )
           .subscribe(body => (expectedResult = body));
         const req = httpMock.expectOne({ method: 'GET' });

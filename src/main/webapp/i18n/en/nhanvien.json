@@ -2,9 +2,9 @@
   "taisanApp": {
     "nhanvien": {
       "home": {
-        "title": "Nhanviens",
-        "createLabel": "Create a new Nhanvien",
-        "createOrEditLabel": "Create or edit a Nhanvien",
+        "title": "Nhân viên",
+        "createLabel": "Create New",
+        "createOrEditLabel": "Add/edit",
         "notFound": "No Nhanviens found"
       },
       "created": "A new Nhanvien is created with identifier {{ param }}",
@@ -14,17 +14,17 @@
         "question": "Are you sure you want to delete Nhanvien {{ id }}?"
       },
       "detail": {
-        "title": "Nhanvien"
+        "title": "Nhân viên"
       },
-      "maNV": "Ma NV",
-      "ten": "Ten",
-      "chucvu": "Chucvu",
-      "diachi": "Diachi",
-      "gioitinh": "Gioitinh",
+      "maNV": "Mã nhân viên",
+      "ten": "Tên",
+      "chucvu": "Chức vụ",
+      "diachi": "Địa chỉ",
+      "gioitinh": "Giới tính",
       "sdt": "Sdt",
-      "phongban": "Phongban",
+      "phongban": "Phòng ban",
       "email": "Email",
-      "ngayThamgia": "Ngay Thamgia"
+      "ngayThamgia": "Ngay tham gia"
     }
   }
 }

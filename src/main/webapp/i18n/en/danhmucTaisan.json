@@ -2,9 +2,9 @@
   "taisanApp": {
     "danhmucTaisan": {
       "home": {
-        "title": "Danhmuc Taisans",
-        "createLabel": "Create a new Danhmuc Taisan",
-        "createOrEditLabel": "Create or edit a Danhmuc Taisan",
+        "title": "Danh mục Tài sản",
+        "createLabel": "Create New",
+        "createOrEditLabel": "Add/Edit",
         "notFound": "No Danhmuc Taisans found"
       },
       "created": "A new Danhmuc Taisan is created with identifier {{ param }}",
@@ -14,13 +14,13 @@
         "question": "Are you sure you want to delete Danhmuc Taisan {{ id }}?"
       },
       "detail": {
-        "title": "Danhmuc Taisan"
+        "title": "Danh mục Tài sản"
       },
-      "maDMTS": "Ma DMTS",
-      "ten": "Ten",
-      "mota": "Mota",
-      "ngaytao": "Ngaytao",
-      "taisan": "Taisan"
+      "maDMTS": "Mã DMTS",
+      "ten": "Tên",
+      "mota": "Mô tả",
+      "ngaytao": "Ngày tạo",
+      "taisan": "Tài sản"
     }
   }
 }

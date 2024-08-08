@@ -10,6 +10,7 @@ import { INhanvien } from 'app/shared/model/nhanvien.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { NhanvienService } from './nhanvien.service';
 import { NhanvienDeleteDialogComponent } from './nhanvien-delete-dialog.component';
+import { Donvi } from '../donvi.enum';
 
 @Component({
   selector: 'jhi-nhanvien',
@@ -17,6 +18,7 @@ import { NhanvienDeleteDialogComponent } from './nhanvien-delete-dialog.componen
 })
 export class NhanvienComponent implements OnInit, OnDestroy {
   nhanviens?: INhanvien[];
+  Donvi = Donvi;
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;

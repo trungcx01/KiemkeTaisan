@@ -7,13 +7,13 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Thực thể",
-        "nhanvien": "Nhanvien",
-        "danhmucTaisan": "Danhmuc Taisan",
-        "donviCungcap": "Donvi Cungcap",
-        "banghiKiemke": "Banghi Kiemke",
-        "kiemkeTaisan": "Kiemke Taisan",
-        "nhanvienKiemke": "Nhanvien Kiemke",
-        "taisan": "Taisan",
+        "nhanvien": "Nhân viên",
+        "danhmucTaisan": "Danh mục tài sản",
+        "donviCungcap": "Đơn vị cung cấp",
+        "banghiKiemke": "Bản ghi kiểm kê",
+        "kiemkeTaisan": "Kiểm kê tài sản",
+        "nhanvienKiemke": "Nhân viên kiểm kê",
+        "taisan": "Tài sản",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,3 +1,4 @@
+import { Countries } from './../country.enum';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,10 +11,11 @@ import { ITaisan } from 'app/shared/model/taisan.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { TaisanService } from './taisan.service';
 import { TaisanDeleteDialogComponent } from './taisan-delete-dialog.component';
+import { Donvi } from '../donvi.enum';
 
 @Component({
   selector: 'jhi-taisan',
-  templateUrl: './taisan.component.html',
+  templateUrl: './taisan.component.html'
 })
 export class TaisanComponent implements OnInit, OnDestroy {
   taisans?: ITaisan[];
@@ -24,13 +26,15 @@ export class TaisanComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  Donvi = Donvi;
+  Countries = Countries;
 
   constructor(
     protected taisanService: TaisanService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal,
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number): void {
@@ -39,11 +43,11 @@ export class TaisanComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe(
         (res: HttpResponse<ITaisan[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError(),
+        () => this.onError()
       );
   }
 
@@ -93,8 +97,8 @@ export class TaisanComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
-      },
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
     });
     this.taisans = data ? data : [];
   }

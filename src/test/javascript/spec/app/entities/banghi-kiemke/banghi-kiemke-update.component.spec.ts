@@ -18,7 +18,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [BanghiKiemkeUpdateComponent],
-        providers: [FormBuilder],
+        providers: [FormBuilder]
       })
         .overrideTemplate(BanghiKiemkeUpdateComponent, '')
         .compileComponents();

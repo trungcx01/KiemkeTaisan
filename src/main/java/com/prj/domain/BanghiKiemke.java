@@ -21,6 +21,14 @@ public class BanghiKiemke implements Serializable {
     private String id;
 
     @NotNull
+    @Field("soluong_bandau")
+    private Integer soluongBandau;
+
+    @NotNull
+    @Field("giatri_conlai_bandau")
+    private BigDecimal giatriConlaiBandau;
+
+    @NotNull
     @Field("soluong")
     private Integer soluong;
 
@@ -58,6 +66,32 @@ public class BanghiKiemke implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getSoluongBandau() {
+        return soluongBandau;
+    }
+
+    public BanghiKiemke soluongBandau(Integer soluongBandau) {
+        this.soluongBandau = soluongBandau;
+        return this;
+    }
+
+    public void setSoluongBandau(Integer soluongBandau) {
+        this.soluongBandau = soluongBandau;
+    }
+
+    public BigDecimal getGiatriConlaiBandau() {
+        return giatriConlaiBandau;
+    }
+
+    public BanghiKiemke giatriConlaiBandau(BigDecimal giatriConlaiBandau) {
+        this.giatriConlaiBandau = giatriConlaiBandau;
+        return this;
+    }
+
+    public void setGiatriConlaiBandau(BigDecimal giatriConlaiBandau) {
+        this.giatriConlaiBandau = giatriConlaiBandau;
     }
 
     public Integer getSoluong() {
@@ -185,6 +219,8 @@ public class BanghiKiemke implements Serializable {
     public String toString() {
         return "BanghiKiemke{" +
             "id=" + getId() +
+            ", soluongBandau=" + getSoluongBandau() +
+            ", giatriConlaiBandau=" + getGiatriConlaiBandau() +
             ", soluong=" + getSoluong() +
             ", nguyengia=" + getNguyengia() +
             ", giatriConlai=" + getGiatriConlai() +

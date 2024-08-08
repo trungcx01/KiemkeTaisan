@@ -4,10 +4,10 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 
 import { INhanvien, Nhanvien } from 'app/shared/model/nhanvien.model';
 import { NhanvienService } from './nhanvien.service';
+import { Donvi } from '../donvi.enum';
 
 @Component({
   selector: 'jhi-nhanvien-update',
@@ -16,6 +16,9 @@ import { NhanvienService } from './nhanvien.service';
 export class NhanvienUpdateComponent implements OnInit {
   isSaving = false;
   ngayThamgiaDp: any;
+
+  Donvi = Donvi;
+  phongbanOptions = Object.keys(Donvi);
 
   editForm = this.fb.group({
     id: [],
@@ -27,7 +30,7 @@ export class NhanvienUpdateComponent implements OnInit {
     sdt: [null, [Validators.required, Validators.maxLength(11)]],
     phongban: [null, [Validators.required]],
     email: [null, [Validators.required]],
-    ngayThamgia: []
+    ngayThamgia: [null, [Validators.required]]
   });
 
   constructor(protected nhanvienService: NhanvienService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}

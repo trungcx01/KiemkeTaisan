@@ -1,5 +1,7 @@
 export interface IBanghiKiemke {
   id?: string;
+  soluongBandau?: number;
+  giatriConlaiBandau?: number;
   soluong?: number;
   nguyengia?: number;
   giatriConlai?: number;
@@ -14,6 +16,8 @@ export interface IBanghiKiemke {
 export class BanghiKiemke implements IBanghiKiemke {
   constructor(
     public id?: string,
+    public soluongBandau?: number,
+    public giatriConlaiBandau?: number,
     public soluong?: number,
     public nguyengia?: number,
     public giatriConlai?: number,
@@ -22,6 +26,6 @@ export class BanghiKiemke implements IBanghiKiemke {
     public hinhthucXuly?: number,
     public taisanTenTaisan?: string,
     public taisanId?: string,
-    public kiemkeTaisanId?: string,
+    public kiemkeTaisanId?: string
   ) {}
 }

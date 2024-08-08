@@ -6,7 +6,7 @@ import { IBanghiKiemke } from 'app/shared/model/banghi-kiemke.model';
 import { BanghiKiemkeService } from './banghi-kiemke.service';
 
 @Component({
-  templateUrl: './banghi-kiemke-delete-dialog.component.html',
+  templateUrl: './banghi-kiemke-delete-dialog.component.html'
 })
 export class BanghiKiemkeDeleteDialogComponent {
   banghiKiemke?: IBanghiKiemke;
@@ -14,7 +14,7 @@ export class BanghiKiemkeDeleteDialogComponent {
   constructor(
     protected banghiKiemkeService: BanghiKiemkeService,
     public activeModal: NgbActiveModal,
-    protected eventManager: JhiEventManager,
+    protected eventManager: JhiEventManager
   ) {}
 
   clear(): void {

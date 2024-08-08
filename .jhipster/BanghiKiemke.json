@@ -2,6 +2,20 @@
     "name": "BanghiKiemke",
     "fields": [
         {
+            "fieldName": "soluongBandau",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "giatriConlaiBandau",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "soluong",
             "fieldType": "Integer",
             "fieldValidateRules": [

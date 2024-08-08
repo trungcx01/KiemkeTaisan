@@ -10,13 +10,15 @@ import { IKiemkeTaisan } from 'app/shared/model/kiemke-taisan.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { KiemkeTaisanService } from './kiemke-taisan.service';
 import { KiemkeTaisanDeleteDialogComponent } from './kiemke-taisan-delete-dialog.component';
+import { Donvi } from '../donvi.enum';
 
 @Component({
   selector: 'jhi-kiemke-taisan',
-  templateUrl: './kiemke-taisan.component.html',
+  templateUrl: './kiemke-taisan.component.html'
 })
 export class KiemkeTaisanComponent implements OnInit, OnDestroy {
   kiemkeTaisans?: IKiemkeTaisan[];
+  Donvi = Donvi;
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -30,7 +32,7 @@ export class KiemkeTaisanComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal,
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number): void {
@@ -39,11 +41,11 @@ export class KiemkeTaisanComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe(
         (res: HttpResponse<IKiemkeTaisan[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError(),
+        () => this.onError()
       );
   }
 
@@ -93,8 +95,8 @@ export class KiemkeTaisanComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
-      },
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
     });
     this.kiemkeTaisans = data ? data : [];
   }

@@ -16,7 +16,7 @@ describe('Service Tests', () => {
     let currentDate: moment.Moment;
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule]
       });
       expectedResult = null;
       injector = getTestBed();
@@ -50,12 +50,11 @@ describe('Service Tests', () => {
         0,
         'AAAAAAA',
         0,
-        0,
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
-        0,
+        0
       );
     });
 
@@ -67,9 +66,9 @@ describe('Service Tests', () => {
             ngaySudung: currentDate.format(DATE_FORMAT),
             ngaySanxuat: currentDate.format(DATE_FORMAT),
             ngayHethan: currentDate.format(DATE_FORMAT),
-            ngayHoadon: currentDate.format(DATE_FORMAT),
+            ngayHoadon: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
         service
           .find('123')
@@ -89,9 +88,9 @@ describe('Service Tests', () => {
             ngaySudung: currentDate.format(DATE_FORMAT),
             ngaySanxuat: currentDate.format(DATE_FORMAT),
             ngayHethan: currentDate.format(DATE_FORMAT),
-            ngayHoadon: currentDate.format(DATE_FORMAT),
+            ngayHoadon: currentDate.format(DATE_FORMAT)
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign(
           {
@@ -99,9 +98,9 @@ describe('Service Tests', () => {
             ngaySudung: currentDate,
             ngaySanxuat: currentDate,
             ngayHethan: currentDate,
-            ngayHoadon: currentDate,
+            ngayHoadon: currentDate
           },
-          returnedFromService,
+          returnedFromService
         );
         service
           .create(new Taisan())
@@ -139,14 +138,13 @@ describe('Service Tests', () => {
             dientichSudung: 1,
             donviTinh: 'BBBBBB',
             giatriConlai: 1,
-            tangNguyengia: 1,
             nguon: 'BBBBBB',
             vitri: 'BBBBBB',
             donviQuanly: 'BBBBBB',
             donviSudung: 'BBBBBB',
-            soluong: 1,
+            soluong: 1
           },
-          elemDefault,
+          elemDefault
         );
 
         const expected = Object.assign(
@@ -155,9 +153,9 @@ describe('Service Tests', () => {
             ngaySudung: currentDate,
             ngaySanxuat: currentDate,
             ngayHethan: currentDate,
-            ngayHoadon: currentDate,
+            ngayHoadon: currentDate
           },
-          returnedFromService,
+          returnedFromService
         );
         service
           .update(expected)
@@ -195,14 +193,13 @@ describe('Service Tests', () => {
             dientichSudung: 1,
             donviTinh: 'BBBBBB',
             giatriConlai: 1,
-            tangNguyengia: 1,
             nguon: 'BBBBBB',
             vitri: 'BBBBBB',
             donviQuanly: 'BBBBBB',
             donviSudung: 'BBBBBB',
-            soluong: 1,
+            soluong: 1
           },
-          elemDefault,
+          elemDefault
         );
         const expected = Object.assign(
           {
@@ -210,15 +207,15 @@ describe('Service Tests', () => {
             ngaySudung: currentDate,
             ngaySanxuat: currentDate,
             ngayHethan: currentDate,
-            ngayHoadon: currentDate,
+            ngayHoadon: currentDate
           },
-          returnedFromService,
+          returnedFromService
         );
         service
           .query()
           .pipe(
             take(1),
-            map(resp => resp.body),
+            map(resp => resp.body)
           )
           .subscribe(body => (expectedResult = body));
         const req = httpMock.expectOne({ method: 'GET' });

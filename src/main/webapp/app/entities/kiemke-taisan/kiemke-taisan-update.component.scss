@@ -5,6 +5,10 @@ textarea:disabled {
   border: none;
 }
 
+input:read-only {
+  background-color: #fff;
+}
+
 .ng-invalid:not(form) {
   border-left: 1px solid #ababab;
 }
@@ -13,6 +17,10 @@ textarea,
 input,
 select {
   resize: none;
+}
+
+.empty-shift {
+  background-color: #fafafa;
 }
 
 input,
@@ -27,7 +35,40 @@ label {
   font-weight: 500;
   margin-bottom: 5px;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-top: 15px;
+
+  .btn {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  input {
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.addNVKK,
+.removeNVKK {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 6px;
+  border: 0.5px solid #e6e5e5;
+  color: #000;
+  background: #fff;
+}
+
 table {
+  max-height: 900px;
+
   input,
   textarea {
     padding: 10px;
@@ -36,6 +77,7 @@ table {
     justify-content: center;
     align-items: center;
   }
+
   select {
     font-size: 13px;
   }
@@ -43,7 +85,14 @@ table {
   tr {
     font-size: 14px;
   }
+
   thead {
     background-color: #f6f4f4;
+  }
+
+  button {
+    padding: auto;
+    border: 0.5px solid #e7e6e6;
+    border-radius: none;
   }
 }

@@ -1,3 +1,4 @@
+import { Countries } from './../country.enum';
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,6 +15,7 @@ import { IDanhmucTaisan } from 'app/shared/model/danhmuc-taisan.model';
 import { DanhmucTaisanService } from 'app/entities/danhmuc-taisan/danhmuc-taisan.service';
 import { IDonviCungcap } from 'app/shared/model/donvi-cungcap.model';
 import { DonviCungcapService } from 'app/entities/donvi-cungcap/donvi-cungcap.service';
+import { Donvi } from '../donvi.enum';
 
 type SelectableEntity = INhanvien | IDanhmucTaisan | IDonviCungcap;
 
@@ -34,6 +36,12 @@ export class TaisanUpdateComponent implements OnInit {
   ngaySanxuatDp: any;
   ngayHethanDp: any;
   ngayHoadonDp: any;
+
+  Donvi = Donvi;
+  Countries = Countries;
+  nuocOptions = Object.keys(Countries);
+  donviQuanlyOptions = Object.keys(Donvi);
+  donviSudungOptions = Object.keys(Donvi);
 
   editForm = this.fb.group({
     id: [],
@@ -61,7 +69,6 @@ export class TaisanUpdateComponent implements OnInit {
     dientichSudung: [],
     donviTinh: [],
     giatriConlai: [],
-    tangNguyengia: [],
     nguon: [],
     vitri: [],
     donviQuanly: [],
@@ -156,7 +163,6 @@ export class TaisanUpdateComponent implements OnInit {
       dientichSudung: taisan.dientichSudung,
       donviTinh: taisan.donviTinh,
       giatriConlai: taisan.giatriConlai,
-      tangNguyengia: taisan.tangNguyengia,
       nguon: taisan.nguon,
       vitri: taisan.vitri,
       donviQuanly: taisan.donviQuanly,
@@ -210,7 +216,6 @@ export class TaisanUpdateComponent implements OnInit {
       dientichSudung: this.editForm.get(['dientichSudung'])!.value,
       donviTinh: this.editForm.get(['donviTinh'])!.value,
       giatriConlai: this.editForm.get(['giatriConlai'])!.value,
-      tangNguyengia: this.editForm.get(['tangNguyengia'])!.value,
       nguon: this.editForm.get(['nguon'])!.value,
       vitri: this.editForm.get(['vitri'])!.value,
       donviQuanly: this.editForm.get(['donviQuanly'])!.value,

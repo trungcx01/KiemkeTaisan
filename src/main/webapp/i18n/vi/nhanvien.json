@@ -2,10 +2,10 @@
   "taisanApp": {
     "nhanvien": {
       "home": {
-        "title": "Nhanviens",
-        "createLabel": "Thêm mới một Nhanvien",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Nhanvien",
-        "notFound": "No Nhanviens found"
+        "title": "Nhân viên",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới/cập nhật ",
+        "notFound": "Không tìm thấy nhân viên"
       },
       "created": "Một Nhanvien mới được tạo với định danh {{ param }}",
       "updated": "Một Nhanvien cập nhật với định danh {{ param }}",
@@ -14,17 +14,17 @@
         "question": "Bạn có chắc là muốn xóa Nhanvien {{ id }}?"
       },
       "detail": {
-        "title": "Nhanvien"
+        "title": "Nhân viên"
       },
-      "maNV": "Ma NV",
-      "ten": "Ten",
-      "chucvu": "Chucvu",
-      "diachi": "Diachi",
-      "gioitinh": "Gioitinh",
+      "maNV": "Mã nhân viên",
+      "ten": "Tên",
+      "chucvu": "Chức vụ",
+      "diachi": "Địa chỉ",
+      "gioitinh": "Giới tính",
       "sdt": "Sdt",
-      "phongban": "Phongban",
+      "phongban": "Phòng ban",
       "email": "Email",
-      "ngayThamgia": "Ngay Thamgia"
+      "ngayThamgia": "Ngay tham gia"
     }
   }
 }

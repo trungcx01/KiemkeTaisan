@@ -319,6 +319,24 @@ public class NhanvienResourceIT {
     }
 
     @Test
+    public void checkNgayThamgiaIsRequired() throws Exception {
+        int databaseSizeBeforeTest = nhanvienRepository.findAll().size();
+        // set the field null
+        nhanvien.setNgayThamgia(null);
+
+        // Create the Nhanvien, which fails.
+        NhanvienDTO nhanvienDTO = nhanvienMapper.toDto(nhanvien);
+
+        restNhanvienMockMvc.perform(post("/api/nhanviens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(nhanvienDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Nhanvien> nhanvienList = nhanvienRepository.findAll();
+        assertThat(nhanvienList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllNhanviens() throws Exception {
         // Initialize the database
         nhanvienRepository.save(nhanvien);

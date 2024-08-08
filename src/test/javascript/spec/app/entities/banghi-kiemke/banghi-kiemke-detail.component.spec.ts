@@ -10,13 +10,13 @@ describe('Component Tests', () => {
   describe('BanghiKiemke Management Detail Component', () => {
     let comp: BanghiKiemkeDetailComponent;
     let fixture: ComponentFixture<BanghiKiemkeDetailComponent>;
-    const route = { data: of({ banghiKiemke: new BanghiKiemke('123') }) } as any as ActivatedRoute;
+    const route = ({ data: of({ banghiKiemke: new BanghiKiemke('123') }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [TaisanTestModule],
         declarations: [BanghiKiemkeDetailComponent],
-        providers: [{ provide: ActivatedRoute, useValue: route }],
+        providers: [{ provide: ActivatedRoute, useValue: route }]
       })
         .overrideTemplate(BanghiKiemkeDetailComponent, '')
         .compileComponents();

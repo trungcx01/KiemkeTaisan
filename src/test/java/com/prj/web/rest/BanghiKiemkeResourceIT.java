@@ -37,6 +37,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = TaisanApp.class)
 public class BanghiKiemkeResourceIT {
 
+    private static final Integer DEFAULT_SOLUONG_BANDAU = 1;
+    private static final Integer UPDATED_SOLUONG_BANDAU = 2;
+
+    private static final BigDecimal DEFAULT_GIATRI_CONLAI_BANDAU = new BigDecimal(1);
+    private static final BigDecimal UPDATED_GIATRI_CONLAI_BANDAU = new BigDecimal(2);
+
     private static final Integer DEFAULT_SOLUONG = 1;
     private static final Integer UPDATED_SOLUONG = 2;
 
@@ -100,6 +106,8 @@ public class BanghiKiemkeResourceIT {
      */
     public static BanghiKiemke createEntity() {
         BanghiKiemke banghiKiemke = new BanghiKiemke()
+            .soluongBandau(DEFAULT_SOLUONG_BANDAU)
+            .giatriConlaiBandau(DEFAULT_GIATRI_CONLAI_BANDAU)
             .soluong(DEFAULT_SOLUONG)
             .nguyengia(DEFAULT_NGUYENGIA)
             .giatriConlai(DEFAULT_GIATRI_CONLAI)
@@ -121,6 +129,8 @@ public class BanghiKiemkeResourceIT {
      */
     public static BanghiKiemke createUpdatedEntity() {
         BanghiKiemke banghiKiemke = new BanghiKiemke()
+            .soluongBandau(UPDATED_SOLUONG_BANDAU)
+            .giatriConlaiBandau(UPDATED_GIATRI_CONLAI_BANDAU)
             .soluong(UPDATED_SOLUONG)
             .nguyengia(UPDATED_NGUYENGIA)
             .giatriConlai(UPDATED_GIATRI_CONLAI)
@@ -156,6 +166,8 @@ public class BanghiKiemkeResourceIT {
         List<BanghiKiemke> banghiKiemkeList = banghiKiemkeRepository.findAll();
         assertThat(banghiKiemkeList).hasSize(databaseSizeBeforeCreate + 1);
         BanghiKiemke testBanghiKiemke = banghiKiemkeList.get(banghiKiemkeList.size() - 1);
+        assertThat(testBanghiKiemke.getSoluongBandau()).isEqualTo(DEFAULT_SOLUONG_BANDAU);
+        assertThat(testBanghiKiemke.getGiatriConlaiBandau()).isEqualTo(DEFAULT_GIATRI_CONLAI_BANDAU);
         assertThat(testBanghiKiemke.getSoluong()).isEqualTo(DEFAULT_SOLUONG);
         assertThat(testBanghiKiemke.getNguyengia()).isEqualTo(DEFAULT_NGUYENGIA);
         assertThat(testBanghiKiemke.getGiatriConlai()).isEqualTo(DEFAULT_GIATRI_CONLAI);
@@ -183,6 +195,42 @@ public class BanghiKiemkeResourceIT {
         assertThat(banghiKiemkeList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    public void checkSoluongBandauIsRequired() throws Exception {
+        int databaseSizeBeforeTest = banghiKiemkeRepository.findAll().size();
+        // set the field null
+        banghiKiemke.setSoluongBandau(null);
+
+        // Create the BanghiKiemke, which fails.
+        BanghiKiemkeDTO banghiKiemkeDTO = banghiKiemkeMapper.toDto(banghiKiemke);
+
+        restBanghiKiemkeMockMvc.perform(post("/api/banghi-kiemkes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(banghiKiemkeDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<BanghiKiemke> banghiKiemkeList = banghiKiemkeRepository.findAll();
+        assertThat(banghiKiemkeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkGiatriConlaiBandauIsRequired() throws Exception {
+        int databaseSizeBeforeTest = banghiKiemkeRepository.findAll().size();
+        // set the field null
+        banghiKiemke.setGiatriConlaiBandau(null);
+
+        // Create the BanghiKiemke, which fails.
+        BanghiKiemkeDTO banghiKiemkeDTO = banghiKiemkeMapper.toDto(banghiKiemke);
+
+        restBanghiKiemkeMockMvc.perform(post("/api/banghi-kiemkes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(banghiKiemkeDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<BanghiKiemke> banghiKiemkeList = banghiKiemkeRepository.findAll();
+        assertThat(banghiKiemkeList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     public void checkSoluongIsRequired() throws Exception {
@@ -248,6 +296,8 @@ public class BanghiKiemkeResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(banghiKiemke.getId())))
+            .andExpect(jsonPath("$.[*].soluongBandau").value(hasItem(DEFAULT_SOLUONG_BANDAU)))
+            .andExpect(jsonPath("$.[*].giatriConlaiBandau").value(hasItem(DEFAULT_GIATRI_CONLAI_BANDAU.intValue())))
             .andExpect(jsonPath("$.[*].soluong").value(hasItem(DEFAULT_SOLUONG)))
             .andExpect(jsonPath("$.[*].nguyengia").value(hasItem(DEFAULT_NGUYENGIA.intValue())))
             .andExpect(jsonPath("$.[*].giatriConlai").value(hasItem(DEFAULT_GIATRI_CONLAI.intValue())))
@@ -266,6 +316,8 @@ public class BanghiKiemkeResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(banghiKiemke.getId()))
+            .andExpect(jsonPath("$.soluongBandau").value(DEFAULT_SOLUONG_BANDAU))
+            .andExpect(jsonPath("$.giatriConlaiBandau").value(DEFAULT_GIATRI_CONLAI_BANDAU.intValue()))
             .andExpect(jsonPath("$.soluong").value(DEFAULT_SOLUONG))
             .andExpect(jsonPath("$.nguyengia").value(DEFAULT_NGUYENGIA.intValue()))
             .andExpect(jsonPath("$.giatriConlai").value(DEFAULT_GIATRI_CONLAI.intValue()))
@@ -291,6 +343,8 @@ public class BanghiKiemkeResourceIT {
         // Update the banghiKiemke
         BanghiKiemke updatedBanghiKiemke = banghiKiemkeRepository.findById(banghiKiemke.getId()).get();
         updatedBanghiKiemke
+            .soluongBandau(UPDATED_SOLUONG_BANDAU)
+            .giatriConlaiBandau(UPDATED_GIATRI_CONLAI_BANDAU)
             .soluong(UPDATED_SOLUONG)
             .nguyengia(UPDATED_NGUYENGIA)
             .giatriConlai(UPDATED_GIATRI_CONLAI)
@@ -308,6 +362,8 @@ public class BanghiKiemkeResourceIT {
         List<BanghiKiemke> banghiKiemkeList = banghiKiemkeRepository.findAll();
         assertThat(banghiKiemkeList).hasSize(databaseSizeBeforeUpdate);
         BanghiKiemke testBanghiKiemke = banghiKiemkeList.get(banghiKiemkeList.size() - 1);
+        assertThat(testBanghiKiemke.getSoluongBandau()).isEqualTo(UPDATED_SOLUONG_BANDAU);
+        assertThat(testBanghiKiemke.getGiatriConlaiBandau()).isEqualTo(UPDATED_GIATRI_CONLAI_BANDAU);
         assertThat(testBanghiKiemke.getSoluong()).isEqualTo(UPDATED_SOLUONG);
         assertThat(testBanghiKiemke.getNguyengia()).isEqualTo(UPDATED_NGUYENGIA);
         assertThat(testBanghiKiemke.getGiatriConlai()).isEqualTo(UPDATED_GIATRI_CONLAI);

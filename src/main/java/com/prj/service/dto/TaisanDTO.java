@@ -63,9 +63,7 @@ public class TaisanDTO implements Serializable {
 
     private String donviTinh;
 
-    private Integer giatriConlai;
-
-    private BigDecimal tangNguyengia;
+    private BigDecimal giatriConlai;
 
     private String nguon;
 
@@ -283,20 +281,12 @@ public class TaisanDTO implements Serializable {
         this.donviTinh = donviTinh;
     }
 
-    public Integer getGiatriConlai() {
+    public BigDecimal getGiatriConlai() {
         return giatriConlai;
     }
 
-    public void setGiatriConlai(Integer giatriConlai) {
+    public void setGiatriConlai(BigDecimal giatriConlai) {
         this.giatriConlai = giatriConlai;
-    }
-
-    public BigDecimal getTangNguyengia() {
-        return tangNguyengia;
-    }
-
-    public void setTangNguyengia(BigDecimal tangNguyengia) {
-        this.tangNguyengia = tangNguyengia;
     }
 
     public String getNguon() {
@@ -436,7 +426,6 @@ public class TaisanDTO implements Serializable {
             ", dientichSudung=" + getDientichSudung() +
             ", donviTinh='" + getDonviTinh() + "'" +
             ", giatriConlai=" + getGiatriConlai() +
-            ", tangNguyengia=" + getTangNguyengia() +
             ", nguon='" + getNguon() + "'" +
             ", vitri='" + getVitri() + "'" +
             ", donviQuanly='" + getDonviQuanly() + "'" +

@@ -98,10 +98,7 @@ public class Taisan implements Serializable {
     private String donviTinh;
 
     @Field("giatri_conlai")
-    private Integer giatriConlai;
-
-    @Field("tang_nguyengia")
-    private BigDecimal tangNguyengia;
+    private BigDecimal giatriConlai;
 
     @Field("nguon")
     private String nguon;
@@ -445,30 +442,17 @@ public class Taisan implements Serializable {
         this.donviTinh = donviTinh;
     }
 
-    public Integer getGiatriConlai() {
+    public BigDecimal getGiatriConlai() {
         return giatriConlai;
     }
 
-    public Taisan giatriConlai(Integer giatriConlai) {
+    public Taisan giatriConlai(BigDecimal giatriConlai) {
         this.giatriConlai = giatriConlai;
         return this;
     }
 
-    public void setGiatriConlai(Integer giatriConlai) {
+    public void setGiatriConlai(BigDecimal giatriConlai) {
         this.giatriConlai = giatriConlai;
-    }
-
-    public BigDecimal getTangNguyengia() {
-        return tangNguyengia;
-    }
-
-    public Taisan tangNguyengia(BigDecimal tangNguyengia) {
-        this.tangNguyengia = tangNguyengia;
-        return this;
-    }
-
-    public void setTangNguyengia(BigDecimal tangNguyengia) {
-        this.tangNguyengia = tangNguyengia;
     }
 
     public String getNguon() {
@@ -645,7 +629,6 @@ public class Taisan implements Serializable {
             ", dientichSudung=" + getDientichSudung() +
             ", donviTinh='" + getDonviTinh() + "'" +
             ", giatriConlai=" + getGiatriConlai() +
-            ", tangNguyengia=" + getTangNguyengia() +
             ", nguon='" + getNguon() + "'" +
             ", vitri='" + getVitri() + "'" +
             ", donviQuanly='" + getDonviQuanly() + "'" +

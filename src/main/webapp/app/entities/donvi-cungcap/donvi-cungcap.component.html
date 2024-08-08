@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let donviCungcap of donviCungcaps ;trackBy: trackId">
-                <td><a [routerLink]="['/donvi-cungcap', donviCungcap.id, 'view' ]">{{donviCungcap.id}}</a></td>
+                <td>{{donviCungcap.id}}</td>
                 <td>{{donviCungcap.maDVCC}}</td>
                 <td>{{donviCungcap.ten}}</td>
                 <td>{{donviCungcap.diachi}}</td>
@@ -37,12 +37,6 @@
                 <td>{{donviCungcap.email}}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/donvi-cungcap', donviCungcap.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
                         <button type="submit"
                                 [routerLink]="['/donvi-cungcap', donviCungcap.id, 'edit']"
                                 class="btn btn-primary btn-sm">

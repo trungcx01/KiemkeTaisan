@@ -1,14 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormArrayName, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import { combineLatest, forkJoin, Observable } from 'rxjs';
 
 import { IKiemkeTaisan, KiemkeTaisan } from 'app/shared/model/kiemke-taisan.model';
 import { KiemkeTaisanService } from './kiemke-taisan.service';
 import { NhanvienService } from '../nhanvien/nhanvien.service';
 import { TaisanService } from '../taisan/taisan.service';
+import { startWith } from 'rxjs/operators';
+import { Donvi } from '../donvi.enum';
 
 @Component({
   selector: 'jhi-kiemke-taisan-update',
@@ -21,47 +23,22 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
   ngayKiemkeDp: any;
   nhanviens: any;
   taisans: any;
+  filterBanghis: FormArray = new FormArray([]);
+  paginationBanghis: FormArray = new FormArray([]);
   page = 1;
-  sizePerPage = 1;
-  donviSudungOptions: string[] = [
-    'Phòng Hành chính - Quản trị',
-    'Phòng Kế hoạch - Tài chính',
-    'Phòng Vật tư - Thiết bị y tế',
-    'Phòng Điều dưỡng',
-    'Khoa Khám bệnh và Điều trị',
-    'Phòng Nghiên cứu và Phát triển',
-    'Phòng Công nghệ Thông tin',
-    'Phòng Hậu cần',
-    'Phòng Kiểm soát nội bộ',
-    'Phòng Quản lý chất lượng',
-    'Khoa Nội',
-    'Khoa Ngoại',
-    'Khoa Sản',
-    'Khoa Nhi',
-    'Khoa Phẫu thuật',
-    'Khoa Gây mê hồi sức',
-    'Khoa Chẩn đoán hình ảnh',
-    'Khoa Xét nghiệm',
-    'Khoa Dược',
-    'Khoa Vật lý trị liệu và Phục hồi chức năng',
-    'Khoa Y học cổ truyền',
-    'Khoa Truyền nhiễm',
-    'Khoa Dinh dưỡng',
-    'Khoa Kiểm soát nhiễm khuẩn',
-    'Khoa Hóa sinh',
-    'Khoa Vi sinh',
-    'Phòng Quản lý chất thải y tế',
-    'Khoa Thần kinh',
-    'Khoa Tim mạch',
-    'Khoa Hô hấp',
-    'Khoa Tiêu hóa',
-    'Khoa Thận - Tiết niệu',
-    'Khoa Nội tiết',
-    'Khoa Cấp cứu',
-    'Khoa Chăm sóc giảm nhẹ',
-    'Phòng Bảo vệ',
-    'Phòng Thư viện'
-  ];
+  sizePerPage = 2;
+  totalPages = 1;
+  sortMaTs = false;
+  sortTenTs = false;
+  hiddenPagination = false;
+  Donvi = Donvi;
+
+  donviSudungOptions = Object.keys(Donvi);
+
+  maTaisanSearchControl = new FormControl('');
+  tenTaisanSearchControl = new FormControl('');
+  searchMaTs = '';
+  searchTenTs = '';
 
   editForm = this.fb.group({
     id: [],
@@ -95,6 +72,13 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
       this.nhanviens = res.body;
       this.cdr.detectChanges();
     });
+
+    combineLatest([
+      this.maTaisanSearchControl.valueChanges.pipe(startWith('')),
+      this.tenTaisanSearchControl.valueChanges.pipe(startWith(''))
+    ]).subscribe(([maTaisan, tenTaisan]) => {
+      this.filter(maTaisan, tenTaisan);
+    });
   }
 
   onDonviSudungChange(): void {
@@ -104,6 +88,53 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
         this.updateBanghiKiemke();
       });
     });
+  }
+
+  filter(maTaisan: string, tenTaisan: string): void {
+    this.searchMaTs = maTaisan;
+    this.searchTenTs = tenTaisan;
+    if (this.searchMaTs === '' && this.searchTenTs === '') {
+      this.hiddenPagination = false;
+    } else this.hiddenPagination = true;
+    const filtered = this.banghiKiemkes.controls.filter(
+      group =>
+        (group.get('maTaisan') as FormControl).value.toLowerCase().includes(maTaisan.toLowerCase()) &&
+        (group.get('tenTaisan') as FormControl).value.toLowerCase().includes(tenTaisan.toLowerCase())
+    );
+    this.filterBanghis.clear();
+    while (this.filterBanghis.length !== 0) {
+      this.filterBanghis.removeAt(0);
+    }
+    filtered.forEach(group => this.filterBanghis.controls.push(this.fb.group(group.value)));
+    this.page = 1;
+    this.updatePagination();
+    this.totalPages = Math.ceil(this.filterBanghis.length / this.sizePerPage);
+  }
+
+  onChanges(): void {
+    this.banghiKiemkes.controls.forEach((group, index) => {
+      group.get('soluong')!.valueChanges.subscribe(() => {
+        this.updateChenhlechSoluong(index);
+      });
+
+      group.get('giatriConlai')!.valueChanges.subscribe(() => {
+        this.updateChenhlechGTCL(index);
+      });
+    });
+  }
+
+  updateChenhlechSoluong(index: number): number {
+    const group = this.banghiKiemkes.at(index) as FormGroup;
+    const soluong = group.get('soluong')!.value;
+    const soluongBandau = group.get('soluongBandau')!.value;
+    return soluong - soluongBandau;
+  }
+
+  updateChenhlechGTCL(index: number): number {
+    const group = this.banghiKiemkes.at(index) as FormGroup;
+    const soluong = group.get('giatriConlai')!.value;
+    const soluongBandau = group.get('giatriConlaiBandau')!.value;
+    return soluong - soluongBandau;
   }
 
   nhanvienKiemkeForm(): FormGroup {
@@ -128,7 +159,7 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
       giatriConlai: [null, [Validators.required]],
       tinhtrangSudung: [null, [Validators.required]],
       hinhthucXuly: [null, [Validators.required]],
-      ghichu: []
+      ghichu: [null]
     });
   }
 
@@ -162,10 +193,11 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
         soluongBandau: this.taisans[i].soluong,
         nguyengiaBandau: this.taisans[i].nguyengia,
         giatriConlaiBandau: this.taisans[i].giatriConlai,
-        ghichu: ['']
+        ghichu: ''
       });
     }
-    this.cdr.detectChanges();
+    this.updatePagination();
+    this.totalPages = Math.ceil(this.banghiKiemkes.length / this.sizePerPage);
   }
 
   addNewNhanvienKiemke(): void {
@@ -179,10 +211,6 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
       this.nhanvienKiemkes.removeAt(i);
     }
   }
-
-  // getControlNameOfBanghiTaisan(i: number, controlName: string): any {
-  //   return this.banghiKiemkes.at(i).get(controlName)!.value;
-  // }
 
   updateForm(kiemkeTaisan: IKiemkeTaisan): void {
     this.editForm.patchValue({
@@ -217,16 +245,17 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
               maTaisan: taisan.maTaisan,
               tenTaisan: taisan.tenTaisan,
               donviSudung: taisan.donviSudung,
-              soluongBandau: taisan.soluong,
+              soluongBandau: banghiKiemke.soluongBandau,
               nguyengiaBandau: taisan.nguyengia,
-              giatriConlaiBandau: taisan.giatriConlai,
+              giatriConlaiBandau: banghiKiemke.giatriConlaiBandau,
               ghichu: banghiKiemke.ghichu
             })
           );
+          this.updatePagination();
+          this.totalPages = Math.ceil(this.banghiKiemkes.length / this.sizePerPage);
         });
       });
     }
-
     this.nhanvienKiemkes.clear();
     if (kiemkeTaisan.nhanvienKiemkes) {
       const nhanvienKiemkesRequest = kiemkeTaisan.nhanvienKiemkes;
@@ -259,7 +288,14 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
   nextPage(): void {
     if (this.page < Math.ceil(this.banghiKiemkes.controls.length / this.sizePerPage)) {
       this.page += 1;
-      this.cdr.detectChanges();
+      this.updatePagination();
+    }
+  }
+
+  previousPage(): void {
+    if (this.page > 1) {
+      this.page -= 1;
+      this.updatePagination();
     }
   }
 
@@ -277,6 +313,16 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
     };
   }
 
+  private updatePagination(): void {
+    this.paginationBanghis.clear();
+    while (this.paginationBanghis.length !== 0) {
+      this.paginationBanghis.removeAt(0);
+    }
+    (this.searchMaTs === '' && this.searchTenTs === '' ? this.banghiKiemkes.controls : this.filterBanghis.controls)
+      .slice((this.page - 1) * this.sizePerPage, this.page * this.sizePerPage)
+      .forEach(banghi => this.paginationBanghis.controls.push(this.fb.group(banghi.value)));
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IKiemkeTaisan>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
@@ -291,5 +337,35 @@ export class KiemkeTaisanUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  sort(field: string): void {
+    const banghis =
+      this.searchMaTs === '' && this.searchTenTs === ''
+        ? (this.banghiKiemkes.controls as FormGroup[])
+        : (this.filterBanghis.controls as FormGroup[]);
+    banghis.sort((a, b) => {
+      const A = (a.get(field)!.value || '').toLowerCase();
+      const B = (b.get(field)!.value || '').toLowerCase();
+      if (field === 'maTaisan') {
+        return this.sortMaTs ? B.localeCompare(A) : A.localeCompare(B);
+      }
+      if (field === 'tenTaisan') {
+        return this.sortTenTs ? B.localeCompare(A) : A.localeCompare(B);
+      }
+      return 0;
+    });
+
+    if (field === 'maTaisan') {
+      this.sortMaTs = !this.sortMaTs;
+    }
+    if (field === 'tenTaisan') {
+      this.sortTenTs = !this.sortTenTs;
+    }
+
+    for (let i = 0; i < banghis.length; i++) {
+      this.banghiKiemkes.setControl(i, banghis[i]);
+    }
+    this.updatePagination();
   }
 }

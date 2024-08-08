@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 
 import { IDanhmucTaisan, DanhmucTaisan } from 'app/shared/model/danhmuc-taisan.model';
 import { DanhmucTaisanService } from './danhmuc-taisan.service';

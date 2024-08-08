@@ -28,13 +28,13 @@ describe('Component Tests', () => {
                     pagingParams: {
                       predicate: 'id',
                       reverse: false,
-                      page: 0,
-                    },
-                  }),
-              },
-            },
-          },
-        ],
+                      page: 0
+                    }
+                  })
+              }
+            }
+          }
+        ]
       })
         .overrideTemplate(BanghiKiemkeComponent, '')
         .compileComponents();
@@ -51,9 +51,9 @@ describe('Component Tests', () => {
         of(
           new HttpResponse({
             body: [new BanghiKiemke('123')],
-            headers,
-          }),
-        ),
+            headers
+          })
+        )
       );
 
       // WHEN
@@ -71,9 +71,9 @@ describe('Component Tests', () => {
         of(
           new HttpResponse({
             body: [new BanghiKiemke('123')],
-            headers,
-          }),
-        ),
+            headers
+          })
+        )
       );
 
       // WHEN

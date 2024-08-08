@@ -7,7 +7,7 @@ entity Nhanvien {
   sdt String maxlength(11) required
   phongban String required
   email String required
-  ngayThamgia LocalDate 
+  ngayThamgia LocalDate required
 }
 
 entity DanhmucTaisan {
@@ -25,6 +25,8 @@ entity DonviCungcap {
 }
 
 entity BanghiKiemke {
+  soluongBandau Integer required
+    giatriConlaiBandau BigDecimal required
   soluong Integer required
     nguyengia BigDecimal required
     giatriConlai BigDecimal required
@@ -67,8 +69,7 @@ entity Taisan {
   congsuatSudung Double
   dientichSudung Double
   donviTinh String
-  giatriConlai Integer
-  tangNguyengia BigDecimal
+  giatriConlai BigDecimal
   nguon String 
   vitri String 
   donviQuanly String 
@@ -90,5 +91,3 @@ relationship OneToMany {
 paginate * with pagination
 service all with serviceImpl
 dto all with mapstruct
-filter Taisan
-filter Nhanvien

@@ -13,7 +13,7 @@ import { BanghiKiemkeDeleteDialogComponent } from './banghi-kiemke-delete-dialog
 
 @Component({
   selector: 'jhi-banghi-kiemke',
-  templateUrl: './banghi-kiemke.component.html',
+  templateUrl: './banghi-kiemke.component.html'
 })
 export class BanghiKiemkeComponent implements OnInit, OnDestroy {
   banghiKiemkes?: IBanghiKiemke[];
@@ -30,7 +30,7 @@ export class BanghiKiemkeComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal,
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number): void {
@@ -39,11 +39,11 @@ export class BanghiKiemkeComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe(
         (res: HttpResponse<IBanghiKiemke[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError(),
+        () => this.onError()
       );
   }
 
@@ -93,8 +93,8 @@ export class BanghiKiemkeComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
-      },
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
     });
     this.banghiKiemkes = data ? data : [];
   }

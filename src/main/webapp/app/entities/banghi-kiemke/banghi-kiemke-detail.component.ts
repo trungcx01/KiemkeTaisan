@@ -5,7 +5,7 @@ import { IBanghiKiemke } from 'app/shared/model/banghi-kiemke.model';
 
 @Component({
   selector: 'jhi-banghi-kiemke-detail',
-  templateUrl: './banghi-kiemke-detail.component.html',
+  templateUrl: './banghi-kiemke-detail.component.html'
 })
 export class BanghiKiemkeDetailComponent implements OnInit {
   banghiKiemke: IBanghiKiemke | null = null;

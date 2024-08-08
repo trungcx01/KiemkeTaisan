@@ -50,6 +50,7 @@ public class Nhanvien implements Serializable {
     @Field("email")
     private String email;
 
+    @NotNull
     @Field("ngay_thamgia")
     private LocalDate ngayThamgia;
 

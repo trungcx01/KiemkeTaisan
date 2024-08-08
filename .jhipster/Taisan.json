@@ -110,10 +110,6 @@
         },
         {
             "fieldName": "giatriConlai",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "tangNguyengia",
             "fieldType": "BigDecimal"
         },
         {
@@ -177,7 +173,7 @@
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": true,
+    "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",

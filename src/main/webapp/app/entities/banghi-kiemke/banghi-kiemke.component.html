@@ -19,6 +19,8 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="soluongBandau"><span jhiTranslate="taisanApp.banghiKiemke.soluongBandau">Soluong Bandau</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="giatriConlaiBandau"><span jhiTranslate="taisanApp.banghiKiemke.giatriConlaiBandau">Giatri Conlai Bandau</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="soluong"><span jhiTranslate="taisanApp.banghiKiemke.soluong">Soluong</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="nguyengia"><span jhiTranslate="taisanApp.banghiKiemke.nguyengia">Nguyengia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="giatriConlai"><span jhiTranslate="taisanApp.banghiKiemke.giatriConlai">Giatri Conlai</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -33,6 +35,8 @@
             <tbody>
             <tr *ngFor="let banghiKiemke of banghiKiemkes ;trackBy: trackId">
                 <td><a [routerLink]="['/banghi-kiemke', banghiKiemke.id, 'view' ]">{{banghiKiemke.id}}</a></td>
+                <td>{{banghiKiemke.soluongBandau}}</td>
+                <td>{{banghiKiemke.giatriConlaiBandau}}</td>
                 <td>{{banghiKiemke.soluong}}</td>
                 <td>{{banghiKiemke.nguyengia}}</td>
                 <td>{{banghiKiemke.giatriConlai}}</td>

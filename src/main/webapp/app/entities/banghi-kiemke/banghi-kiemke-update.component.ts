@@ -17,7 +17,7 @@ type SelectableEntity = ITaisan | IKiemkeTaisan;
 
 @Component({
   selector: 'jhi-banghi-kiemke-update',
-  templateUrl: './banghi-kiemke-update.component.html',
+  templateUrl: './banghi-kiemke-update.component.html'
 })
 export class BanghiKiemkeUpdateComponent implements OnInit {
   isSaving = false;
@@ -28,6 +28,8 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    soluongBandau: [null, [Validators.required]],
+    giatriConlaiBandau: [null, [Validators.required]],
     soluong: [null, [Validators.required]],
     nguyengia: [null, [Validators.required]],
     giatriConlai: [null, [Validators.required]],
@@ -35,7 +37,7 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
     tinhtrangSudung: [],
     hinhthucXuly: [],
     taisanId: [null, Validators.required],
-    kiemkeTaisanId: [],
+    kiemkeTaisanId: []
   });
 
   constructor(
@@ -43,7 +45,7 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
     protected taisanService: TaisanService,
     protected kiemkeTaisanService: KiemkeTaisanService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
         .pipe(
           map((res: HttpResponse<ITaisan[]>) => {
             return res.body ? res.body : [];
-          }),
+          })
         )
         .subscribe((resBody: ITaisan[]) => (this.taisans = resBody));
 
@@ -64,7 +66,7 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
         .pipe(
           map((res: HttpResponse<IKiemkeTaisan[]>) => {
             return res.body ? res.body : [];
-          }),
+          })
         )
         .subscribe((resBody: IKiemkeTaisan[]) => (this.kiemketaisans = resBody));
     });
@@ -73,6 +75,8 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
   updateForm(banghiKiemke: IBanghiKiemke): void {
     this.editForm.patchValue({
       id: banghiKiemke.id,
+      soluongBandau: banghiKiemke.soluongBandau,
+      giatriConlaiBandau: banghiKiemke.giatriConlaiBandau,
       soluong: banghiKiemke.soluong,
       nguyengia: banghiKiemke.nguyengia,
       giatriConlai: banghiKiemke.giatriConlai,
@@ -80,7 +84,7 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
       tinhtrangSudung: banghiKiemke.tinhtrangSudung,
       hinhthucXuly: banghiKiemke.hinhthucXuly,
       taisanId: banghiKiemke.taisanId,
-      kiemkeTaisanId: banghiKiemke.kiemkeTaisanId,
+      kiemkeTaisanId: banghiKiemke.kiemkeTaisanId
     });
   }
 
@@ -102,6 +106,8 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
     return {
       ...new BanghiKiemke(),
       id: this.editForm.get(['id'])!.value,
+      soluongBandau: this.editForm.get(['soluongBandau'])!.value,
+      giatriConlaiBandau: this.editForm.get(['giatriConlaiBandau'])!.value,
       soluong: this.editForm.get(['soluong'])!.value,
       nguyengia: this.editForm.get(['nguyengia'])!.value,
       giatriConlai: this.editForm.get(['giatriConlai'])!.value,
@@ -109,14 +115,14 @@ export class BanghiKiemkeUpdateComponent implements OnInit {
       tinhtrangSudung: this.editForm.get(['tinhtrangSudung'])!.value,
       hinhthucXuly: this.editForm.get(['hinhthucXuly'])!.value,
       taisanId: this.editForm.get(['taisanId'])!.value,
-      kiemkeTaisanId: this.editForm.get(['kiemkeTaisanId'])!.value,
+      kiemkeTaisanId: this.editForm.get(['kiemkeTaisanId'])!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IBanghiKiemke>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError(),
+      () => this.onSaveError()
     );
   }
 

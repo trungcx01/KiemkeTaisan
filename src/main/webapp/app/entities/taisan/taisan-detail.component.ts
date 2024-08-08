@@ -5,7 +5,7 @@ import { ITaisan } from 'app/shared/model/taisan.model';
 
 @Component({
   selector: 'jhi-taisan-detail',
-  templateUrl: './taisan-detail.component.html',
+  templateUrl: './taisan-detail.component.html'
 })
 export class TaisanDetailComponent implements OnInit {
   taisan: ITaisan | null = null;

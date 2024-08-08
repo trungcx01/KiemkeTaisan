@@ -35,6 +35,7 @@ public class NhanvienDTO implements Serializable {
     @NotNull
     private String email;
 
+    @NotNull
     private LocalDate ngayThamgia;
 
 

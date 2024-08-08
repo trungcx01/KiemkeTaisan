@@ -28,19 +28,13 @@
             </thead>
             <tbody>
             <tr *ngFor="let danhmucTaisan of danhmucTaisans ;trackBy: trackId">
-                <td><a [routerLink]="['/danhmuc-taisan', danhmucTaisan.id, 'view' ]">{{danhmucTaisan.id}}</a></td>
+                <td>{{danhmucTaisan.id}}</td>
                 <td>{{danhmucTaisan.maDMTS}}</td>
                 <td>{{danhmucTaisan.ten}}</td>
                 <td>{{danhmucTaisan.mota}}</td>
-                <td>{{danhmucTaisan.ngaytao | date:'mediumDate'}}</td>
+                <td>{{danhmucTaisan.ngaytao | date:'dd/MM/yyyy'}}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/danhmuc-taisan', danhmucTaisan.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
                         <button type="submit"
                                 [routerLink]="['/danhmuc-taisan', danhmucTaisan.id, 'edit']"
                                 class="btn btn-primary btn-sm">

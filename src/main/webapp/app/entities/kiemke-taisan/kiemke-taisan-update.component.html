@@ -4,7 +4,7 @@
       <h2 class="ml-2" id="jhi-kiemke-taisan-heading" jhiTranslate="taisanApp.kiemkeTaisan.home.createOrEditLabel">
         Create or edit a Kiemke Taisan
       </h2>
-      <div class="row col-11">
+      <div class="row col-11 mt-3">
         <jhi-alert-error></jhi-alert-error>
 
         <div class="form-group col-lg-3 col-md-6 col-sm-12">
@@ -88,7 +88,7 @@
           <span *ngIf="editForm.get('donviSudung')?.errors?.required" style="color: red;">*</span>
           <select class="form-control" formControlName="donviSudung" (click)="onDonviSudungChange()">
             <option value="all">Tất cả bộ phận</option>
-            <option *ngFor="let u of donviSudungOptions" [ngValue]="u">{{ u }}</option>
+            <option *ngFor="let u of donviSudungOptions" [ngValue]="u">{{ Donvi[u] }}</option>
           </select>
           <div *ngIf="editForm.get('donviSudung')!.invalid && (editForm.get('donviSudung')!.dirty || editForm.get('donviSudung')!.touched)">
             <small
@@ -107,57 +107,77 @@
       </div>
       <div class=" col-11 mt-4">
         <h6 class="mt-2 mb-2">Ban kiểm kê</h6>
-        <table class="table table-bordered text-center">
-          <thead>
-            <tr>
-              <th>STT</th>
-              <th>Nhân viên</th>
-              <th>Đại diện</th>
-              <th>Vai trò</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody formArrayName="nhanvienKiemkes">
-            <ng-container *ngFor="let item of nhanvienKiemkes.controls; let i = index" [formGroupName]="i">
+        <div class="table-responsive">
+          <table class="table table-bordered text-center" style="min-width: 700px;">
+            <thead>
               <tr>
-                <td class="text-center">
-                  <p>{{ i + 1 }}</p>
-                </td>
-                <td>
-                  <select class="form-control" formControlName="nhanvienId">
-                    <option *ngFor="let item of nhanviens" [ngValue]="item.id">{{ item.ten }} - {{ item.chucvu }}</option>
-                  </select>
-                </td>
-                <td>
-                  <input type="text" class="form-control" formControlName="daidien" />
-                </td>
-                <td>
-                  <!-- <input type="text" class="form-control" formControlName="vaitro" /> -->
-                   <select class="form-control" formControlName="vaitro">
-                    <option value="0">Trưởng ban</option>
-                    <option value="1">Ủy viên</option>
-                   </select>
-                </td>
-                <td>
-                  <a
-                    [hidden]="i < nhanvienKiemkes.controls.length - 1"
-                    style="display: inline-block; font-size: 12px; padding: 3px 6px; border: 0.5px solid #e6e5e5; color: #000; background: #fff;"
-                    (click)="addNewNhanvienKiemke()"
-                  >
-                    <fa-icon [icon]="'plus-square'"></fa-icon>
-                  </a>
-                  <a
-                    [hidden]="nhanvienKiemkes.controls.length === 0"
-                    style="display: inline-block; font-size: 12px; padding: 3px 6px; border: 0.5px solid #e6e5e5; color: #000; background: #fff;"
-                    (click)="removeNhanvienKiemke(i)"
-                  >
-                    <fa-icon [icon]="'trash-alt'"></fa-icon>
-                  </a>
-                </td>
+                <th>STT</th>
+                <th>Nhân viên</th>
+                <th>Đại diện</th>
+                <th>Vai trò</th>
+                <th></th>
               </tr>
-            </ng-container>
-          </tbody>
-        </table>
+            </thead>
+            <tbody formArrayName="nhanvienKiemkes">
+              <ng-container *ngFor="let item of nhanvienKiemkes.controls; let i = index" [formGroupName]="i">
+                <tr>
+                  <td class="text-center">
+                    <p>{{ i + 1 }}</p>
+                  </td>
+                  <td>
+                    <select class="form-control" formControlName="nhanvienId">
+                      <option *ngFor="let item of nhanviens" [ngValue]="item.id">{{ item.ten }} - {{ item.chucvu }}</option>
+                    </select>
+                    <div *ngIf="item.get('nhanvienId')!.invalid && (item.get('nhanvienId')!.dirty || item.get('nhanvienId')!.touched)">
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="item.get('nhanvienId')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        This field is required.
+                      </small>
+                    </div>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" formControlName="daidien" />
+                    <div *ngIf="item.get('daidien')!.invalid && (item.get('daidien')!.dirty || item.get('daidien')!.touched)">
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="item.get('daidien')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        This field is required.
+                      </small>
+                    </div>
+                  </td>
+                  <td>
+                    <select class="form-control" formControlName="vaitro">
+                      <option value="0">Trưởng ban</option>
+                      <option value="1">Ủy viên</option>
+                    </select>
+                    <div *ngIf="item.get('vaitro')!.invalid && (item.get('vaitro')!.dirty || item.get('vaitro')!.touched)">
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="item.get('vaitro')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        This field is required.
+                      </small>
+                    </div>
+                  </td>
+                  <td>
+                    <a [hidden]="i < nhanvienKiemkes.controls.length - 1" (click)="addNewNhanvienKiemke()">
+                      <fa-icon [icon]="'plus-square'"></fa-icon>
+                    </a>
+                    <a [hidden]="nhanvienKiemkes.controls.length === 0" (click)="removeNhanvienKiemke(i)">
+                      <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </a>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="col-12 mt-1">
@@ -165,7 +185,7 @@
           <h6 class=" mb-2 mt-4">Thông tin kiểm kê tài sản</h6>
           <div class="table-responsive">
             <table class="table table-bordered text-center table-striped-vertical">
-              <thead >
+              <thead>
                 <tr class="col-12">
                   <th rowspan="2">STT</th>
                   <th rowspan="2">Mã Tài sản</th>
@@ -194,39 +214,64 @@
                 </tr>
               </thead>
               <tbody formArrayName="banghiKiemkes">
-                <tr
-                  *ngFor="let item of banghiKiemkes.controls; let j = index"
-                  [formGroupName]="j"
-                >
-                  <td class="align-middle">{{ j + 1 }}</td>
+                <tr class="empty-shift">
+                  <td></td>
+                  <td>
+                    <div class="d-flex" style="width: 120px">
+                      <input [formControl]="maTaisanSearchControl" type="text" class="form-control mr-1" />
+                      <a class="mt-1" (click)="sort('maTaisan')">
+                        <fa-icon [hidden]="!sortMaTs" [icon]="'sort-up'"></fa-icon>
+                        <fa-icon [hidden]="sortMaTs" [icon]="'sort-down'"></fa-icon>
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex" style="width: 190px">
+                      <input [formControl]="tenTaisanSearchControl" type="text" class="form-control mr-1" />
+                      <a class="mt-1" (click)="sort('tenTaisan')">
+                        <fa-icon [hidden]="!sortTenTs" [icon]="'sort-up'"></fa-icon>
+                        <fa-icon [hidden]="sortTenTs" [icon]="'sort-down'"></fa-icon>
+                      </a>
+                    </div>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr *ngFor="let item of paginationBanghis.controls; let j = index" [formGroupName]="(page - 1) * sizePerPage + j">
+                  <td class="align-middle">{{ (page - 1) * sizePerPage + j + 1 }}</td>
                   <td class="align-middle">
-                    <!-- <input style="width: 80px" disabled type="text" formControlName="maTaisan" /> -->
-                    <span>{{item.get('maTaisan').value}}</span>
+                    <span>{{ item.get('maTaisan').value }}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <textarea style="width: 200px" disabled formControlName="tenTaisan"></textarea> -->
-                     <span>{{item.get('tenTaisan').value}}</span>
+                    <span>{{ item.get('tenTaisan').value }}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <textarea disabled formControlName="donviSudung"></textarea> -->
-                    <span>{{item.get('donviSudung').value}}</span>
+                    <span>{{ Donvi[item.get('donviSudung').value ]}}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <input disabled style="width: 50px" type="text" formControlName="soluongBandau" /> -->
-                    <span>{{item.get('soluongBandau').value}}</span>
+                    <span>{{ item.get('soluongBandau').value }}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <input style="width: 90px" disabled type="text" formControlName="nguyengiaBandau" /> -->
-                    <span>{{item.get('nguyengiaBandau').value}}</span>
+                    <span>{{ item.get('nguyengiaBandau').value | number }}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <input style="width: 50px" disabled type="text" formControlName="giatriConlaiBandau" /> -->
-                    <span>{{item.get('giatriConlaiBandau').value}}</span>
+                    <span>{{ item.get('giatriConlaiBandau').value | number }}</span>
                   </td>
                   <td class="align-middle">
                     <input
                       ng-model="soluong"
-                      style="width: 50px"
+                      style="width: 80px"
                       type="number"
                       class="form-control text-center"
                       min="0"
@@ -234,54 +279,35 @@
                     />
                   </td>
                   <td class="align-middle">
-                    <input class="form-control" style="width: 100px" type="text" formControlName="nguyengia"  />
+                    <span>{{ item.get('nguyengiaBandau').value | number }}</span>
                   </td>
                   <td class="align-middle">
-                    <input style="width: 50px"  min="0" type="number" class="form-control text-center" formControlName="giatriConlai" />
+                    <input style="width: 100px" min="0" type="number" class="form-control text-center" formControlName="giatriConlai" />
                   </td>
                   <td class="align-middle">
-                    <!-- <input
-                      style="width: 50px"
-                      disabled
-                      class="form-control"
-                      [value]="item.get('soluong').value - item.get('soluongBandau').value"
-                    /> -->
-                    <span>{{item.get('soluong').value - item.get('soluongBandau').value}}</span>
+                    <span>{{ updateChenhlechSoluong((page - 1) * sizePerPage + j) }}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <input
-                      style="width: 50px"
-                      disabled
-                      class="form-control"
-                      [value]="item.get('nguyengia').value - item.get('nguyengiaBandau').value"
-                    /> -->
-                    <span>{{item.get('nguyengia').value - item.get('nguyengiaBandau').value}}</span>
+                    <span>{{ item.get('nguyengia').value - item.get('nguyengiaBandau').value }}</span>
                   </td>
                   <td class="align-middle">
-                    <!-- <input
-                      style="width: 50px"
-                      disabled
-                      class="form-control"
-                      [value]="item.get('giatriConlai').value - item.get('giatriConlaiBandau').value"
-                    /> -->
-                    <span>{{item.get('giatriConlai').value - item.get('giatriConlaiBandau').value}}</span>
+                    <span>{{ updateChenhlechGTCL((page - 1) * sizePerPage + j) }}</span>
                   </td>
                   <td class="align-middle">
                     <select style="width: fit-content" class="form-control" formControlName="tinhtrangSudung">
-                      <option [ngValue]="1">Sử dụng</option>
-                      <option [ngValue]="2">Không sử dụng</option>
-                      <option [ngValue]="3">Thanh lý</option>
-                      <option [ngValue]="4">Chuyển nhượng</option>
-                      <option [ngValue]="5">Cho thuê</option>
-                      <option [ngValue]="6">Bảo quản</option>
-                      <option [ngValue]="7">Chuyển giao</option>
+                      <option [ngValue]="0">Sử dung tốt</option>
+                      <option [ngValue]="1">Bị hỏng sắp hết thời gian sử dụng</option>
+                      <option [ngValue]="2">Bị hỏng đã hết thời gian sử dụng</option>
+                      <option [ngValue]="3">Đã thu hồi</option>
+                      <option [ngValue]="4">Bị mất</option>
+                      <option [ngValue]="5">Thừa</option>
                     </select>
                   </td>
                   <td class="align-middle">
                     <select class="form-control" formControlName="hinhthucXuly" style="width: fit-content">
-                      <option [ngValue]="1">Ghi tăng</option>
-                      <option [ngValue]="2">Ghi giảm</option>
-                      <option [ngValue]="3">Đánh giá lại</option>
+                      <option [ngValue]="0">Ghi tăng</option>
+                      <option [ngValue]="1">Ghi giảm</option>
+                      <option [ngValue]="2">Đánh giá lại</option>
                     </select>
                   </td>
                   <td class="align-middle">
@@ -290,11 +316,12 @@
                 </tr>
               </tbody>
             </table>
-            <div class="justify-content-center d-flex col-3">
-              <button type="button" class="btn col-5">Previous</button>
-              <input readonly class="form-control col-2" [value]="page"> 
-              <button type="button" class="btn col-5" (click)="nextPage()">Next</button>
-            </div>
+          </div>
+
+          <div class="pagination">
+            <a class="btn btn-info" (click)="previousPage()">Prev</a>
+            <input readonly class="btn form-control" [value]="page + ' / ' + (totalPages === 0 ? 1 : totalPages)" />
+            <a class="btn btn-info" (click)="nextPage()">Next</a>
           </div>
         </ng-container>
       </div>

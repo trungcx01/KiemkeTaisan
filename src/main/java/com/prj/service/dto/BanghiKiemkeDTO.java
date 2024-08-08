@@ -12,6 +12,12 @@ public class BanghiKiemkeDTO implements Serializable {
     private String id;
 
     @NotNull
+    private Integer soluongBandau;
+
+    @NotNull
+    private BigDecimal giatriConlaiBandau;
+
+    @NotNull
     private Integer soluong;
 
     @NotNull
@@ -39,6 +45,22 @@ public class BanghiKiemkeDTO implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getSoluongBandau() {
+        return soluongBandau;
+    }
+
+    public void setSoluongBandau(Integer soluongBandau) {
+        this.soluongBandau = soluongBandau;
+    }
+
+    public BigDecimal getGiatriConlaiBandau() {
+        return giatriConlaiBandau;
+    }
+
+    public void setGiatriConlaiBandau(BigDecimal giatriConlaiBandau) {
+        this.giatriConlaiBandau = giatriConlaiBandau;
     }
 
     public Integer getSoluong() {
@@ -138,6 +160,8 @@ public class BanghiKiemkeDTO implements Serializable {
     public String toString() {
         return "BanghiKiemkeDTO{" +
             "id=" + getId() +
+            ", soluongBandau=" + getSoluongBandau() +
+            ", giatriConlaiBandau=" + getGiatriConlaiBandau() +
             ", soluong=" + getSoluong() +
             ", nguyengia=" + getNguyengia() +
             ", giatriConlai=" + getGiatriConlai() +
